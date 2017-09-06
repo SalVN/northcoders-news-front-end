@@ -20,19 +20,17 @@ describe('reducer', () => {
 
     describe('FETCH_ARTICLES_REQUEST', () => {
         const action = actions.fetchArticlesRequest();
+        const result = reducer(initialState, action);
         it('should return loading as true', () => {
-            const result = reducer(initialState, action);
             expect(result.loading).toBe(true);
         });
 
         it('should return the other parts of the state as the same as the initial state', () => {
-            const result = reducer(initialState, action);
             expect(result.articles).toEqual([]);
             expect(result.error).toBe(null);
         });
 
         it('should not mutate the initial state', () => {
-            const result = reducer(initialState, action);
             expect(result).not.toBe(initialState);
             expect(result.articles).not.toBe(initialState.articles);
         });
@@ -59,23 +57,43 @@ describe('reducer', () => {
         }];
 
         const action = actions.fetchArticlesSuccess(articles);
+        const result = reducer(initialState, action);
         it('should return loading as false', () => {
-            const result = reducer(initialState, action);
             expect(result.loading).toBe(false);
         });
 
         it('should return an array of articles', () => {
-            const result = reducer(initialState, action);
             expect(result.articles).toEqual(articles);
         });
 
         it('should return the other parts of the state as the same as the initial state', () => {
-            const result = reducer(initialState, action);
             expect(result.error).toBe(null);
         });
 
         it('should not mutate the initial state', () => {
-            const result = reducer(initialState, action);
+            expect(result).not.toBe(initialState);
+            expect(result.articles).not.toBe(initialState.articles);
+        });
+    });
+
+    describe('FETCH_ARTICLES_ERROR', () => {
+        const error = { status: 400, message: 'INVALID URL' };
+        const action = actions.fetchArticlesError(error);
+        const result = reducer(initialState, action);
+
+        it('should return loading as false', () => {
+            expect(result.loading).toBe(false);
+        });
+
+        it('should return an empty array for articles', () => {
+            expect(result.articles).toEqual([]);
+        });
+
+        it('should return the error', () => {
+            expect(result.error).toEqual(error);
+        });
+
+        it('should not mutate the initial state', () => {
             expect(result).not.toBe(initialState);
             expect(result.articles).not.toBe(initialState.articles);
         });

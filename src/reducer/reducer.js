@@ -23,7 +23,7 @@ function reducer (prevState = initialState, action) {
   }
 
   if (action.type === types.FETCH_ARTICLES_ERROR) {
-    newState.error = action.data;
+    newState.error = Object.assign({}, action.data);
     newState.loading = false;
     newState.articles = [];
     return newState;
