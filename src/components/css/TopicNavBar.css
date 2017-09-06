@@ -1,9 +1,13 @@
 .navbar-css {
     border-bottom: 2px solid black;
-    padding: 5px 30px;
 }
 
 .navbar-text-css {
     color: black !important;
     font-weight: strong !important;
+}
+
+.logo {
+    height: 30px;
+    width: auto;
 }
