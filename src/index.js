@@ -11,7 +11,7 @@ import './css/font-awesome.css';
 
 import App from './components/App';
 import ArticleList from './components/ArticleList';
-import reducer from './reducer/reducer';
+import reducer from './reducer/';
 
 const store = createStore(reducer, applyMiddleware(thunk, logger));
 const history = createBrowserHistory();

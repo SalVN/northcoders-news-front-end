@@ -19,7 +19,7 @@ class ArticleList extends React.Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return {
     fetchArticles: () => {
       dispatch(actions.fetchArticles());
@@ -28,10 +28,9 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps (state) {
-  console.log(state);
   return {
-    articles: state.articles,
-    loading: state.loading
+    articles: state.articles.articles,
+    loading: state.articles.loading
   };
 }
 

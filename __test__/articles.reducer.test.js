@@ -1,6 +1,6 @@
 import * as actions from '../src/actions/actions';
 
-import reducer from '../src/reducer/reducer';
+import reducer from '../src/reducer/articles.reducer';
 
 describe('reducer', () => {
     const initialState = {
