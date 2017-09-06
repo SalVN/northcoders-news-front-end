@@ -10,14 +10,25 @@
         "node": true,
         "mocha": true,
         "browser": true,
-        "es6": true
+        "es6": true,
+        "jest/globals": true
     },
-    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
     "plugins": [
-        "jsx", "react"
+        "jsx",
+        "react",
+        "jest"
     ],
     "rules": {
-        "jsx/uses-factory": [1, {"pragma": "JSX"}],
+        "jsx/uses-factory": [
+            1,
+            {
+                "pragma": "JSX"
+            }
+        ],
         "jsx/mark-used-vars": 1,
         "jsx/no-undef": 1,
         "react/prop-types": 1,
@@ -30,7 +41,14 @@
         "spaced-comment": 1,
         "space-before-function-paren": 1,
         "semi": 1,
-        "quotes": ["error", "single"],
-        "no-multiple-empty-lines": 1
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "no-multiple-empty-lines": 1,
+        "jest/no-disabled-tests": 1,
+        "jest/no-focused-tests": 2,
+        "jest/no-identical-title": 2,
+        "jest/valid-expect": 2
     }
 }
