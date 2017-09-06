@@ -1,35 +1,21 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, NavLink, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import * as actions from '../actions/actions';
 import './css/TopicNavBar.css';
 
-const topics = [
-    {
-        '_id': '583412915905f02e4c8e6dfd',
-        'title': 'Football',
-        'slug': 'football',
-        '__v': 0
-    },
-    {
-        '_id': '583412915905f02e4c8e6dfe',
-        'title': 'Cooking',
-        'slug': 'cooking',
-        '__v': 0
-    },
-    {
-        '_id': '583412915905f02e4c8e6dff',
-        'title': 'Coding',
-        'slug': 'coding',
-        '__v': 0
-    }
-];
-
 class TopicNavBar extends Component {
-    constructor (props) {
-        super (props);
+    constructor(props) {
+        super(props);
         this.state = {
             activeBurger: false
         };
         this.toggleBurger = this.toggleBurger.bind(this);
+    }
+    componentDidMount() {
+        this.props.fetchTopics();
     }
     render() {
         let activeBurger = (this.state.activeBurger) ? 'is-active' : '';
@@ -51,9 +37,11 @@ class TopicNavBar extends Component {
                 </div>
                 <div className={`navbar-menu ${activeBurger}`}>
                     <div className='navbar-start'>
-                        {topics.map((topic, i) => {
+                        {
+                            this.props.topics &&
+                            this.props.topics.map((topic, i) => {
                             return (
-                                <span className='navbar-item is-hoverable'>
+                                <span key={topic._id} className='navbar-item is-hoverable'>
                                     <NavLink className='navbar-text-css' to='#'>
                                         <span>{`< ${topic.title.toUpperCase()} />`}</span>
                                     </NavLink>
@@ -67,11 +55,32 @@ class TopicNavBar extends Component {
             </nav >
         );
     }
-    toggleBurger () {
+    toggleBurger() {
         this.setState({
             activeBurger: !this.state.activeBurger
         });
     }
 }
 
-export default TopicNavBar;
+function mapDispatchToProps(dispatch) {
+    return {
+        fetchTopics: () => {
+            dispatch(actions.fetchTopics());
+        }
+    };
+}
+
+function mapStateToProps (state) {
+    return {
+        topics: state.topics.topics,
+        loading: state.topics.loading
+    };
+}
+
+TopicNavBar.propTypes = {
+    topics: PropTypes.array.isRequired,
+    loading: PropTypes.bool.isRequired,
+    fetchTopics: PropTypes.func.isRequired
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TopicNavBar);
