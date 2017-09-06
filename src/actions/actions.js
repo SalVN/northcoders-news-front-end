@@ -35,3 +35,36 @@ export function fetchArticlesError (err) {
         data: err
     };
 }
+
+export function fetchTopics () {
+    return function (dispatch) {
+        dispatch(fetchTopicsRequest());
+        axios.get(`${ROOT}/topics`)
+        .then(res => {
+            dispatch(fetchTopicsSuccess(res.data.topics));
+        })
+        .catch(err => {
+            dispatch(fetchTopicsError(err));
+        });
+    };
+}
+
+export function fetchTopicsRequest () {
+    return {
+        type: types.FETCH_TOPICS_REQUEST
+    };
+}
+
+export function fetchTopicsSuccess (topics) {
+    return {
+        type: types.FETCH_TOPICS_SUCCESS,
+        data: topics
+    };
+}
+
+export function fetchTopicsError (err) {
+    return {
+        type: types.FETCH_TOPICS_ERROR,
+        data: err
+    };
+}

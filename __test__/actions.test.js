@@ -44,5 +44,49 @@ describe('actions', () => {
                 });
             });
         });
-    }); //
-}); 
+
+        describe('#fetchTopics', () => {
+            it('is a function', () => {
+                expect(typeof actions.fetchTopics).toBe('function');
+            });
+
+            describe('#fetchTopicsRequest', () => {
+                it('is a function', () => {
+                    expect(typeof actions.fetchTopicsRequest).toBe('function');
+                });
+
+                it('should return the expected action', function () {
+                    expect(actions.fetchTopicsRequest()).toEqual({
+                        type: types.FETCH_TOPICS_REQUEST
+                    });
+                });
+            });
+
+            describe('#fetchTopicsSuccess', () => {
+                it('is a function', () => {
+                    expect(typeof actions.fetchTopicsSuccess).toBe('function');
+                });
+
+                it('should the expected action', function () {
+                    expect(actions.fetchTopicsSuccess(['topics'])).toEqual({
+                        type: types.FETCH_TOPICS_SUCCESS,
+                        data: ['topics']
+                    });
+                });
+            });
+
+            describe('#fetchTopicsError', () => {
+                it('is a function', () => {
+                    expect(typeof actions.fetchTopicsError).toBe('function');
+                });
+
+                it('returns the expected action', function () {
+                    expect(actions.fetchTopicsError('err')).toEqual({
+                        type: types.FETCH_TOPICS_ERROR,
+                        data: 'err'
+                    });
+                });
+            });
+        }); //
+    }); 
+});
