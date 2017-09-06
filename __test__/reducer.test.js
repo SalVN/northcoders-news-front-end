@@ -35,6 +35,5 @@ describe('reducer', () => {
             expect(result).not.toBe(initialState);
             expect(result.articles).not.toBe(initialState.articles);
         });
-
     });
 });

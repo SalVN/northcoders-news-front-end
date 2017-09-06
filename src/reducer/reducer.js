@@ -17,7 +17,7 @@ function reducer (prevState = initialState, action) {
   }
 
   if (action.type === types.FETCH_ARTICLES_SUCCESS) {
-    newState.data = action.data;
+    newState.articles = action.data;
     newState.loading = false;
     return newState;
   }
@@ -25,7 +25,7 @@ function reducer (prevState = initialState, action) {
   if (action.type === types.FETCH_ARTICLES_ERROR) {
     newState.error = action.data;
     newState.loading = false;
-    newState.data = [];
+    newState.articles = [];
     return newState;
   }
   return prevState;
