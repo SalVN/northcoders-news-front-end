@@ -39,7 +39,7 @@ class TopicNavBar extends Component {
                     <div className='navbar-start'>
                         {
                             this.props.topics &&
-                            this.props.topics.map((topic, i) => {
+                            this.props.topics.map((topic) => {
                             return (
                                 <span key={topic._id} className='navbar-item is-hoverable'>
                                     <NavLink className='navbar-text-css' to='#'>

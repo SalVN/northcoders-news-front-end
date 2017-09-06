@@ -1,25 +1,38 @@
 import React from 'react';
 import ArticleCard from './ArticleCard';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import * as actions from '../actions/actions';
 
 class ArticleList extends React.Component {
-  componentDidMount () {
+  componentDidMount() {
     this.props.fetchArticles();
   }
-  render () {
+  render() {
     return (
       <div id='ArticleList'>
-        { this.props.articles.length > 0 &&
-          this.props.articles.map(article => <ArticleCard title={article.title} votes={article.votes} key={article.title} />)}
+        {this.props.articles.length > 0 &&
+          this.props.articles.map((article, i) => {
+            return (
+              <ArticleCard
+                key={article._id}
+                title={article.title}
+                number={i}
+                votes={article.votes}
+                author={article.created_by}
+                id={article._id}
+                tags={article.belongs_to}
+              />
+            );
+          })
+        }
       </div>
     );
   }
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     fetchArticles: () => {
       dispatch(actions.fetchArticles());
@@ -27,7 +40,7 @@ function mapDispatchToProps (dispatch) {
   };
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     articles: state.articles.articles,
     loading: state.articles.loading
