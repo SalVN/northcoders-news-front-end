@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, NavLink } from 'react-router-dom';
+import './css/TopicNavBar.css';
 
 const topics = [
     {
@@ -25,12 +26,12 @@ const topics = [
 class TopicNavBar extends Component {
     render () {
         return (
-            <nav className='navbar'>
+            <nav className='navbar navbar-css'>
                 <div className='navbar-start'>
                     {topics.map((topic, i) => {
                         return (
                             <span className='navbar-item'>
-                                <NavLink to='#'>
+                                <NavLink className='navbar-text-css' to='#'>
                                     <span>{`< ${topic.title.toUpperCase()} />`}</span>
                                 </NavLink>
                                 {i !== topics.length - 1 &&
