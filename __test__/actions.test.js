@@ -132,5 +132,43 @@ describe('actions', () => {
                 });
             });
         });
+
+        describe('#fetchTopicArticlesRequest', () => {
+            it('is a function', () => {
+                expect(typeof actions.fetchTopicArticlesRequest).toBe('function');
+            });
+
+            it('should return the expected action', function () {
+                expect(actions.fetchTopicArticlesRequest()).toEqual({
+                    type: types.FETCH_TOPIC_ARTICLES_REQUEST
+                });
+            });
+        });
+
+        describe('#fetchTopicArticlesSuccess', () => {
+            it('is a function', () => {
+                expect(typeof actions.fetchTopicArticlesSuccess).toBe('function');
+            });
+
+            it('should the expected action', function () {
+                expect(actions.fetchTopicArticlesSuccess(['topicArticles'])).toEqual({
+                    type: types.FETCH_TOPIC_ARTICLES_SUCCESS,
+                    data: ['topicArticles']
+                });
+            });
+        });
+
+        describe('#fetchTopicArticlesError', () => {
+            it('is a function', () => {
+                expect(typeof actions.fetchTopicArticlesError).toBe('function');
+            });
+
+            it('returns the expected action', function () {
+                expect(actions.fetchTopicArticlesError('err')).toEqual({
+                    type: types.FETCH_TOPIC_ARTICLES_ERROR,
+                    data: 'err'
+                });
+            });
+        });
     }); //
 });

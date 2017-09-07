@@ -101,3 +101,37 @@ export function fetchCommentsError(err) {
         data: err
     };
 }
+
+
+export function fetchTopicArticles(id) {
+    return function (dispatch) {
+        dispatch(fetchTopicArticlesRequest());
+        axios.get(`${ROOT}/topics/${id}/articles`)
+            .then(res => {
+                dispatch(fetchTopicArticlesSuccess(res.data.topicArticles));
+            })
+            .catch(err => {
+                dispatch(fetchTopicArticlesError(err));
+            });
+    };
+}
+
+export function fetchTopicArticlesRequest() {
+    return {
+        type: types.FETCH_TOPIC_ARTICLES_REQUEST
+    };
+}
+
+export function fetchTopicArticlesSuccess(topicArticles) {
+    return {
+        type: types.FETCH_TOPIC_ARTICLES_SUCCESS,
+        data: topicArticles
+    };
+}
+
+export function fetchTopicArticlesError(err) {
+    return {
+        type: types.FETCH_TOPIC_ARTICLES_ERROR,
+        data: err
+    };
+}
