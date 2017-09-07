@@ -169,7 +169,8 @@ export function addCommentError(err) {
     };
 }
 
-export function deleteComment(data, id) {
+export function deleteComment(id) {
+    console.log('delete');
     return function (dispatch) {
         dispatch(deleteCommentRequest());
         axios.delete(`${ROOT}/comments/${id}`)

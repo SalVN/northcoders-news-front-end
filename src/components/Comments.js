@@ -16,6 +16,7 @@ class Comments extends Component {
             added: false
         };
         this.toggleForm = this.toggleForm.bind(this);
+        this.deleteHandler = this.deleteHandler.bind(this);
     }
     componentWillReceiveProps(newProps) {
         if (this.props.comments && (newProps.comments !== this.props.comments) && this.state.showForm) {
@@ -51,7 +52,9 @@ class Comments extends Component {
                 {this.props.comments.map(comment => {
                     return (
                         <div key={comment._id}>
-                            <CommentCard comment={comment} />
+                            <CommentCard 
+                            deleteHandler={this.deleteHandler}
+                            comment={comment} />
                         </div>
                     );
                 })}
@@ -64,6 +67,9 @@ class Comments extends Component {
             added: false
         });
     }
+    deleteHandler(id) {
+        this.props.deleteComment(id);
+    }
 }
 
 function mapDispatchToProps(dispatch) {
@@ -71,6 +77,9 @@ function mapDispatchToProps(dispatch) {
         fetchComments: (id) => {
             dispatch(actions.fetchComments(id));
         },
+        deleteComment: (id) => {
+            dispatch(actions.deleteComment(id));
+        }
     };
 }
 

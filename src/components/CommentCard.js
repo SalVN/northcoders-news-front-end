@@ -22,7 +22,7 @@ const CommentCard = function (props) {
               </div>
             <div>{props.comment.body}</div>
             {props.comment.created_by === USERNAME &&
-              <button className='button'>Delete</button>
+              <button onClick={props.deleteHandler.bind(this, props.comment._id)} className='button'>Delete</button>
             }
           </div>
         </div>
@@ -32,7 +32,9 @@ const CommentCard = function (props) {
 };
 
 CommentCard.propTypes = {
-    comment: PropTypes.object.isRequired
+    comment: PropTypes.object.isRequired,
+    deleteHandler: PropTypes.func.isRequired,
+    id: PropTypes.string.isRequired
 };
 
 
