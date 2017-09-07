@@ -218,5 +218,48 @@ describe('actions', () => {
                 });
             });
         });
+
+        describe('#deleteComment', () => {
+            it('is a function', () => {
+                expect(typeof actions.deleteComment).toBe('function');
+            });
+            describe('#deleteCommentRequest', () => {
+                it('is a function', () => {
+                    expect(typeof actions.deleteCommentRequest).toBe('function');
+                });
+
+                it('should return the expected action', function () {
+                    expect(actions.deleteCommentRequest()).toEqual({
+                        type: types.DELETE_COMMENT_REQUEST
+                    });
+                });
+            });
+
+            describe('#deleteCommentSuccess', () => {
+                it('is a function', () => {
+                    expect(typeof actions.deleteCommentSuccess).toBe('function');
+                });
+
+                it('should the expected action', function () {
+                    expect(actions.deleteCommentSuccess({deletedComment: 'deletedComment'})).toEqual({
+                        type: types.DELETE_COMMENT_SUCCESS,
+                        data: {deletedComment: 'deletedComment'}
+                    });
+                });
+            });
+
+            describe('#deleteCommentError', () => {
+                it('is a function', () => {
+                    expect(typeof actions.deleteCommentError).toBe('function');
+                });
+
+                it('returns the expected action', function () {
+                    expect(actions.deleteCommentError('err')).toEqual({
+                        type: types.DELETE_COMMENT_ERROR,
+                        data: 'err'
+                    });
+                });
+            });
+        });
     }); //
 });

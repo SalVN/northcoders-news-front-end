@@ -176,6 +176,8 @@ describe('reducer', () => {
         it('should return an array of comments, adding the new comment', () => {
             const newComments = [...comments];
             newComments.push(data);
+            console.log(resultEmpty);
+            console.log(resultComments);
             expect(initialState.comments.length).toBe(0);
             expect(initialState.comments).toEqual([]);
             expect(resultEmpty.comments.length).toBe(1);

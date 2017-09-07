@@ -36,7 +36,8 @@ function reducer (prevState = initialState, action) {
   }
 
   if (action.type === types.ADD_COMMENT_SUCCESS) {
-    newState.comments = [...prevState.comments, action.data.savedComment];
+    if (prevState.comments.length > 0) newState.comments = [...prevState.comments, action.data];
+    else newState.comments = [...prevState.comments, action.data];
     newState.loading = false;
     return newState;
   }
