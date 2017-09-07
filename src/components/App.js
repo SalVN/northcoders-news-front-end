@@ -10,7 +10,6 @@ class App extends React.Component {
       <div>
         <TopicNavBar />
         <MainBanner />
-        <h3 className='title is-3'>All Articles</h3>
         {this.props.children}
       </div>
     );
