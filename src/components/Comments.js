@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import CommentCard from './CommentCard';
+
 const comments = [{
     _id: '59b11ae18807841d9bf13234',
     body: 'this is a comment',
@@ -36,8 +38,7 @@ class Comments extends Component {
                 {comments.map(comment => {
                     return (
                         <div>
-                            comment
-                        {comment.body}
+                            <CommentCard comment={comment}/>
                         </div>
                     );
                 })}
