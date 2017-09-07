@@ -144,7 +144,7 @@ describe('reducer', () => {
         const resultComments = reducer(commentsState, action);
         it('should return loading as true', () => {
             expect(resultEmpty.loading).toBe(true);
-            expect(resultEmpty.loading).toBe(true);
+            expect(resultComments.loading).toBe(true);
         });
 
         it('should return the other parts of the state as the same as the initial state', () => {
@@ -176,8 +176,6 @@ describe('reducer', () => {
         it('should return an array of comments, adding the new comment', () => {
             const newComments = [...comments];
             newComments.push(data);
-            console.log(resultEmpty);
-            console.log(resultComments);
             expect(initialState.comments.length).toBe(0);
             expect(initialState.comments).toEqual([]);
             expect(resultEmpty.comments.length).toBe(1);
@@ -228,6 +226,99 @@ describe('reducer', () => {
             expect(resultEmpty).not.toBe(initialState);
             expect(resultEmpty.comments).not.toBe(initialState.comments);
 
+            expect(resultComments).not.toBe(commentsState);
+            expect(resultComments.comments).not.toBe(commentsState.comments);
+        });
+    });
+
+    describe('DELETE_COMMENT_REQUEST', () => {
+        const action = actions.deleteCommentRequest();
+        const resultComments = reducer(commentsState, action);
+        it('should return loading as true', () => {
+            expect(resultComments.loading).toBe(true);
+        });
+
+        it('should return the other parts of the state as the same as the initial state', () => {
+            expect(resultComments.comments).toEqual(comments);
+            expect(resultComments.error).toBe(null);
+        });
+
+        it('should not mutate the initial state', () => {
+            expect(resultComments).not.toBe(commentsState);
+            expect(resultComments.comments).not.toBe(commentsState.comments);
+        });
+    });
+
+    describe('DELETE_COMMENT_SUCCESS', () => {
+        const deletedComment = {
+            _id: '59b11ae18807841d9bf13235',
+            body: 'this is another comment',
+            belongs_to: '59b11ae18807841d9bf13232',
+            __v: 0,
+            created_by: 'northcoder',
+            votes: 0,
+            created_at: 1504778965845
+        };
+        const action = actions.deleteCommentSuccess(deletedComment);
+        const resultComments = reducer(commentsState, action);
+
+        it('should return loading as false', () => {
+            expect(resultComments.loading).toBe(false);
+        });
+
+        it('should return an array of comments, without the deleted comment', () => {
+            const updatedComments = [{
+                _id: '59b11ae18807841d9bf13234',
+                body: 'this is a comment',
+                belongs_to: '59b11ae18807841d9bf13232',
+                __v: 0,
+                created_by: 'northcoder',
+                votes: 0,
+                created_at: 1504778965845
+            },
+            {
+                _id: '59b11ae18807841d9bf13236',
+                body: 'this is my comment',
+                belongs_to: '59b11ae18807841d9bf13232',
+                __v: 0,
+                created_by: 'northcoder',
+                votes: 0,
+                created_at: 1504778977306
+            }];
+
+            expect(commentsState.comments.length).toBe(3);
+            expect(resultComments.comments.length).toBe(2);
+            expect(resultComments.comments).toEqual(updatedComments);
+        });
+
+        it('should return the other parts of the state as the same as the initial state', () => {
+            expect(resultComments.error).toBe(null);
+        });
+
+        it('should not mutate the initial state', () => {
+            expect(resultComments).not.toBe(commentsState);
+            expect(resultComments.comments).not.toBe(commentsState.comments);
+        });
+    });
+
+    describe('DELETE_COMMENT_ERROR', () => {
+        const error = { status: 400, message: 'INVALID URL' };
+        const action = actions.deleteCommentError(error);
+        const resultComments = reducer(commentsState, action);
+
+        it('should return loading as false', () => {
+            expect(resultComments.loading).toBe(false);
+        });
+
+        it('should return a copy of the previous state for comments', () => {
+            expect(resultComments.comments).toEqual(comments);
+        });
+
+        it('should return the error', () => {
+            expect(resultComments.error).toEqual(error);
+        });
+
+        it('should not mutate the initial state', () => {
             expect(resultComments).not.toBe(commentsState);
             expect(resultComments.comments).not.toBe(commentsState.comments);
         });

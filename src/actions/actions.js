@@ -136,7 +136,6 @@ export function fetchTopicArticlesError(err) {
     };
 }
 
-
 export function addComment(data, id) {
     return function (dispatch) {
         dispatch(addCommentRequest());
@@ -169,8 +168,6 @@ export function addCommentError(err) {
         data: err
     };
 }
-
-
 
 export function deleteComment(data, id) {
     return function (dispatch) {

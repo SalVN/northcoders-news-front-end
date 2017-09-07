@@ -6,7 +6,7 @@ const initialState = {
   error: null
 };
 
-function reducer (prevState = initialState, action) {
+function reducer(prevState = initialState, action) {
   if (!action) return prevState;
   const newState = Object.assign({}, prevState);
 
@@ -49,8 +49,37 @@ function reducer (prevState = initialState, action) {
     return newState;
   }
 
+  if (action.type === types.DELETE_COMMENT_REQUEST) {
+    newState.loading = true;
+    newState.comments = [...prevState.comments];
+    return newState;
+  }
+
+  if (action.type === types.DELETE_COMMENT_SUCCESS) {
+    newState.comments = [...prevState.comments];
+    const index = getIndex(newState.comments, action.data._id);
+    newState.comments.splice(index, 1);
+    newState.loading = false;
+    return newState;
+  }
+
+  if (action.type === types.DELETE_COMMENT_ERROR) {
+    newState.error = Object.assign({}, action.data);
+    newState.loading = false;
+    newState.comments = [...prevState.comments];
+    return newState;
+  }
+
   return prevState;
 
 }
 
 export default reducer;
+
+function getIndex(comments, deletedId) {
+  for (let i = 0; i < comments.length; i++) {
+    if (comments[i]._id === deletedId) {
+      return i;
+    }
+  }
+}
