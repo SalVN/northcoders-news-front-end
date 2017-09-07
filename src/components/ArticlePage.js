@@ -22,7 +22,7 @@ class ArticlePage extends Component {
         return (
             <div className='article-page'>
                 <Article article={article}/>
-                <Comments />
+                <Comments id={this.props.match.params.id}/>
             </div>
         );
     }

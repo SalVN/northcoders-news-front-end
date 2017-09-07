@@ -1,44 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import * as actions from '../actions/actions';
 
 import CommentCard from './CommentCard';
 
-const comments = [{
-    _id: '59b11ae18807841d9bf13234',
-    body: 'this is a comment',
-    belongs_to: '59b11ae18807841d9bf13232',
-    __v: 0,
-    created_by: 'northcoder',
-    votes: 0,
-    created_at: 1504778965845
-},
-{
-    _id: '59b11ae18807841d9bf13235',
-    body: 'this is another comment',
-    belongs_to: '59b11ae18807841d9bf13232',
-    __v: 0,
-    created_by: 'northcoder',
-    votes: 0,
-    created_at: 1504778965845
-},
-{
-    _id: '59b11ae18807841d9bf13236',
-    body: 'this is my comment',
-    belongs_to: '59b11ae18807841d9bf13232',
-    __v: 0,
-    created_by: 'northcoder',
-    votes: 0,
-    created_at: 1504778977306
-}];
-
 class Comments extends Component {
+    componentDidMount() {
+        this.props.fetchComments(this.props.id);
+    }
     render() {
         return (
             <div>
-                {comments.map(comment => {
+                {this.props.comments.map(comment => {
                     return (
                         <div>
-                            <CommentCard comment={comment}/>
+                            <CommentCard comment={comment} />
                         </div>
                     );
                 })}
@@ -47,4 +24,19 @@ class Comments extends Component {
     }
 }
 
-export default Comments;
+function mapDispatchToProps(dispatch) {
+    return {
+        fetchComments: (id) => {
+            dispatch(actions.fetchComments(id));
+        },
+    };
+}
+
+function mapStateToProps(state) {
+    return {
+        comments: state.comments.comments,
+        loading: state.loading
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Comments);
