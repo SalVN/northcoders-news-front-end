@@ -37,13 +37,10 @@ function reducer(prevState = initialState, action) {
   }
 
   if (action.type === types.VOTE_ARTICLE_SUCCESS) {
-    console.log(prevState.articles);
-
     newState.articles = [...prevState.articles];
-    const index = getIndex(newState.articles, action.data._id);
-    newState.articles[index] = action.data;
+    const index = getIndex(newState.articles, action.data.article._id);
+    newState.articles[index] = action.data.article;
     newState.loading = false;
-    console.log(newState.articles);
     return newState;
   }
 

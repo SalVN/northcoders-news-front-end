@@ -169,7 +169,7 @@ describe('reducer', () => {
             votes: 2,
             comment_count: 2
         }];
-        const action = actions.voteArticleSuccess(article);
+        const action = actions.voteArticleSuccess({article: article});
         const result = reducer(articlesState, action);
         it('should return loading as false', () => {
             expect(result.loading).toBe(false);
