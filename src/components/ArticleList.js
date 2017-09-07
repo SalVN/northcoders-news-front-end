@@ -23,6 +23,7 @@ class ArticleList extends React.Component {
                 author={article.created_by}
                 id={article._id}
                 tags={article.belongs_to}
+                comment_count={article.comment_count}
               />
             );
           })

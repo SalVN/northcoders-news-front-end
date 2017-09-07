@@ -33,9 +33,8 @@ const CommentCard = function (props) {
 
 CommentCard.propTypes = {
     comment: PropTypes.object.isRequired,
-    deleteHandler: PropTypes.func.isRequired,
-    id: PropTypes.string.isRequired
-};
+    deleteHandler: PropTypes.func.isRequired
+  };
 
 
 export default CommentCard;

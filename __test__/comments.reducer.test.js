@@ -163,7 +163,7 @@ describe('reducer', () => {
     });
 
     describe('ADD_COMMENT_SUCCESS', () => {
-        const data = JSON.stringify({ body: 'Add New Comment', created_by: 'northcoder' });
+        const data = {savedComment: JSON.stringify({ body: 'Add New Comment', created_by: 'northcoder' })};
         const action = actions.addCommentSuccess(data);
         const resultEmpty = reducer(initialState, action);
         const resultComments = reducer(commentsState, action);
@@ -175,11 +175,11 @@ describe('reducer', () => {
 
         it('should return an array of comments, adding the new comment', () => {
             const newComments = [...comments];
-            newComments.push(data);
+            newComments.push(data.savedComment);
             expect(initialState.comments.length).toBe(0);
             expect(initialState.comments).toEqual([]);
             expect(resultEmpty.comments.length).toBe(1);
-            expect(resultEmpty.comments).toEqual([data]);
+            expect(resultEmpty.comments).toEqual([data.savedComment]);
 
             expect(commentsState.comments.length).toBe(3);
             expect(commentsState.comments).toEqual(comments);

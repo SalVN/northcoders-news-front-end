@@ -22,6 +22,7 @@ const ArticleCard = function (props) {
             <p>
               <span>added by: {props.author}</span>
               <span>tags: {props.tags}</span>
+              <span>comments: {props.comment_count}</span>
             </p>
           </div>
         </div>
@@ -36,7 +37,8 @@ ArticleCard.propTypes = {
   number: PropTypes.number.isRequired,
   author: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  tags: PropTypes.string.isRequired
+  tags: PropTypes.string.isRequired,
+  comment_count: PropTypes.string.isRequired
 };
 
 
