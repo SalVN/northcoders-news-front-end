@@ -25,7 +25,7 @@ class AddCommentForm extends React.Component {
                     <button className='button' type='submit'>
                         Submit
                     </button>
-                    <button className='button'>Cancel</button>
+                    <button onClick={this.props.toggleForm} className='button'>Cancel</button>
                 </form>
             </div>
         );
@@ -41,8 +41,6 @@ class AddCommentForm extends React.Component {
             body: this.state.text,
             created_by: USERNAME
         };
-        const newObj = JSON.stringify(obj);
-        console.log(newObj);
         this.props.addComment(obj, this.props.id);
     }
 }
@@ -63,7 +61,8 @@ function mapStateToProps(state) {
 
 AddCommentForm.propTypes = {
     id: PropTypes.string.isRequired,
-    addComment:PropTypes.func.isRequired
+    addComment:PropTypes.func.isRequired,
+    toggleForm: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddCommentForm);

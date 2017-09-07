@@ -11,7 +11,8 @@ class Comments extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            sortedBy: 'newest'
+            sortedBy: 'newest',
+            showForm: false
         };
         this.toggleForm = this.toggleForm.bind(this);
     }
@@ -24,7 +25,7 @@ class Comments extends Component {
             <div>
                 {this.state.showForm
                     ? (
-                        <AddCommentForm id={this.props.id} />
+                        <AddCommentForm toggleForm={this.toggleForm} id={this.props.id} />
                     )
                     : (
                         <button className='button' onClick={this.toggleForm}>
