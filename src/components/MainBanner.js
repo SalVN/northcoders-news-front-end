@@ -1,16 +1,19 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import './css/MainBanner.css';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 class MainBanner extends React.Component {
-  render () {
+  render() {
     return (
       <section className='hero is-primary is-bold'>
-          <div className='hero-body hero-css'>
-              <div className='container'>
-                  <h1 className='title main-heading'><strong>NORTHCODERS News</strong></h1>
-                </div>
-              </div>
+        <div className='hero-body hero-css'>
+          <div className='container'>
+            <Link to='/'>
+              <h1 className='title main-heading'><strong>NORTHCODERS News</strong></h1>
+            </Link>
+          </div>
+        </div>
       </section>
     );
   }

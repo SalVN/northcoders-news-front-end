@@ -16,7 +16,7 @@ const ArticleCard = function (props) {
         </div>
         <div className='media-content'>
           <div className='content'>
-            <Link to='#'>
+            <Link to={`/articles/${props.id}`}>
               <h3 className='title is-3'>{props.title}</h3>
             </Link>
             <p>

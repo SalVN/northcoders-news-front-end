@@ -23,7 +23,7 @@ class TopicNavBar extends Component {
             <nav className='navbar navbar-css'>
                 <div className='navbar-brand'>
                     <span className='navbar-item' >
-                        <Link to='#'>
+                        <Link to='/'>
                             <img className='logo' src='https://avatars3.githubusercontent.com/u/6791502?v=3&s=200' alt='Northcoders logo' />
                         </Link>
                     </span>

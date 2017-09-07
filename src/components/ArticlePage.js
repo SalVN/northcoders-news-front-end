@@ -41,4 +41,10 @@ function mapStateToProps(state) {
     };
 }
 
+ArticlePage.propTypes = {
+  articles: PropTypes.array.isRequired,
+  fetchArticles: PropTypes.func.isRequired,
+  match: PropTypes.func.isRequired
+};
+
 export default connect(mapStateToProps, mapDispatchToProps)(ArticlePage);
