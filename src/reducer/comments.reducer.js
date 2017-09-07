@@ -28,6 +28,26 @@ function reducer (prevState = initialState, action) {
     newState.comments = [];
     return newState;
   }
+
+  if (action.type === types.ADD_COMMENT_REQUEST) {
+    newState.loading = true;
+    newState.comments = [...prevState.comments];
+    return newState;
+  }
+
+  if (action.type === types.ADD_COMMENT_SUCCESS) {
+    newState.comments = [...prevState.comments, action.data];
+    newState.loading = false;
+    return newState;
+  }
+
+  if (action.type === types.ADD_COMMENT_ERROR) {
+    newState.error = Object.assign({}, action.data);
+    newState.loading = false;
+    newState.comments = [...prevState.comments];
+    return newState;
+  }
+
   return prevState;
 
 }
