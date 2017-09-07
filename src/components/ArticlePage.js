@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import './css/ArticlePage.css';
 import Article from './Article';
+import Comments from './Comments';
 import * as actions from '../actions/actions';
 
 class ArticlePage extends Component {
@@ -21,6 +22,7 @@ class ArticlePage extends Component {
         return (
             <div className='article-page'>
                 <Article article={article}/>
+                <Comments />
             </div>
         );
     }
@@ -44,7 +46,7 @@ function mapStateToProps(state) {
 ArticlePage.propTypes = {
   articles: PropTypes.array.isRequired,
   fetchArticles: PropTypes.func.isRequired,
-  match: PropTypes.func.isRequired
+  match: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticlePage);
