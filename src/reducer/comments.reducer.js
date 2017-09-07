@@ -1,4 +1,5 @@
 import * as types from '../actions/types';
+import {getIndex} from '../utilities/getIndex';
 
 const initialState = {
   comments: [],
@@ -76,10 +77,3 @@ function reducer(prevState = initialState, action) {
 
 export default reducer;
 
-function getIndex(comments, deletedId) {
-  for (let i = 0; i < comments.length; i++) {
-    if (comments[i]._id === deletedId) {
-      return i;
-    }
-  }
-}
