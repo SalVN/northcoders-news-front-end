@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 
+import { USERNAME } from '../../config';
+
 const CommentCard = function (props) {
     return (
             <div className='box'>
@@ -19,6 +21,9 @@ const CommentCard = function (props) {
               <span>{new Date (props.comment.created_at).toLocaleDateString()}</span>
               </div>
             <div>{props.comment.body}</div>
+            {props.comment.created_by === USERNAME &&
+              <button className='button'>Delete</button>
+            }
           </div>
         </div>
       </article>
