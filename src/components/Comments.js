@@ -12,9 +12,19 @@ class Comments extends Component {
         super(props);
         this.state = {
             sortedBy: 'newest',
-            showForm: false
+            showForm: false,
+            added: false
         };
         this.toggleForm = this.toggleForm.bind(this);
+    }
+    componentWillReceiveProps(newProps) {
+        if (this.props.comments && (newProps.comments !== this.props.comments) && this.state.showForm) {
+            this.setState({
+                showForm: false,
+                added: true,
+                sortedBy: 'newest'
+            });
+        }
     }
     componentDidMount() {
         this.props.fetchComments(this.props.id);
@@ -23,6 +33,11 @@ class Comments extends Component {
         sortComments(this.props.comments, this.state.sortedBy);
         return (
             <div>
+                {this.state.added &&
+                    <div>
+                        <h3>Your comment has been added</h3>
+                    </div>
+                }
                 {this.state.showForm
                     ? (
                         <AddCommentForm toggleForm={this.toggleForm} id={this.props.id} />
@@ -45,7 +60,8 @@ class Comments extends Component {
     }
     toggleForm() {
         this.setState({
-            showForm: !this.state.showForm
+            showForm: !this.state.showForm,
+            added: false
         });
     }
 }
