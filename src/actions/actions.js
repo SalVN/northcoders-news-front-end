@@ -104,11 +104,12 @@ export function fetchCommentsError(err) {
 
 
 export function fetchTopicArticles(id) {
+    console.log(id);
     return function (dispatch) {
         dispatch(fetchTopicArticlesRequest());
         axios.get(`${ROOT}/topics/${id}/articles`)
             .then(res => {
-                dispatch(fetchTopicArticlesSuccess(res.data.topicArticles));
+                dispatch(fetchTopicArticlesSuccess(res.data.articles));
             })
             .catch(err => {
                 dispatch(fetchTopicArticlesError(err));

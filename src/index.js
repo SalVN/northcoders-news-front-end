@@ -12,6 +12,7 @@ import './css/font-awesome.css';
 import App from './components/App';
 import ArticleList from './components/ArticleList';
 import ArticlePage from './components/ArticlePage';
+import TopicArticleList from './components/TopicArticleList';
 import reducer from './reducer/';
 
 const store = createStore(reducer, applyMiddleware(thunk, logger));
@@ -23,6 +24,7 @@ ReactDOM.render(<Provider store={store}>
       <Switch>
         <Route exact path='/' component={ArticleList} />
         <Route path='/articles/:id' component={ArticlePage} />
+        <Route path='/topics/:id/articles' component={TopicArticleList} />
       </Switch>
     </App>
   </Router>
