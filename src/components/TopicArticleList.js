@@ -6,8 +6,12 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
 
 class TopicArticleList extends React.Component {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.match.params.id !== this.props.match.params.id) {
+      nextProps.fetchTopicArticles(nextProps.match.params.id);
+    }
+  }
   componentDidMount() {
-    console.log(this.props.match.params.id);
     this.props.fetchTopicArticles(this.props.match.params.id);
   }
   render() {
@@ -42,7 +46,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     topicArticles: state.topicArticles.topicArticles,
     loading: state.topicArticles.loading
