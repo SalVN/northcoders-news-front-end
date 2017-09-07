@@ -43,7 +43,27 @@ class AddCommentForm extends React.Component {
         };
         const newObj = JSON.stringify(obj);
         console.log(newObj);
+        this.props.addComment(obj, this.props.id);
     }
 }
 
-export default AddCommentForm;
+function mapDispatchToProps(dispatch) {
+    return {
+        addComment: (comment, id) => {
+            dispatch(actions.addComment(comment, id));
+        }
+    };
+}
+
+function mapStateToProps(state) {
+    return {
+        loading: state.loading
+    };
+}
+
+AddCommentForm.propTypes = {
+    id: PropTypes.string.isRequired,
+    addComment:PropTypes.func.isRequired
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddCommentForm);
