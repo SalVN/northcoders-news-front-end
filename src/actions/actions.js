@@ -269,3 +269,37 @@ export function voteTopicArticleError(err) {
         data: err
     };
 }
+
+
+export function fetchUsers() {
+    return function (dispatch) {
+        dispatch(fetchUsersRequest());
+        axios.get(`${ROOT}/users`)
+            .then(res => {
+                dispatch(fetchUsersSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(fetchUsersError(err));
+            });
+    };
+}
+
+export function fetchUsersRequest() {
+    return {
+        type: types.FETCH_USERS_REQUEST
+    };
+}
+
+export function fetchUsersSuccess(userList) {
+    return {
+        type: types.FETCH_USERS_SUCCESS,
+        data: userList
+    };
+}
+
+export function fetchUsersError(err) {
+    return {
+        type: types.FETCH_USERS_ERROR,
+        data: err
+    };
+}

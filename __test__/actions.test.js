@@ -198,9 +198,9 @@ describe('actions', () => {
                 });
 
                 it('should the expected action', function () {
-                    expect(actions.addCommentSuccess({savedComment: 'savedComment'})).toEqual({
+                    expect(actions.addCommentSuccess({ savedComment: 'savedComment' })).toEqual({
                         type: types.ADD_COMMENT_SUCCESS,
-                        data: {savedComment: 'savedComment'}
+                        data: { savedComment: 'savedComment' }
                     });
                 });
             });
@@ -241,9 +241,9 @@ describe('actions', () => {
                 });
 
                 it('should the expected action', function () {
-                    expect(actions.deleteCommentSuccess({deletedComment: 'deletedComment'})).toEqual({
+                    expect(actions.deleteCommentSuccess({ deletedComment: 'deletedComment' })).toEqual({
                         type: types.DELETE_COMMENT_SUCCESS,
-                        data: {deletedComment: 'deletedComment'}
+                        data: { deletedComment: 'deletedComment' }
                     });
                 });
             });
@@ -262,7 +262,7 @@ describe('actions', () => {
             });
         });
 
-         describe('#voteArticle', () => {
+        describe('#voteArticle', () => {
             it('is a function', () => {
                 expect(typeof actions.voteArticle).toBe('function');
             });
@@ -284,9 +284,9 @@ describe('actions', () => {
                 });
 
                 it('should the expected action', function () {
-                    expect(actions.voteArticleSuccess({votedArticle: 'votedArticle'})).toEqual({
+                    expect(actions.voteArticleSuccess({ votedArticle: 'votedArticle' })).toEqual({
                         type: types.VOTE_ARTICLE_SUCCESS,
-                        data: {votedArticle: 'votedArticle'}
+                        data: { votedArticle: 'votedArticle' }
                     });
                 });
             });
@@ -304,6 +304,49 @@ describe('actions', () => {
                 });
             });
         });
-        
+
+        describe('#fetchUsers', () => {
+            it('is a function', () => {
+                expect(typeof actions.fetchUsers).toBe('function');
+            });
+            describe('#fetchUsersRequest', () => {
+                it('is a function', () => {
+                    expect(typeof actions.fetchUsersRequest).toBe('function');
+                });
+
+                it('should return the expected action', function () {
+                    expect(actions.fetchUsersRequest()).toEqual({
+                        type: types.FETCH_USERS_REQUEST
+                    });
+                });
+            });
+
+            describe('#fetchUsersSuccess', () => {
+                it('is a function', () => {
+                    expect(typeof actions.fetchUsersSuccess).toBe('function');
+                });
+
+                it('should the expected action', function () {
+                    expect(actions.fetchUsersSuccess({ users: 'users' })).toEqual({
+                        type: types.FETCH_USERS_SUCCESS,
+                        data: { users: 'users' }
+                    });
+                });
+            });
+
+            describe('#fetchUsersError', () => {
+                it('is a function', () => {
+                    expect(typeof actions.fetchUsersError).toBe('function');
+                });
+
+                it('returns the expected action', function () {
+                    expect(actions.fetchUsersError('err')).toEqual({
+                        type: types.FETCH_USERS_ERROR,
+                        data: 'err'
+                    });
+                });
+            });
+        });
+
     }); //
 });
