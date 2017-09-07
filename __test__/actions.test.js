@@ -133,40 +133,88 @@ describe('actions', () => {
             });
         });
 
-        describe('#fetchTopicArticlesRequest', () => {
+        describe('#fetchTopicArticles', () => {
             it('is a function', () => {
-                expect(typeof actions.fetchTopicArticlesRequest).toBe('function');
+                expect(typeof actions.fetchTopicArticles).toBe('function');
+            });
+            describe('#fetchTopicArticlesRequest', () => {
+                it('is a function', () => {
+                    expect(typeof actions.fetchTopicArticlesRequest).toBe('function');
+                });
+
+                it('should return the expected action', function () {
+                    expect(actions.fetchTopicArticlesRequest()).toEqual({
+                        type: types.FETCH_TOPIC_ARTICLES_REQUEST
+                    });
+                });
             });
 
-            it('should return the expected action', function () {
-                expect(actions.fetchTopicArticlesRequest()).toEqual({
-                    type: types.FETCH_TOPIC_ARTICLES_REQUEST
+            describe('#fetchTopicArticlesSuccess', () => {
+                it('is a function', () => {
+                    expect(typeof actions.fetchTopicArticlesSuccess).toBe('function');
+                });
+
+                it('should the expected action', function () {
+                    expect(actions.fetchTopicArticlesSuccess(['topicArticles'])).toEqual({
+                        type: types.FETCH_TOPIC_ARTICLES_SUCCESS,
+                        data: ['topicArticles']
+                    });
+                });
+            });
+
+            describe('#fetchTopicArticlesError', () => {
+                it('is a function', () => {
+                    expect(typeof actions.fetchTopicArticlesError).toBe('function');
+                });
+
+                it('returns the expected action', function () {
+                    expect(actions.fetchTopicArticlesError('err')).toEqual({
+                        type: types.FETCH_TOPIC_ARTICLES_ERROR,
+                        data: 'err'
+                    });
                 });
             });
         });
 
-        describe('#fetchTopicArticlesSuccess', () => {
+        describe('#addComment', () => {
             it('is a function', () => {
-                expect(typeof actions.fetchTopicArticlesSuccess).toBe('function');
+                expect(typeof actions.addComment).toBe('function');
             });
+            describe('#addCommentRequest', () => {
+                it('is a function', () => {
+                    expect(typeof actions.addCommentRequest).toBe('function');
+                });
 
-            it('should the expected action', function () {
-                expect(actions.fetchTopicArticlesSuccess(['topicArticles'])).toEqual({
-                    type: types.FETCH_TOPIC_ARTICLES_SUCCESS,
-                    data: ['topicArticles']
+                it('should return the expected action', function () {
+                    expect(actions.addCommentRequest()).toEqual({
+                        type: types.ADD_COMMENT_REQUEST
+                    });
                 });
             });
-        });
 
-        describe('#fetchTopicArticlesError', () => {
-            it('is a function', () => {
-                expect(typeof actions.fetchTopicArticlesError).toBe('function');
+            describe('#addCommentSuccess', () => {
+                it('is a function', () => {
+                    expect(typeof actions.addCommentSuccess).toBe('function');
+                });
+
+                it('should the expected action', function () {
+                    expect(actions.addCommentSuccess({savedComment: 'savedComment'})).toEqual({
+                        type: types.ADD_COMMENT_SUCCESS,
+                        data: {savedComment: 'savedComment'}
+                    });
+                });
             });
 
-            it('returns the expected action', function () {
-                expect(actions.fetchTopicArticlesError('err')).toEqual({
-                    type: types.FETCH_TOPIC_ARTICLES_ERROR,
-                    data: 'err'
+            describe('#addCommentError', () => {
+                it('is a function', () => {
+                    expect(typeof actions.addCommentError).toBe('function');
+                });
+
+                it('returns the expected action', function () {
+                    expect(actions.addCommentError('err')).toEqual({
+                        type: types.ADD_COMMENT_ERROR,
+                        data: 'err'
+                    });
                 });
             });
         });

@@ -104,7 +104,6 @@ export function fetchCommentsError(err) {
 
 
 export function fetchTopicArticles(id) {
-    console.log(id);
     return function (dispatch) {
         dispatch(fetchTopicArticlesRequest());
         axios.get(`${ROOT}/topics/${id}/articles`)
@@ -133,6 +132,40 @@ export function fetchTopicArticlesSuccess(topicArticles) {
 export function fetchTopicArticlesError(err) {
     return {
         type: types.FETCH_TOPIC_ARTICLES_ERROR,
+        data: err
+    };
+}
+
+
+export function addComment(data, id) {
+    return function (dispatch) {
+        dispatch(addCommentRequest());
+        axios.post(`${ROOT}/articles/${id}/comments`, data)
+            .then(res => {
+                dispatch(addCommentSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(addComment(err));
+            });
+    };
+}
+
+export function addCommentRequest() {
+    return {
+        type: types.ADD_COMMENT_REQUEST
+    };
+}
+
+export function addCommentSuccess(comments) {
+    return {
+        type: types.ADD_COMMENT_SUCCESS,
+        data: comments
+    };
+}
+
+export function addCommentError(err) {
+    return {
+        type: types.ADD_COMMENT_ERROR,
         data: err
     };
 }
