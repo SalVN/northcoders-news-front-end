@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
+import { sortComments } from '../utilities/sortComments';
 
 import CommentCard from './CommentCard';
 
@@ -16,11 +17,7 @@ class Comments extends Component {
         this.props.fetchComments(this.props.id);
     }
     render() {
-        if (this.state.sortedBy === 'newest') {
-            this.props.comments.sort((a, b) => {
-                return b.created_at - a.created_at;
-            });
-        }
+        sortComments(this.props.comments, this.state.sortedBy);
         return (
             <div>
                 {this.props.comments.map(comment => {
