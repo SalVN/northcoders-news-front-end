@@ -10,9 +10,9 @@ const ArticleCard = function (props) {
           {props.number + 1}
         </div>
         <div className='media-left'>
-          <button><i className="fa fa-arrow-up" aria-hidden="true"></i></button>
+          <button className='button' onClick={props.voteHandler.bind(this, 'up')}><i className="fa fa-arrow-up" aria-hidden="true"></i></button>
           <div>{props.votes}</div>
-          <button><i className="fa fa-arrow-down" aria-hidden="true"></i></button>
+          <button className='button' onClick={props.voteHandler.bind(this, 'down')}><i className="fa fa-arrow-down" aria-hidden="true"></i></button>
         </div>
         <div className='media-content'>
           <div className='content'>
@@ -38,7 +38,8 @@ ArticleCard.propTypes = {
   author: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   tags: PropTypes.string.isRequired,
-  comment_count: PropTypes.string.isRequired
+  comment_count: PropTypes.string.isRequired,
+  voteHandler: PropTypes.func.isRequired
 };
 
 

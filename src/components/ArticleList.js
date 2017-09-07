@@ -6,6 +6,10 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
 
 class ArticleList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.voteHandler = this.voteHandler.bind(this);
+  }
   componentDidMount() {
     this.props.fetchArticles();
   }
@@ -24,12 +28,16 @@ class ArticleList extends React.Component {
                 id={article._id}
                 tags={article.belongs_to}
                 comment_count={article.comment_count}
+                voteHandler={this.voteHandler}
               />
             );
           })
         }
       </div>
     );
+  }
+  voteHandler(vote) {
+    console.log(vote);
   }
 }
 
