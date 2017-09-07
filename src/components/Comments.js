@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
 import { sortComments } from '../utilities/sortComments';
 
+import AddCommentForm from './AddCommentForm';
 import CommentCard from './CommentCard';
 
 class Comments extends Component {
@@ -12,6 +13,7 @@ class Comments extends Component {
         this.state = {
             sortedBy: 'newest'
         };
+        this.toggleForm = this.toggleForm.bind(this);
     }
     componentDidMount() {
         this.props.fetchComments(this.props.id);
@@ -20,6 +22,16 @@ class Comments extends Component {
         sortComments(this.props.comments, this.state.sortedBy);
         return (
             <div>
+                {this.state.showForm
+                    ? (
+                        <AddCommentForm id={this.props.id} />
+                    )
+                    : (
+                        <button className='button' onClick={this.toggleForm}>
+                            Add Comment...
+                        </button>
+                    )
+                }
                 {this.props.comments.map(comment => {
                     return (
                         <div key={comment._id}>
@@ -29,6 +41,11 @@ class Comments extends Component {
                 })}
             </div>
         );
+    }
+    toggleForm() {
+        this.setState({
+            showForm: !this.state.showForm
+        });
     }
 }
 
