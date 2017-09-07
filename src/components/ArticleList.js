@@ -37,7 +37,7 @@ class ArticleList extends React.Component {
     );
   }
   voteHandler(vote, id) {
-    console.log(vote, id);
+    this.props.voteArticles(vote, id);
   }
 }
 
@@ -45,6 +45,9 @@ function mapDispatchToProps(dispatch) {
   return {
     fetchArticles: () => {
       dispatch(actions.fetchArticles());
+    },
+    voteArticles: (vote, id) => {
+      dispatch(actions.voteArticles(vote, id));
     }
   };
 }
@@ -59,7 +62,8 @@ function mapStateToProps(state) {
 ArticleList.propTypes = {
   articles: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,
-  fetchArticles: PropTypes.func.isRequired
+  fetchArticles: PropTypes.func.isRequired,
+  voteArticles: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticleList);

@@ -262,7 +262,7 @@ describe('actions', () => {
             });
         });
 
-        describe('#voteArticle', () => {
+         describe('#voteArticle', () => {
             it('is a function', () => {
                 expect(typeof actions.voteArticle).toBe('function');
             });
@@ -304,5 +304,6 @@ describe('actions', () => {
                 });
             });
         });
+        
     }); //
 });
