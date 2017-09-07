@@ -236,3 +236,36 @@ export function voteArticleError(err) {
     };
 }
 
+
+export function voteTopicArticle(vote, id) {
+    return function (dispatch) {
+        dispatch(voteTopicArticleRequest());
+        axios.put(`${ROOT}/articles/${id}?vote=${vote}`)
+            .then(res => {
+                dispatch(voteTopicArticleSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(voteTopicArticleError(err));
+            });
+    };
+}
+
+export function voteTopicArticleRequest() {
+    return {
+        type: types.VOTE_TOPIC_ARTICLE_REQUEST
+    };
+}
+
+export function voteTopicArticleSuccess(article) {
+    return {
+        type: types.VOTE_TOPIC_ARTICLE_SUCCESS,
+        data: article
+    };
+}
+
+export function voteTopicArticleError(err) {
+    return {
+        type: types.VOTE_TOPIC_ARTICLE_ERROR,
+        data: err
+    };
+}

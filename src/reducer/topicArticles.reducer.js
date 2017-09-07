@@ -1,4 +1,5 @@
 import * as types from '../actions/types';
+import {getIndex} from '../utilities/getIndex';
 
 const initialState = {
   topicArticles: [],
@@ -6,7 +7,7 @@ const initialState = {
   error: null
 };
 
-function reducer (prevState = initialState, action) {
+function reducer(prevState = initialState, action) {
   if (!action) return prevState;
   const newState = Object.assign({}, prevState);
 
@@ -26,6 +27,27 @@ function reducer (prevState = initialState, action) {
     newState.error = Object.assign({}, action.data);
     newState.loading = false;
     newState.topicArticles = [];
+    return newState;
+  }
+
+  if (action.type === types.VOTE_TOPIC_ARTICLE_REQUEST) {
+    newState.loading = true;
+    newState.topicArticles = [...prevState.topicArticles];
+    return newState;
+  }
+
+  if (action.type === types.VOTE_TOPIC_ARTICLE_SUCCESS) {
+    newState.topicArticles = [...prevState.topicArticles];
+    const index = getIndex(newState.topicArticles, action.data.article._id);
+    newState.topicArticles[index] = action.data.article;
+    newState.loading = false;
+    return newState;
+  }
+
+  if (action.type === types.VOTE_TOPIC_ARTICLE_ERROR) {
+    newState.error = Object.assign({}, action.data);
+    newState.loading = false;
+    newState.topicArticles = [...prevState.topicArticles];
     return newState;
   }
   return prevState;
