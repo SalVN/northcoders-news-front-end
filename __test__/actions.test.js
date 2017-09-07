@@ -87,6 +87,50 @@ describe('actions', () => {
                     });
                 });
             });
-        }); //
-    }); 
+        });
+
+        describe('#fetchComments', () => {
+            it('is a function', () => {
+                expect(typeof actions.fetchComments).toBe('function');
+            });
+
+            describe('#fetchCommentsRequest', () => {
+                it('is a function', () => {
+                    expect(typeof actions.fetchCommentsRequest).toBe('function');
+                });
+
+                it('should return the expected action', function () {
+                    expect(actions.fetchCommentsRequest()).toEqual({
+                        type: types.FETCH_COMMENTS_REQUEST
+                    });
+                });
+            });
+
+            describe('#fetchCommentsSuccess', () => {
+                it('is a function', () => {
+                    expect(typeof actions.fetchCommentsSuccess).toBe('function');
+                });
+
+                it('should the expected action', function () {
+                    expect(actions.fetchCommentsSuccess(['comments'])).toEqual({
+                        type: types.FETCH_COMMENTS_SUCCESS,
+                        data: ['comments']
+                    });
+                });
+            });
+
+            describe('#fetchCommentsError', () => {
+                it('is a function', () => {
+                    expect(typeof actions.fetchCommentsError).toBe('function');
+                });
+
+                it('returns the expected action', function () {
+                    expect(actions.fetchCommentsError('err')).toEqual({
+                        type: types.FETCH_COMMENTS_ERROR,
+                        data: 'err'
+                    });
+                });
+            });
+        });
+    }); //
 });
