@@ -261,5 +261,48 @@ describe('actions', () => {
                 });
             });
         });
+
+        describe('#voteArticle', () => {
+            it('is a function', () => {
+                expect(typeof actions.voteArticle).toBe('function');
+            });
+            describe('#voteArticleRequest', () => {
+                it('is a function', () => {
+                    expect(typeof actions.voteArticleRequest).toBe('function');
+                });
+
+                it('should return the expected action', function () {
+                    expect(actions.voteArticleRequest()).toEqual({
+                        type: types.VOTE_ARTICLE_REQUEST
+                    });
+                });
+            });
+
+            describe('#voteArticleSuccess', () => {
+                it('is a function', () => {
+                    expect(typeof actions.voteArticleSuccess).toBe('function');
+                });
+
+                it('should the expected action', function () {
+                    expect(actions.voteArticleSuccess({votedArticle: 'votedArticle'})).toEqual({
+                        type: types.VOTE_ARTICLE_SUCCESS,
+                        data: {votedArticle: 'votedArticle'}
+                    });
+                });
+            });
+
+            describe('#voteArticleError', () => {
+                it('is a function', () => {
+                    expect(typeof actions.voteArticleError).toBe('function');
+                });
+
+                it('returns the expected action', function () {
+                    expect(actions.voteArticleError('err')).toEqual({
+                        type: types.VOTE_ARTICLE_ERROR,
+                        data: 'err'
+                    });
+                });
+            });
+        });
     }); //
 });

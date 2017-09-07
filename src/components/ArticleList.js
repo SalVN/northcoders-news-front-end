@@ -36,8 +36,8 @@ class ArticleList extends React.Component {
       </div>
     );
   }
-  voteHandler(vote) {
-    console.log(vote);
+  voteHandler(vote, id) {
+    console.log(vote, id);
   }
 }
 
