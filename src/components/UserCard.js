@@ -12,7 +12,6 @@ class UserCard extends Component {
             this.props.fetchUser(USERNAME);
         }
     }
-
     render() {
         return (
             <div className='card-box'>

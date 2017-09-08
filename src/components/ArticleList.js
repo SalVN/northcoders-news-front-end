@@ -11,7 +11,9 @@ class ArticleList extends React.Component {
     this.voteHandler = this.voteHandler.bind(this);
   }
   componentDidMount() {
-    this.props.fetchArticles();
+    if (this.props.articles && this.props.articles.length < 1) {
+      this.props.fetchArticles();
+    }
   }
   render() {
     return (

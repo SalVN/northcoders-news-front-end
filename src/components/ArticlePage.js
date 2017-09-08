@@ -9,7 +9,10 @@ import * as actions from '../actions/actions';
 
 class ArticlePage extends Component {
     componentDidMount() {
-        this.props.fetchArticles();
+        if (this.props.articles && this.props.articles.length < 1) {
+            console.log('getting articles');
+            this.props.fetchArticles();
+        }
     }
     render() {
         let article;
@@ -21,8 +24,8 @@ class ArticlePage extends Component {
         }
         return (
             <div className='article-page'>
-                <Article article={article}/>
-                <Comments id={this.props.match.params.id}/>
+                <Article article={article} />
+                <Comments id={this.props.match.params.id} />
             </div>
         );
     }
@@ -44,9 +47,9 @@ function mapStateToProps(state) {
 }
 
 ArticlePage.propTypes = {
-  articles: PropTypes.array.isRequired,
-  fetchArticles: PropTypes.func.isRequired,
-  match: PropTypes.object.isRequired
+    articles: PropTypes.array.isRequired,
+    fetchArticles: PropTypes.func.isRequired,
+    match: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticlePage);
