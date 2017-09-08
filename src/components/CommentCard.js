@@ -21,7 +21,7 @@ const CommentCard = function (props) {
             <div className='columns'>
               <div className='column is-1'>
                 {props.userData &&
-                  <img src={props.userData.avatar_url} />
+                  <img src={props.userData.avatar_url} alt='user avatar' />
                 }
               </div>
               <div className='column'>

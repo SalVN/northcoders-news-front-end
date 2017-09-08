@@ -2,27 +2,55 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 
+import './css/ArticleCard.css';
+
 const ArticleCard = function (props) {
   return (
-    <div className='box'>
+    <div className='box article-box-style'>
       <article className='media'>
-        <div className='media-left'>
+        <div className='media-left article-number'>
           {props.number + 1}
         </div>
         <div className='media-left'>
-          <button className='button' onClick={props.voteHandler.bind(this, 'up', props.id)}><i className="fa fa-arrow-up" aria-hidden="true"></i></button>
-          <div>{props.votes}</div>
-          <button className='button' onClick={props.voteHandler.bind(this, 'down', props.id)}><i className="fa fa-arrow-down" aria-hidden="true"></i></button>
+          <button className='button is-black is-inverted is-small' onClick={props.voteHandler.bind(this, 'up', props.id)}><i className="fa fa-arrow-up" aria-hidden="true"></i></button>
+          <p className='article-card-votes'><strong>{props.votes}</strong></p>
+          <button className='button is-black is-inverted is-small' onClick={props.voteHandler.bind(this, 'down', props.id)}><i className="fa fa-arrow-down" aria-hidden="true"></i></button>
         </div>
         <div className='media-content'>
           <div className='content'>
             <Link to={`/articles/${props.id}`}>
-              <h3 className='title is-3'>{props.title}</h3>
+              <h3 className='title is-4 article-card-title'><strong>{props.title}</strong></h3>
             </Link>
             <p>
-              <span>added by: {props.author}</span>
-              <span>tags: {props.tags}</span>
-              <span>comments: {props.comment_count}</span>
+              <span>
+                <span className='article-card-subheading-key'>added by:</span>
+                <Link to='#'>
+                  <span>
+                    {props.userData &&
+                      <img className='article-card-avatar' src={props.userData.avatar_url} alt='user avatar' />
+                    }
+                  </span>
+                  <span className='article-card-subheading-value'>
+                    <strong>{props.author}</strong>
+                  </span>
+                </Link>
+              </span>
+              <span>
+                <span className='article-card-subheading-key'>tags:</span>
+                <Link to={`/topics/${props.tags}/articles`}>
+                  <span className='article-card-subheading-value'>
+                    <strong>{props.tags}</strong>
+                  </span>
+                </Link>
+              </span>
+              <span>
+                <span className='article-card-subheading-key'>comments:</span>
+                {/*<Link to='#'>*/}
+                <span className='article-card-subheading-value-notlink'>
+                  <strong>{props.comment_count}</strong>
+                </span>
+                {/*</Link>*/}
+              </span>
             </p>
           </div>
         </div>
@@ -39,7 +67,8 @@ ArticleCard.propTypes = {
   id: PropTypes.string.isRequired,
   tags: PropTypes.string.isRequired,
   comment_count: PropTypes.number.isRequired,
-  voteHandler: PropTypes.func.isRequired
+  voteHandler: PropTypes.func.isRequired,
+  userData: PropTypes.object.isRequired
 };
 
 

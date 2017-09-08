@@ -1,0 +1,47 @@
+.article-card-votes {
+    text-align: center;
+    font-weight: strong;
+}
+
+.article-card-title {
+    color: black !important;
+    font-weight: bold !important;
+}
+
+.delete-button {
+    background-color: #c1002e;
+    margin-left: 30px;
+    margin-top: 10px;
+    color: white;    
+}
+
+.article-box-style {
+    margin: 10px;
+}
+
+.article-number {
+    font-size: 20;
+    font-weight: bold;
+    color: #c1002e;
+}
+
+.article-card-subheading-key {
+    margin-right: 5px;
+}
+
+.article-card-subheading-value {
+    margin-right: 10px; 
+    color: #c1002e;
+}
+
+.article-card-subheading-value-notlink {
+    margin-right: 10px; 
+    color: #000;
+}
+
+.article-card-avatar {
+    height: 25px;
+    margin-right: 5px;
+    margin-bottom: -7px;
+    border-radius: 20px;
+}

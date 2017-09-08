@@ -30,7 +30,9 @@ class Comments extends Component {
     }
     componentDidMount() {
         this.props.fetchComments(this.props.id);
-        this.props.fetchUsers();
+        if (this.props.users && this.props.users.length < 1) {
+            this.props.fetchUsers();
+        }
     }
     render() {
         const users = this.props.users;
@@ -56,10 +58,9 @@ class Comments extends Component {
                     const username = comment.created_by;
                     let index;
                     users &&
-                    users.forEach((user, i) => {
-                        console.log(user);
-                        if (user.username === username) index = i;
-                    });
+                        users.forEach((user, i) => {
+                            if (user.username === username) index = i;
+                        });
                     return (
                         <div key={comment._id}>
                             <CommentCard
@@ -67,7 +68,7 @@ class Comments extends Component {
                                 comment={comment}
                                 voteHandler={this.voteHandler}
                                 userData={users[index]}
-                                />
+                            />
                         </div>
                     );
                 })}
