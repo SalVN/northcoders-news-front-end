@@ -63,7 +63,7 @@ describe('reducer', () => {
     });
 
     describe('FETCH_ONE_USER_SUCCESS', () => {
-        const action = actions.fetchOneUserSuccess(user);
+        const action = actions.fetchOneUserSuccess({user: user});
         const resultEmpty = reducer(initialState, action);
         const resultUser = reducer(userState, action);
         it('should return loading as false', () => {
@@ -71,7 +71,7 @@ describe('reducer', () => {
             expect(resultUser.loading).toBe(false);
         });
 
-        it('should return an array of topic articles', () => {
+        it('should return the user object', () => {
             expect(resultEmpty.user).toEqual(user);
             expect(resultUser.user).toEqual(user);
         });

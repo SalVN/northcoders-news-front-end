@@ -335,3 +335,36 @@ export function fetchOneUserError(err) {
         data: err
     };
 }
+
+export function voteComment(vote, id) {
+    return function (dispatch) {
+        dispatch(voteCommentRequest());
+        axios.put(`${ROOT}/comments/${id}?vote=${vote}`)
+            .then(res => {
+                dispatch(voteCommentSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(voteCommentError(err));
+            });
+    };
+}
+
+export function voteCommentRequest() {
+    return {
+        type: types.VOTE_COMMENT_REQUEST
+    };
+}
+
+export function voteCommentSuccess(comment) {
+    return {
+        type: types.VOTE_COMMENT_SUCCESS,
+        data: comment
+    };
+}
+
+export function voteCommentError(err) {
+    return {
+        type: types.VOTE_COMMENT_ERROR,
+        data: err
+    };
+}

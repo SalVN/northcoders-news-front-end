@@ -391,5 +391,48 @@ describe('actions', () => {
             });
         });
 
+        describe('#voteComment', () => {
+            it('is a function', () => {
+                expect(typeof actions.voteComment).toBe('function');
+            });
+            describe('#voteCommentRequest', () => {
+                it('is a function', () => {
+                    expect(typeof actions.voteCommentRequest).toBe('function');
+                });
+
+                it('should return the expected action', function () {
+                    expect(actions.voteCommentRequest()).toEqual({
+                        type: types.VOTE_COMMENT_REQUEST
+                    });
+                });
+            });
+
+            describe('#voteCommentSuccess', () => {
+                it('is a function', () => {
+                    expect(typeof actions.voteCommentSuccess).toBe('function');
+                });
+
+                it('should the expected action', function () {
+                    expect(actions.voteCommentSuccess({ votedComment: 'votedComment' })).toEqual({
+                        type: types.VOTE_COMMENT_SUCCESS,
+                        data: { votedComment: 'votedComment' }
+                    });
+                });
+            });
+
+            describe('#voteCommentError', () => {
+                it('is a function', () => {
+                    expect(typeof actions.voteCommentError).toBe('function');
+                });
+
+                it('returns the expected action', function () {
+                    expect(actions.voteCommentError('err')).toEqual({
+                        type: types.VOTE_COMMENT_ERROR,
+                        data: 'err'
+                    });
+                });
+            });
+        });
+
     }); //
 });
