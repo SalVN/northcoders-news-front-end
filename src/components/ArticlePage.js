@@ -24,7 +24,9 @@ class ArticlePage extends Component {
         return (
             <div className='article-page'>
                 <Article article={article} />
-                <Comments id={this.props.match.params.id} />
+                <Comments
+                    commentCount={article.comment_count}
+                    id={this.props.match.params.id} />
             </div>
         );
     }

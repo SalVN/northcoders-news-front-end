@@ -22,7 +22,7 @@ class Comments extends Component {
                 <div className='column is-one-quarter'>
                     <div className='comments-title'>
                         <span className='comments-title comments-title-main'>Comments</span>
-                        <span className='comments-title comments-title-sub'>(2)</span>
+                        <span className='comments-title comments-title-sub'>{`(${this.props.commentCount})`}</span>
                     </div>
                 </div>
                 <div className='column'>
@@ -55,7 +55,8 @@ class Comments extends Component {
 }
 
 Comments.propTypes = {
-    id: PropTypes.string.isRequired
+    id: PropTypes.string.isRequired,
+    commentCount: PropTypes.number.isRequired
 };
 
 export default Comments;
