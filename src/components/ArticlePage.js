@@ -10,7 +10,6 @@ import * as actions from '../actions/actions';
 class ArticlePage extends Component {
     componentDidMount() {
         if (this.props.articles && this.props.articles.length < 1) {
-            console.log('getting articles');
             this.props.fetchArticles();
         }
     }
