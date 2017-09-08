@@ -11,14 +11,13 @@ class TopicArticleList extends React.Component {
     this.voteHandlerTopicArticles = this.voteHandlerTopicArticles.bind(this);
   }
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps.match.params.id)
     if (nextProps.match.params.id !== this.props.match.params.id) {
       nextProps.fetchTopicArticles(nextProps.match.params.id);
     }
   }
   componentDidMount() {
-    if (this.props.topicArticles && this.props.topicArticles.length < 1) {
       this.props.fetchTopicArticles(this.props.match.params.id);
-    }
   }
   render() {
     return (
@@ -41,7 +40,7 @@ function mapDispatchToProps(dispatch) {
       dispatch(actions.fetchTopicArticles(id));
     },
     voteArticle: (vote, id) => {
-      dispatch(actions.voteArticle(vote, id));
+      dispatch(actions.voteTopicArticle(vote, id));
     }
   };
 }
@@ -58,7 +57,7 @@ TopicArticleList.propTypes = {
   loading: PropTypes.bool.isRequired,
   fetchTopicArticles: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
-  voteArticle: PropTypes.func.isRequired
+  voteTopicArticle: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopicArticleList);
