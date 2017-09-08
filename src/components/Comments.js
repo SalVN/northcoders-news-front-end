@@ -17,6 +17,7 @@ class Comments extends Component {
         };
         this.toggleForm = this.toggleForm.bind(this);
         this.deleteHandler = this.deleteHandler.bind(this);
+        this.voteHandler = this.voteHandler.bind(this);
     }
     componentWillReceiveProps(newProps) {
         if (this.props.comments && (newProps.comments !== this.props.comments) && this.state.showForm) {
@@ -52,9 +53,10 @@ class Comments extends Component {
                 {this.props.comments.map(comment => {
                     return (
                         <div key={comment._id}>
-                            <CommentCard 
-                            deleteHandler={this.deleteHandler}
-                            comment={comment} />
+                            <CommentCard
+                                deleteHandler={this.deleteHandler}
+                                comment={comment}
+                                voteHandler={this.voteHandler} />
                         </div>
                     );
                 })}
@@ -70,6 +72,9 @@ class Comments extends Component {
     deleteHandler(id) {
         this.props.deleteComment(id);
     }
+    voteHandler(vote, id) {
+        this.props.voteComment(vote, id);
+    }
 }
 
 function mapDispatchToProps(dispatch) {
@@ -79,6 +84,9 @@ function mapDispatchToProps(dispatch) {
         },
         deleteComment: (id) => {
             dispatch(actions.deleteComment(id));
+        },
+        voteComment: (vote, id) => {
+            dispatch(actions.voteComment(vote, id));
         }
     };
 }
@@ -94,7 +102,8 @@ Comments.propTypes = {
     id: PropTypes.string.isRequired,
     fetchComments: PropTypes.func.isRequired,
     deleteComment: PropTypes.func.isRequired,
-    comments: PropTypes.array.isRequired
+    comments: PropTypes.array.isRequired,
+    voteArticle: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comments);

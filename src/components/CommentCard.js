@@ -10,9 +10,9 @@ const CommentCard = function (props) {
     <div className='box'>
       <article className='media'>
         <div className='media-left'>
-          <button className='button is-black is-inverted is-small'><i className="fa fa-arrow-up" aria-hidden="true"></i></button>
+          <button onClick={props.voteHandler.bind(this, 'up', props.comment._id)} className='button is-black is-inverted is-small'><i className="fa fa-arrow-up" aria-hidden="true"></i></button>
           <p className='comment-card-votes'><strong>{props.comment.votes}</strong></p>
-          <button className='button is-black is-inverted is-small'><i className="fa fa-arrow-down" aria-hidden="true"></i></button>
+          <button onClick={props.voteHandler.bind(this, 'down', props.comment._id)} className='button is-black is-inverted is-small'><i className="fa fa-arrow-down" aria-hidden="true"></i></button>
         </div>
 
         <div className='media-content'>
@@ -41,7 +41,8 @@ const CommentCard = function (props) {
 
 CommentCard.propTypes = {
   comment: PropTypes.object.isRequired,
-  deleteHandler: PropTypes.func.isRequired
+  deleteHandler: PropTypes.func.isRequired,
+  voteHandler: PropTypes.func.isRequired
 };
 
 
