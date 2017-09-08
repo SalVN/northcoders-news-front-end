@@ -10,7 +10,7 @@ import './css/bulma.css';
 import './css/font-awesome.css';
 
 import App from './components/App';
-import ArticleList from './components/ArticleList';
+import MainArticleList from './components/MainArticleList';
 import ArticlePage from './components/ArticlePage';
 import TopicArticleList from './components/TopicArticleList';
 import reducer from './reducer/';
@@ -22,7 +22,7 @@ ReactDOM.render(<Provider store={store}>
   <Router history={history}>
     <App>
       <Switch>
-        <Route exact path='/' component={ArticleList} />
+        <Route exact path='/' component={MainArticleList} />
         <Route path='/articles/:id' component={ArticlePage} />
         <Route path='/topics/:id/articles' component={TopicArticleList} />
       </Switch>

@@ -120,7 +120,8 @@ Comments.propTypes = {
     deleteComment: PropTypes.func.isRequired,
     comments: PropTypes.array.isRequired,
     voteComment: PropTypes.func.isRequired,
-    fetchUsers: PropTypes.func.isRequired
+    fetchUsers: PropTypes.func.isRequired,
+    users: PropTypes.array.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comments);

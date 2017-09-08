@@ -1,14 +1,14 @@
 import React from 'react';
-import ArticleCard from './ArticleCard';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import * as actions from '../actions/actions';
+import ArticleList from './ArticleList';
 
 class TopicArticleList extends React.Component {
   constructor(props) {
     super(props);
-    this.voteHandler = this.voteHandler.bind(this);
+    this.voteHandlerTopicArticles = this.voteHandlerTopicArticles.bind(this);
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.match.params.id !== this.props.match.params.id) {
@@ -16,33 +16,22 @@ class TopicArticleList extends React.Component {
     }
   }
   componentDidMount() {
-    this.props.fetchTopicArticles(this.props.match.params.id);
+    if (this.props.topicArticles && this.props.topicArticles.length < 1) {
+      this.props.fetchTopicArticles(this.props.match.params.id);
+    }
   }
   render() {
     return (
       <div id='TopicArticleList'>
-        {this.props.topicArticles.length > 0 &&
-          this.props.topicArticles.map((topicArticle, i) => {
-            return (
-              <ArticleCard
-                key={topicArticle._id}
-                title={topicArticle.title}
-                number={i}
-                votes={topicArticle.votes}
-                author={topicArticle.created_by}
-                id={topicArticle._id}
-                tags={topicArticle.belongs_to}
-                comment_count={topicArticle.comment_count}
-                voteHandler={this.voteHandler}
-              />
-            );
-          })
-        }
+        <ArticleList
+          articles={this.props.topicArticles}
+          voteArticle={this.voteHandlerTopicArticles}
+        />
       </div>
     );
   }
-  voteHandler(vote, id) {
-    this.props.voteTopicArticle(vote, id);
+  voteHandlerTopicArticles(vote, id) {
+    this.props.voteArticle(vote, id);
   }
 }
 
@@ -51,8 +40,8 @@ function mapDispatchToProps(dispatch) {
     fetchTopicArticles: (id) => {
       dispatch(actions.fetchTopicArticles(id));
     },
-    voteTopicArticle: (vote, id) => {
-      dispatch(actions.voteTopicArticle(vote, id));
+    voteArticle: (vote, id) => {
+      dispatch(actions.voteArticle(vote, id));
     }
   };
 }
@@ -69,7 +58,7 @@ TopicArticleList.propTypes = {
   loading: PropTypes.bool.isRequired,
   fetchTopicArticles: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
-  voteTopicArticle: PropTypes.func.isRequired
+  voteArticle: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopicArticleList);

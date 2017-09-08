@@ -6,20 +6,14 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
 
 class ArticleList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.voteHandler = this.voteHandler.bind(this);
-  }
   componentDidMount() {
-    if (this.props.articles && this.props.articles.length < 1) {
-      this.props.fetchArticles();
-      if (this.props.users && this.props.users.length < 1) {
-        this.props.fetchUsers();
-      }
+    if (this.props.users && this.props.users.length < 1) {
+      this.props.fetchUsers();
     }
   }
   render() {
     const users = this.props.users;
+    const voteHandler = this.props.voteArticle;
     return (
       <div id='ArticleList'>
         {this.props.articles.length > 0 &&
@@ -40,7 +34,7 @@ class ArticleList extends React.Component {
                 id={article._id}
                 tags={article.belongs_to}
                 comment_count={article.comment_count}
-                voteHandler={this.voteHandler}
+                voteHandler={voteHandler}
                 userData={users[index]}
               />
             );
@@ -49,19 +43,10 @@ class ArticleList extends React.Component {
       </div>
     );
   }
-  voteHandler(vote, id) {
-    this.props.voteArticle(vote, id);
-  }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchArticles: () => {
-      dispatch(actions.fetchArticles());
-    },
-    voteArticle: (vote, id) => {
-      dispatch(actions.voteArticle(vote, id));
-    },
     fetchUsers: () => {
       dispatch(actions.fetchUsers());
     }
@@ -70,8 +55,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    articles: state.articles.articles,
-    loading: state.articles.loading,
+    loading: state.users.loading,
     users: state.users.users
   };
 }
@@ -79,7 +63,6 @@ function mapStateToProps(state) {
 ArticleList.propTypes = {
   articles: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,
-  fetchArticles: PropTypes.func.isRequired,
   fetchUsers: PropTypes.func.isRequired,
   voteArticle: PropTypes.func.isRequired,
   users: PropTypes.array.isRequired
