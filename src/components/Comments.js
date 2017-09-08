@@ -9,6 +9,7 @@ class Comments extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            showForm: true,
             sortedBy: 'newest',
             added: false
         };
@@ -16,23 +17,27 @@ class Comments extends Component {
     }
     render() {
         return (
-            <div>
-                {this.state.added &&
-                    <div>
-                        <h3>Your comment has been added</h3>
-                    </div>
-                }
-                {this.state.showForm
-                    ? (
-                        <AddCommentForm toggleForm={this.toggleForm} id={this.props.id} />
-                    )
-                    : (
-                        <button className='button' onClick={this.toggleForm}>
-                            Add Comment...
+            <div className='columns'>
+                <div className='column is-one-quarter'>
+                </div>
+                <div className='column'>
+                    {this.state.added &&
+                        <div>
+                            <h3>Your comment has been added</h3>
+                        </div>
+                    }
+                    {this.state.showForm
+                        ? (
+                            <AddCommentForm toggleForm={this.toggleForm} id={this.props.id} />
+                        )
+                        : (
+                            <button className='button' onClick={this.toggleForm}>
+                                Add Comment...
                         </button>
-                    )
-                }
-                <CommentsList id={this.props.id} />
+                        )
+                    }
+                    <CommentsList id={this.props.id} />
+                </div>
             </div>
         );
     }

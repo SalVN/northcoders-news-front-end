@@ -16,7 +16,7 @@ class AddCommentForm extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div className='box box-style'>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="comment-input">Comment:</label>
                     <br />
