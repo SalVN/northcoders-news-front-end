@@ -19,7 +19,7 @@ function reducer(prevState = initialState, action) {
 
     if (action.type === types.FETCH_ONE_USER_SUCCESS) {
         console.log('one user req');
-        newState.user = Object.assign({}, action.data);
+        newState.user = Object.assign({}, action.data.user);
         newState.loading = false;
         return newState;
     }

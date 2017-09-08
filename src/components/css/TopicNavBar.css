@@ -11,3 +11,23 @@
     height: 30px;
     width: auto;
 }
+
+.avatar {
+    border-radius: 50px;
+    height: 25px;
+    margin: 5px;
+}
+
+.user {
+    background-color: black;
+    border-radius: 5px;
+    padding: 5px;
+    color: white !important;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-user-text {
+    margin: 5px;
+}

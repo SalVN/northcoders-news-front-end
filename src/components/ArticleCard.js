@@ -38,7 +38,7 @@ ArticleCard.propTypes = {
   author: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   tags: PropTypes.string.isRequired,
-  comment_count: PropTypes.string.isRequired,
+  comment_count: PropTypes.number.isRequired,
   voteHandler: PropTypes.func.isRequired
 };
 

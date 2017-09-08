@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import * as actions from '../actions/actions';
 import './css/TopicNavBar.css';
+import { USERNAME } from '../../config';
 
 class TopicNavBar extends Component {
     constructor(props) {
@@ -16,6 +17,7 @@ class TopicNavBar extends Component {
     }
     componentDidMount() {
         this.props.fetchTopics();
+        this.props.fetchUser(USERNAME);
     }
     render() {
         let activeBurger = (this.state.activeBurger) ? 'is-active' : '';
@@ -40,16 +42,22 @@ class TopicNavBar extends Component {
                         {
                             this.props.topics &&
                             this.props.topics.map((topic) => {
-                            return (
-                                <span key={topic._id} className='navbar-item is-hoverable'>
-                                    <NavLink className='navbar-text-css' to={`/topics/${topic.slug}/articles`}>
-                                        <span>{`< ${topic.title.toUpperCase()} />`}</span>
-                                    </NavLink>
-                                </span>
-                            );
-                        })}
+                                return (
+                                    <span key={topic._id} className='navbar-item is-hoverable'>
+                                        <NavLink className='navbar-text-css' to={`/topics/${topic.slug}/articles`}>
+                                            <span>{`< ${topic.title.toUpperCase()} />`}</span>
+                                        </NavLink>
+                                    </span>
+                                );
+                            })}
                     </div>
                     <div className='navbar-end'>
+                        <span className='navbar-item'>
+                            <Link className='user' to='#'>
+                                <span><img className='avatar' src={`${this.props.user.avatar_url}`} /></span>
+                                <span className='navbar-user-text'><strong>{this.props.user.username}</strong></span>
+                            </Link>
+                        </span>
                     </div>
                 </div>
             </nav >
@@ -66,21 +74,28 @@ function mapDispatchToProps(dispatch) {
     return {
         fetchTopics: () => {
             dispatch(actions.fetchTopics());
+        },
+        fetchUser: (username) => {
+            dispatch(actions.fetchOneUser(username));
         }
     };
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
     return {
         topics: state.topics.topics,
-        loading: state.topics.loading
+        topicsLoading: state.topics.loading,
+        userLoading: state.oneUser.loading,
+        user: state.oneUser.user
     };
 }
 
 TopicNavBar.propTypes = {
     topics: PropTypes.array.isRequired,
     loading: PropTypes.bool.isRequired,
-    fetchTopics: PropTypes.func.isRequired
+    fetchTopics: PropTypes.func.isRequired,
+    fetchUser: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopicNavBar);
