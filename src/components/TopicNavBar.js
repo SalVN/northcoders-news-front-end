@@ -92,7 +92,8 @@ function mapStateToProps(state) {
 
 TopicNavBar.propTypes = {
     topics: PropTypes.array.isRequired,
-    loading: PropTypes.bool.isRequired,
+    topicsLoading: PropTypes.bool.isRequired,
+    userLoading: PropTypes.bool.isRequired,
     fetchTopics: PropTypes.func.isRequired,
     fetchUser: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired
