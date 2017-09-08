@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
 import { sortComments } from '../utilities/sortComments';
 
-import AddCommentForm from './AddCommentForm';
+// import AddCommentForm from './AddCommentForm';
 import CommentCard from './CommentCard';
 
 class CommentsList extends Component {
@@ -12,7 +12,6 @@ class CommentsList extends Component {
         super(props);
         this.state = {
             sortedBy: 'newest',
-            showForm: false,
             added: false
         };
         this.toggleForm = this.toggleForm.bind(this);
@@ -39,21 +38,7 @@ class CommentsList extends Component {
         sortComments(this.props.comments, this.state.sortedBy);
         return (
             <div>
-                {this.state.added &&
-                    <div>
-                        <h3>Your comment has been added</h3>
-                    </div>
-                }
-                {this.state.showForm
-                    ? (
-                        <AddCommentForm toggleForm={this.toggleForm} id={this.props.id} />
-                    )
-                    : (
-                        <button className='button' onClick={this.toggleForm}>
-                            Add Comment...
-                        </button>
-                    )
-                }
+                
                 {this.props.comments.map(comment => {
                     const username = comment.created_by;
                     let index;

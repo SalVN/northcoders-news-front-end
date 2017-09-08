@@ -1,16 +1,46 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import * as actions from '../actions/actions';
-import { sortComments } from '../utilities/sortComments';
+// import * as actions from '../actions/actions';
 
-// import AddCommentForm from './AddCommentForm';
+import AddCommentForm from './AddCommentForm';
 import CommentsList from './CommentsList';
 
 class Comments extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            sortedBy: 'newest',
+            added: false
+        };
+        this.toggleForm = this.toggleForm.bind(this);
+    }
     render() {
         return (
-            <CommentsList id={this.props.id} />
+            <div>
+                {this.state.added &&
+                    <div>
+                        <h3>Your comment has been added</h3>
+                    </div>
+                }
+                {this.state.showForm
+                    ? (
+                        <AddCommentForm toggleForm={this.toggleForm} id={this.props.id} />
+                    )
+                    : (
+                        <button className='button' onClick={this.toggleForm}>
+                            Add Comment...
+                        </button>
+                    )
+                }
+                <CommentsList id={this.props.id} />
+            </div>
         );
+    }
+    toggleForm() {
+        this.setState({
+            showForm: !this.state.showForm,
+            added: false
+        });
     }
 }
 
