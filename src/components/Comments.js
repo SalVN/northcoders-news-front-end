@@ -33,6 +33,7 @@ class Comments extends Component {
         this.props.fetchUsers();
     }
     render() {
+        const users = this.props.users;
         sortComments(this.props.comments, this.state.sortedBy);
         return (
             <div>
@@ -52,12 +53,21 @@ class Comments extends Component {
                     )
                 }
                 {this.props.comments.map(comment => {
+                    const username = comment.created_by;
+                    let index;
+                    users &&
+                    users.forEach((user, i) => {
+                        console.log(user);
+                        if (user.username === username) index = i;
+                    });
                     return (
                         <div key={comment._id}>
                             <CommentCard
                                 deleteHandler={this.deleteHandler}
                                 comment={comment}
-                                voteHandler={this.voteHandler} />
+                                voteHandler={this.voteHandler}
+                                userData={users[index]}
+                                />
                         </div>
                     );
                 })}
@@ -99,7 +109,7 @@ function mapStateToProps(state) {
     return {
         comments: state.comments.comments,
         loading: state.loading,
-        users: state.users
+        users: state.users.users
     };
 }
 

@@ -20,7 +20,9 @@ const CommentCard = function (props) {
           <div className='content'>
             <div className='columns'>
               <div className='column is-1'>
-                PIC
+                {props.userData &&
+                  <img src={props.userData.avatar_url} />
+                }
               </div>
               <div className='column'>
                 <div>
@@ -29,7 +31,7 @@ const CommentCard = function (props) {
                 </div>
                 <div className='comment-card-body'>{props.comment.body}</div>
                 {props.comment.created_by === USERNAME &&
-                <button onClick={props.deleteHandler.bind(this, props.comment._id)} className='button is-small delete-button'>Delete Comment</button>
+                  <button onClick={props.deleteHandler.bind(this, props.comment._id)} className='button is-small delete-button'>Delete Comment</button>
                 }
               </div>
             </div>
@@ -43,7 +45,8 @@ const CommentCard = function (props) {
 CommentCard.propTypes = {
   comment: PropTypes.object.isRequired,
   deleteHandler: PropTypes.func.isRequired,
-  voteHandler: PropTypes.func.isRequired
+  voteHandler: PropTypes.func.isRequired,
+  userData: PropTypes.object.isRequired
 };
 
 
