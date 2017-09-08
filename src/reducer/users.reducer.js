@@ -16,6 +16,18 @@ function reducer(prevState = initialState, action) {
     return newState;
   }
 
+  if (action.type === types.FETCH_USERS_SUCCESS) {
+    newState.users = [...action.data];
+    newState.loading = false;
+    return newState;
+  }
+
+  if (action.type === types.FETCH_USERS_ERROR) {
+    newState.error = Object.assign({}, action.data);
+    newState.loading = false;
+    newState.users = [...prevState.users];
+    return newState;
+  }
   return prevState;
 
 }
