@@ -30,6 +30,7 @@ class Comments extends Component {
     }
     componentDidMount() {
         this.props.fetchComments(this.props.id);
+        this.props.fetchUsers();
     }
     render() {
         sortComments(this.props.comments, this.state.sortedBy);
@@ -87,6 +88,9 @@ function mapDispatchToProps(dispatch) {
         },
         voteComment: (vote, id) => {
             dispatch(actions.voteComment(vote, id));
+        },
+        fetchUsers: () => {
+            dispatch(actions.fetchUsers());
         }
     };
 }
@@ -94,7 +98,8 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
     return {
         comments: state.comments.comments,
-        loading: state.loading
+        loading: state.loading,
+        users: state.users
     };
 }
 
@@ -103,7 +108,8 @@ Comments.propTypes = {
     fetchComments: PropTypes.func.isRequired,
     deleteComment: PropTypes.func.isRequired,
     comments: PropTypes.array.isRequired,
-    voteArticle: PropTypes.func.isRequired
+    voteComment: PropTypes.func.isRequired,
+    fetchUsers: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comments);

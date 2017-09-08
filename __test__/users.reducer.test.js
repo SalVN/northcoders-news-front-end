@@ -75,7 +75,7 @@ describe('reducer', () => {
     });
 
     describe('FETCH_USERS_SUCCESS', () => {
-        const action = actions.fetchUsersSuccess(users);
+        const action = actions.fetchUsersSuccess({users: users});
         const resultEmpty = reducer(initialState, action);
         const resultUsers = reducer(userState, action);
         it('should return loading as false', () => {
