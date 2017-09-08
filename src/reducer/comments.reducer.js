@@ -70,6 +70,27 @@ function reducer(prevState = initialState, action) {
     return newState;
   }
 
+  if (action.type === types.VOTE_COMMENT_REQUEST) {
+    newState.loading = true;
+    newState.comments = [...prevState.comments];
+    return newState;
+  }
+
+  if (action.type === types.VOTE_COMMENT_SUCCESS) {
+    newState. comments = [...prevState. comments];
+    const index = getIndex(newState.comments, action.data.comment._id);
+    newState.comments[index] = action.data.comment;
+    newState.loading = false;
+    return newState;
+  }
+
+  if (action.type === types.VOTE_COMMENT_ERROR) {
+    newState.error = Object.assign({}, action.data);
+    newState.loading = false;
+    newState.comments = [...prevState.comments];
+    return newState;
+  }
+
   return prevState;
 
 }

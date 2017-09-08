@@ -323,4 +323,112 @@ describe('reducer', () => {
             expect(resultComments.comments).not.toBe(commentsState.comments);
         });
     });
+
+    describe('VOTE_COMMENT_REQUEST', () => {
+        const action = actions.voteCommentRequest();
+        const resultComments = reducer(commentsState, action);
+        it('should return loading as true', () => {
+            expect(resultComments.loading).toBe(true);
+        });
+
+        it('should return the other parts of the state as the same as the initial state', () => {
+            expect(resultComments.comments).toEqual(comments);
+            expect(resultComments.error).toBe(null);
+        });
+
+        it('should not mutate the initial state', () => {
+            expect(resultComments).not.toBe(commentsState);
+            expect(resultComments.comments).not.toBe(commentsState.comments);
+        });
+    });
+
+    describe('VOTE_COMMENT_SUCCESS', () => {
+        const comment = {
+            _id: '59b11ae18807841d9bf13234',
+            body: 'this is a comment',
+            belongs_to: '59b11ae18807841d9bf13232',
+            __v: 0,
+            created_by: 'northcoder',
+            votes: 1,
+            created_at: 1504778965845
+        };
+
+        const updatedComments = [{
+        _id: '59b11ae18807841d9bf13234',
+        body: 'this is a comment',
+        belongs_to: '59b11ae18807841d9bf13232',
+        __v: 0,
+        created_by: 'northcoder',
+        votes: 1,
+        created_at: 1504778965845
+    },
+    {
+        _id: '59b11ae18807841d9bf13235',
+        body: 'this is another comment',
+        belongs_to: '59b11ae18807841d9bf13232',
+        __v: 0,
+        created_by: 'northcoder',
+        votes: 0,
+        created_at: 1504778965845
+    },
+    {
+        _id: '59b11ae18807841d9bf13236',
+        body: 'this is my comment',
+        belongs_to: '59b11ae18807841d9bf13232',
+        __v: 0,
+        created_by: 'northcoder',
+        votes: 0,
+        created_at: 1504778977306
+    }];
+        const action = actions.voteCommentSuccess({comment: comment});
+        const result = reducer(commentsState, action);
+        it('should return loading as false', () => {
+            expect(result.loading).toBe(false);
+        });
+
+        it('should return an array of comments', () => {
+            expect(Array.isArray(result.comments)).toBe(true);
+            expect(result.comments.length).toBe(3);
+        });
+
+        it('should update the number of votes to the appropriate comment in the comments list', () => {
+            console.log(result.comments);
+            expect(result.comments[0].votes).toBe(1);
+            expect(result.comments[1].votes).toBe(0);
+            expect(result.comments[2].votes).toBe(0);
+            expect(result.comments).toEqual(updatedComments);
+        });
+
+        it('should return the other parts of the state as the same as the initial state', () => {
+            expect(result.error).toBe(null);
+        });
+
+        it('should not mutate the initial state', () => {
+            expect(result).not.toBe(initialState);
+            expect(result.comments).not.toBe(initialState.comments);
+        });
+    });
+
+    describe('VOTE_COMMENT_ERROR', () => {
+        const error = { status: 400, message: 'INVALID URL' };
+        const action = actions.voteCommentError(error);
+        const result = reducer(commentsState, action);
+
+        it('should return loading as false', () => {
+            expect(result.loading).toBe(false);
+        });
+
+        it('should return an array identical to the previous state for articles', () => {
+            expect(result.comments).toEqual(commentsState.comments);
+        });
+
+        it('should return the error', () => {
+            expect(result.error).toEqual(error);
+        });
+
+        it('should not mutate the initial state', () => {
+            expect(result).not.toBe(commentsState);
+            expect(result.comments).not.toBe(commentsState.comments);
+        });
+    });
 });
