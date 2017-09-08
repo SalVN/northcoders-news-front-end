@@ -5,4 +5,25 @@
 
 .comment-card-name {
     color: #c1002e !important;
+    margin-right: 10px;
+}
+
+.comment-card-date {
+    color: grey;
+    font-size: 14px;
+}
+
+.comment-card-body {
+    margin-left: 30px;
+}
+
+.delete-button {
+    background-color: #c1002e;
+    margin-left: 30px;
+    margin-top: 10px;
+    color: white;    
+}
+
+.box-style {
+    margin: 10px;
 }

@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
+import moment from 'moment';
 
 import './css/CommentCard.css';
 import { USERNAME } from '../../config';
 
 const CommentCard = function (props) {
   return (
-    <div className='box'>
+    <div className='box box-style'>
       <article className='media'>
         <div className='media-left'>
           <button onClick={props.voteHandler.bind(this, 'up', props.comment._id)} className='button is-black is-inverted is-small'><i className="fa fa-arrow-up" aria-hidden="true"></i></button>
@@ -24,11 +25,11 @@ const CommentCard = function (props) {
               <div className='column'>
                 <div>
                   <Link to='#'><span className='comment-card-name'><strong>{props.comment.created_by}</strong></span></Link>
-                  <span>{new Date(props.comment.created_at).toLocaleDateString()}</span>
+                  <span className='comment-card-date'>{moment(props.comment.created_at).utc().format('Do MMMM YYYY, hh:mm')}</span>
                 </div>
-                <div>{props.comment.body}</div>
+                <div className='comment-card-body'>{props.comment.body}</div>
                 {props.comment.created_by === USERNAME &&
-                  <button onClick={props.deleteHandler.bind(this, props.comment._id)} className='button'>Delete</button>
+                <button onClick={props.deleteHandler.bind(this, props.comment._id)} className='button is-small delete-button'>Delete Comment</button>
                 }
               </div>
             </div>
