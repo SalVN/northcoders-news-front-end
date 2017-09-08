@@ -1,0 +1,16 @@
+.comments-title {
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.comments-title-main {
+    color: #c1002e !important;
+    margin-right: 10px;
+    font-size: 24px;
+}
+
+.comments-title-sub {
+    font-size: 20px;
+    color: grey;
+}

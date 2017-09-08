@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import AddCommentForm from './AddCommentForm';
 import CommentsList from './CommentsList';
+import './css/Comments.css';
 
 class Comments extends Component {
     constructor(props) {
@@ -19,6 +20,10 @@ class Comments extends Component {
         return (
             <div className='columns'>
                 <div className='column is-one-quarter'>
+                    <div className='comments-title'>
+                        <span className='comments-title comments-title-main'>Comments</span>
+                        <span className='comments-title comments-title-sub'>(2)</span>
+                    </div>
                 </div>
                 <div className='column'>
                     {this.state.added &&
