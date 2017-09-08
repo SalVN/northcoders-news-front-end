@@ -348,5 +348,48 @@ describe('actions', () => {
             });
         });
 
+        describe('#fetchOneUser', () => {
+            it('is a function', () => {
+                expect(typeof actions.fetchOneUser).toBe('function');
+            });
+            describe('#fetchOneUserRequest', () => {
+                it('is a function', () => {
+                    expect(typeof actions.fetchOneUserRequest).toBe('function');
+                });
+
+                it('should return the expected action', function () {
+                    expect(actions.fetchOneUserRequest()).toEqual({
+                        type: types.FETCH_ONE_USER_REQUEST
+                    });
+                });
+            });
+
+            describe('#fetchOneUserSuccess', () => {
+                it('is a function', () => {
+                    expect(typeof actions.fetchOneUserSuccess).toBe('function');
+                });
+
+                it('should the expected action', function () {
+                    expect(actions.fetchOneUserSuccess({ user: 'user' })).toEqual({
+                        type: types.FETCH_ONE_USER_SUCCESS,
+                        data: { user: 'user' }
+                    });
+                });
+            });
+
+            describe('#fetchOneUserError', () => {
+                it('is a function', () => {
+                    expect(typeof actions.fetchOneUserError).toBe('function');
+                });
+
+                it('returns the expected action', function () {
+                    expect(actions.fetchOneUserError('err')).toEqual({
+                        type: types.FETCH_ONE_USER_ERROR,
+                        data: 'err'
+                    });
+                });
+            });
+        });
+
     }); //
 });

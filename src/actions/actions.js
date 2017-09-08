@@ -270,7 +270,6 @@ export function voteTopicArticleError(err) {
     };
 }
 
-
 export function fetchUsers() {
     return function (dispatch) {
         dispatch(fetchUsersRequest());
@@ -300,6 +299,39 @@ export function fetchUsersSuccess(userList) {
 export function fetchUsersError(err) {
     return {
         type: types.FETCH_USERS_ERROR,
+        data: err
+    };
+}
+
+export function fetchOneUser(username) {
+    return function (dispatch) {
+        dispatch(fetchOneUserRequest());
+        axios.get(`${ROOT}/users/${username}`)
+            .then(res => {
+                dispatch(fetchOneUserSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(fetchOneUserError(err));
+            });
+    };
+}
+
+export function fetchOneUserRequest() {
+    return {
+        type: types.FETCH_ONE_USER_REQUEST
+    };
+}
+
+export function fetchOneUserSuccess(userList) {
+    return {
+        type: types.FETCH_ONE_USER_SUCCESS,
+        data: userList
+    };
+}
+
+export function fetchOneUserError(err) {
+    return {
+        type: types.FETCH_ONE_USER_ERROR,
         data: err
     };
 }
