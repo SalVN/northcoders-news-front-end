@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 
 import * as actions from '../actions/actions';
 
+import { sortArticles } from '../utilities/sortArticles';
+
+
 class ArticleList extends React.Component {
   componentDidMount() {
     if (this.props.users && this.props.users.length < 1) {
@@ -14,6 +17,9 @@ class ArticleList extends React.Component {
   render() {
     const users = this.props.users;
     const voteHandler = this.props.voteArticle;
+    if (this.props.sortBy) {
+      sortArticles(this.props.articles, this.props.sortBy);
+    }
     return (
       <div id='ArticleList' className='content'>
         {this.props.articles.length > 0 &&
@@ -65,7 +71,8 @@ ArticleList.propTypes = {
   loading: PropTypes.bool.isRequired,
   fetchUsers: PropTypes.func.isRequired,
   voteArticle: PropTypes.func.isRequired,
-  users: PropTypes.array.isRequired
+  users: PropTypes.array.isRequired,
+  sortBy: PropTypes.string.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticleList);

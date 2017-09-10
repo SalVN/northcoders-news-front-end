@@ -9,6 +9,9 @@ import './css/MainArticleList.css';
 class MainArticleList extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            sortBy: 'votes'
+        };
         this.voteHandlerMainArticles = this.voteHandlerMainArticles.bind(this);
         this.handleClickSelect = this.handleClickSelect.bind(this);
     }
@@ -18,6 +21,7 @@ class MainArticleList extends React.Component {
         }
     }
     render() {
+        console.log(this.state.sortBy);
         return (
             <div id='ArticleList' className='content'>
                 <div className='columns'>
@@ -30,9 +34,9 @@ class MainArticleList extends React.Component {
                     <div className='column is-3'>
                         <div className='select is-primary select-menu'>
                             <select name="Sort by" onChange={this.handleClickSelect}>
-                                <option value="Popularity">Popularity</option>
-                                <option value="Number of Comments">Number of Comments</option>
-                                <option disabled value="Randomly">Randomly</option>
+                                <option value="votes">Popularity</option>
+                                <option value="comments">Number of Comments</option>
+                                <option disabled value="random">Randomly</option>
                             </select>
                         </div>
                     </div>
@@ -40,6 +44,7 @@ class MainArticleList extends React.Component {
                 <ArticleList
                     articles={this.props.articles}
                     voteArticle={this.voteHandlerMainArticles}
+                    sortBy={this.state.sortBy}
                 />
             </div>
         );
@@ -49,7 +54,9 @@ class MainArticleList extends React.Component {
     }
     handleClickSelect(e) {
         e.preventDefault();
-        console.dir(e.target.value);
+        this.setState({
+            sortBy: e.target.value
+        });
     }
 }
 
