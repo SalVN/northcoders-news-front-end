@@ -11,10 +11,11 @@
 .comment-card-date {
     color: grey;
     font-size: 14px;
+    margin-left: 40px;
 }
 
 .comment-card-body {
-    margin-left: 30px;
+    margin-left: 50px;
 }
 
 .delete-button {
@@ -26,4 +27,12 @@
 
 .box-style {
     margin: 10px;
+    padding: 20px;
+}
+
+.comment-card-avatar {
+    height: 30px;
+    width: 30px;
+    margin-right: 10px;
+    margin-bottom: -15px;
 }

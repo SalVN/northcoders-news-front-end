@@ -1,5 +1,5 @@
 .navbar-css {
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #373737;
 }
 
 .navbar-text-css {
@@ -19,7 +19,8 @@
 }
 
 .user {
-    background-color: black;
+    background-color: #373737;
+;
     border-radius: 5px;
     padding: 5px;
     color: white !important;
