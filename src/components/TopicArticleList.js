@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import * as actions from '../actions/actions';
 import ArticleList from './ArticleList';
+import './css/TopicArticleList.css';
 
 class TopicArticleList extends React.Component {
   constructor(props) {
@@ -20,7 +21,8 @@ class TopicArticleList extends React.Component {
   }
   render() {
     return (
-      <div id='TopicArticleList'>
+      <div id='TopicArticleList' className='content'>
+        <h2 className='page-title'><strong>{`${this.props.match.params.id[0].toUpperCase()}${this.props.match.params.id.slice(1)}`}</strong></h2>
         <ArticleList
           articles={this.props.topicArticles}
           voteArticle={this.voteHandlerTopicArticles}

@@ -15,7 +15,7 @@ class ArticleList extends React.Component {
     const users = this.props.users;
     const voteHandler = this.props.voteArticle;
     return (
-      <div id='ArticleList'>
+      <div id='ArticleList' className='content'>
         {this.props.articles.length > 0 &&
           this.props.articles.map((article, i) => {
             const username = article.created_by;
