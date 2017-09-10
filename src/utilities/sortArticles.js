@@ -9,5 +9,13 @@ exports.sortArticles = function (articles, sortedBy) {
             return b.votes - a.votes;
         });
     }
+    if (sortedBy === 'random') {
+        articles.forEach(article => {
+            article['random'] = Math.random();
+        });
+        articles.sort(function (a, b) {
+            return a.random - b.random;
+        });
+    }
     return articles;
 };

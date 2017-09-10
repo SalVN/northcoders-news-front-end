@@ -18,7 +18,7 @@ const ArticleListHeader = function (props) {
                         <select name="Sort by" onChange={props.handleClickSelect}>
                             <option value="votes">Popularity</option>
                             <option value="comments">Number of Comments</option>
-                            <option disabled value="random">Randomly</option>
+                            <option value="random">Random</option>
                         </select>
                     </div>
                 </div>

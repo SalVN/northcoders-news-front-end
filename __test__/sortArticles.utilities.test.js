@@ -3,41 +3,41 @@ import { sortArticles } from '../src/utilities/sortArticles';
 
 describe('#sortArticles', () => {
     const articles = [{
-            _id: '59b01acf006c8dbca914672f',
-            title: 'Article 1',
-            body: 'something',
-            belongs_to: 'football',
-            __v: 0,
-            votes: 3,
-            comment_count: 2
-        },
-        {
-            _id: '59b01acf006c8dbca914672f',
-            title: 'Article 2',
-            body: 'something',
-            belongs_to: 'football',
-            __v: 0,
-            votes:6,
-            comment_count: 9
-        },
-        {
-            _id: '59b01acf006c8dbca914672f',
-            title: 'Article 3',
-            body: 'something',
-            belongs_to: 'football',
-            __v: 0,
-            votes: 20,
-            comment_count: 1
-        },
-        {
-            _id: '59b01acf006c8dbca914672e',
-            title: 'Article 4',
-            body: 'something',
-            belongs_to: 'cats',
-            __v: 0,
-            votes: 0,
-            comment_count: 6
-        }];
+        _id: '59b01acf006c8dbca914672f',
+        title: 'Article 1',
+        body: 'something',
+        belongs_to: 'football',
+        __v: 0,
+        votes: 3,
+        comment_count: 2
+    },
+    {
+        _id: '59b01acf006c8dbca914672f',
+        title: 'Article 2',
+        body: 'something',
+        belongs_to: 'football',
+        __v: 0,
+        votes: 6,
+        comment_count: 9
+    },
+    {
+        _id: '59b01acf006c8dbca914672f',
+        title: 'Article 3',
+        body: 'something',
+        belongs_to: 'football',
+        __v: 0,
+        votes: 20,
+        comment_count: 1
+    },
+    {
+        _id: '59b01acf006c8dbca914672e',
+        title: 'Article 4',
+        body: 'something',
+        belongs_to: 'cats',
+        __v: 0,
+        votes: 0,
+        comment_count: 6
+    }];
     it('is a function', () => {
         expect(typeof sortArticles).toBe('function');
     });
@@ -66,6 +66,13 @@ describe('#sortArticles', () => {
         expect(result[3].title).toBe('Article 3');
     });
 
+    it('returns an array of the correct length if sortedBy === "random"', () => {
+        const result = sortArticles(articles, 'random');
+        expect(result.length).toEqual(4);
+        result.forEach(article => {
+            expect(typeof article.random).toEqual('number');
+        });
+    });
 
     it('mutates the original array', () => {
         const resultA = sortArticles(articles, 'votes');
