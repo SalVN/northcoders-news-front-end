@@ -1,0 +1,56 @@
+
+.comment-form-heading {
+   font-weight: bold;
+   margin-left: 10px;
+}
+
+.comment-form {
+    text-align: center;
+}
+
+.box-style-comment {
+    background-color: #FC84A0;
+}
+
+.box-style-comment-small {
+    height: 70px;
+}
+
+.comment-form-image {
+    height: 36px;
+    width: 36px;
+    border-radius: 20px;
+}
+
+.comment-form-small {
+    border-radius: 10px;
+    width: 98%;
+    background-color: white;
+    height: 36px;
+    padding: 5px;
+    font-size: 14px;
+    line-height: 20px;
+    border: 1px solid black;
+}
+.add-comment-textarea {
+    resize: vertical;
+    width: 98%;
+    min-height: 100px;
+    max-height: 300px;
+    font-size: 14px;
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.button-div {
+    text-align: right;
+}
+
+.add-comment-submit {
+    background-color: #c1002e;
+    color: white;
+    border-radius: 20px;
+    border: 0px;
+}
