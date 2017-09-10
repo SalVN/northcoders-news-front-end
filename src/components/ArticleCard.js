@@ -45,11 +45,11 @@ const ArticleCard = function (props) {
               </span>
               <span>
                 <span className='article-card-subheading-key'>comments:</span>
-                {/*<Link to='#'>*/}
-                <span className='article-card-subheading-value-notlink'>
+                <a href={`/articles/${props.id}#comments`}>
+                <span className='article-card-subheading-value'>
                   <strong>{props.comment_count}</strong>
                 </span>
-                {/*</Link>*/}
+                </a>
               </span>
             </p>
           </div>
