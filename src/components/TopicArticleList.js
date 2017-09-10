@@ -4,12 +4,17 @@ import { connect } from 'react-redux';
 
 import * as actions from '../actions/actions';
 import ArticleList from './ArticleList';
+import ArticleListHeader from './ArticleListHeader';
 import './css/TopicArticleList.css';
 
 class TopicArticleList extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      sortBy: 'votes'
+    };
     this.voteHandlerTopicArticles = this.voteHandlerTopicArticles.bind(this);
+    this.handleClickSelect = this.handleClickSelect.bind(this);
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.match.params.id !== this.props.match.params.id) {
@@ -17,21 +22,31 @@ class TopicArticleList extends React.Component {
     }
   }
   componentDidMount() {
-      this.props.fetchTopicArticles(this.props.match.params.id);
+    this.props.fetchTopicArticles(this.props.match.params.id);
   }
   render() {
     return (
       <div id='TopicArticleList' className='content'>
-        <h2 className='page-title'><strong>{`${this.props.match.params.id[0].toUpperCase()}${this.props.match.params.id.slice(1)}`}</strong></h2>
+        <ArticleListHeader
+          title={`${this.props.match.params.id[0].toUpperCase()}${this.props.match.params.id.slice(1)}`}
+          handleClickSelect={this.handleClickSelect}
+        />
         <ArticleList
           articles={this.props.topicArticles}
           voteArticle={this.voteHandlerTopicArticles}
+          sortBy={this.state.sortBy}
         />
       </div>
     );
   }
   voteHandlerTopicArticles(vote, id) {
     this.props.voteArticle(vote, id);
+  }
+  handleClickSelect(e) {
+    e.preventDefault();
+    this.setState({
+      sortBy: e.target.value
+    });
   }
 }
 

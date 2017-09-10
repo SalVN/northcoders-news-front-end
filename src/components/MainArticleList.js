@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import * as actions from '../actions/actions';
 import ArticleList from './ArticleList';
+import ArticleListHeader from './ArticleListHeader';
 import './css/MainArticleList.css';
 
 class MainArticleList extends React.Component {
@@ -21,26 +22,12 @@ class MainArticleList extends React.Component {
         }
     }
     render() {
-        console.log(this.state.sortBy);
         return (
             <div id='ArticleList' className='content'>
-                <div className='columns'>
-                    <div className='column is-3'>
-                        <h2 className='page-title'><strong>Articles</strong></h2>
-                    </div>
-                    <div className='column is-1 is-offset-5 label'>
-                        <label htmlFor="Sort by">Sort by:</label>
-                    </div>
-                    <div className='column is-3'>
-                        <div className='select is-primary select-menu'>
-                            <select name="Sort by" onChange={this.handleClickSelect}>
-                                <option value="votes">Popularity</option>
-                                <option value="comments">Number of Comments</option>
-                                <option disabled value="random">Randomly</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+                <ArticleListHeader 
+                    title={'Articles'}
+                    handleClickSelect={this.handleClickSelect}
+                />
                 <ArticleList
                     articles={this.props.articles}
                     voteArticle={this.voteHandlerMainArticles}
