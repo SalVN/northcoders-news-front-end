@@ -4,7 +4,7 @@
 
 .navbar-text-css {
     color: black !important;
-    font-weight: strong !important;
+    /*font-weight: strong !important;*/
 }
 
 .logo {
@@ -32,3 +32,4 @@
 .navbar-user-text {
     margin: 5px;
 }
+
