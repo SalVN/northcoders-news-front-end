@@ -8,7 +8,7 @@ describe('#sortComments', () => {
         belongs_to: '59b11ae18807841d9bf13232',
         __v: 0,
         created_by: 'northcoder',
-        votes: 0,
+        votes: 8,
         created_at: 1504778977306
     },
     {
@@ -17,7 +17,7 @@ describe('#sortComments', () => {
         belongs_to: '59b11ae18807841d9bf13232',
         __v: 0,
         created_by: 'northcoder',
-        votes: 0,
+        votes: 5,
         created_at: 1504778965843
     },
     {
@@ -26,7 +26,7 @@ describe('#sortComments', () => {
         belongs_to: '59b11ae18807841d9bf13232',
         __v: 0,
         created_by: 'northcoder',
-        votes: 0,
+        votes: 12,
         created_at: 1504778976245
     }];
     it('is a function', () => {
@@ -46,6 +46,14 @@ describe('#sortComments', () => {
         expect(result[1].body).toBe('comment 3');
         expect(result[2].body).toBe('comment 2');
     });
+
+    it('sorts the comments by the number of votes if sortedBy === "newest"', () => {
+        const result = sortComments(comments, 'votes');
+        expect(result[0].body).toBe('comment 3');
+        expect(result[1].body).toBe('comment 1');
+        expect(result[2].body).toBe('comment 2');
+    });
+
 
     it('mutates the original array', () => {
         const resultA = sortComments(comments, 'newest');

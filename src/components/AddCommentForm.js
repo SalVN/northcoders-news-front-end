@@ -1,8 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import * as actions from '../actions/actions';
 import PropTypes from 'prop-types';
-import { USERNAME } from '../../config';
 
 import './css/AddCommentForm.css';
 

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { sortComments } from '../utilities/sortComments';
 
 import CommentCard from './CommentCard';
+import './css/CommentsList.css';
 
 class CommentsList extends Component {
     constructor(props) {
@@ -10,7 +11,7 @@ class CommentsList extends Component {
         this.state = {
             sortedBy: 'newest',
         };
-
+        this.sortComments = this.sortComments.bind(this);
     }
     componentWillReceiveProps(newProps) {
         if (this.props.comments && (newProps.comments !== this.props.comments) && this.state.showForm) {
@@ -20,10 +21,20 @@ class CommentsList extends Component {
         }
     }
     render() {
+        let newest = (this.state.sortedBy === 'newest') ? 'comment-sort-active' : 'comment-sort-links';
+        let votes = (this.state.sortedBy === 'votes') ? 'comment-sort-active' : 'comment-sort-links';
         const users = this.props.users;
         sortComments(this.props.comments, this.state.sortedBy);
         return (
             <div>
+                <div className='comment-sort-links'>
+                    <a onClick={this.sortComments} className={`${newest}`}>
+                        <span className='comment-sort-left'>sort comments by date added</span>
+                    </a>
+                    <a onClick={this.sortComments} className={`${votes}`}>
+                        <span>sort comments by votes</span>
+                    </a>
+                </div>
                 {this.props.comments.map(comment => {
                     const username = comment.created_by;
                     let index;
@@ -44,6 +55,15 @@ class CommentsList extends Component {
                 })}
             </div>
         );
+    }
+    sortComments (e) {
+        e.preventDefault();
+        let sort;
+        if (e.target.innerText === 'sort comments by date added') sort = 'newest';
+        if (e.target.innerText === 'sort comments by votes') sort = 'votes';
+        this.setState({
+            sortedBy: sort
+        });
     }
 }
 
