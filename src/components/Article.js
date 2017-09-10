@@ -9,9 +9,9 @@ const Article = function (props) {
         <div className='box article-card-style'>
             <div className='columns'>
                 <div className='column is-1'>
-                    <button className='button is-black is-inverted is-small'><i className="fa fa-arrow-up" aria-hidden="true"></i></button>
+                    <button onClick={props.voteArticle.bind(this, 'up', props.article._id)} className='button is-black is-inverted is-small'><i className="fa fa-arrow-up" aria-hidden="true"></i></button>
                     <p className='comment-card-votes'><strong>{props.article.votes}</strong></p>
-                    <button className='button is-black is-inverted is-small'><i className="fa fa-arrow-down" aria-hidden="true"></i></button>
+                    <button onClick={props.voteArticle.bind(this, 'down', props.article._id)} className='button is-black is-inverted is-small'><i className="fa fa-arrow-down" aria-hidden="true"></i></button>
                 </div>
                 <div className='column'>
                     <div className='title is-3 article-title'>{props.article.title}</div>
@@ -55,7 +55,8 @@ const Article = function (props) {
 
 Article.propTypes = {
     article: PropTypes.object.isRequired,
-    user: PropTypes.object.isRequired
+    user: PropTypes.object.isRequired,
+    voteArticle: PropTypes.func.isRequired
 };
 
 export default Article;

@@ -8,6 +8,10 @@ import Comments from './Comments';
 import * as actions from '../actions/actions';
 
 class ArticlePage extends Component {
+    constructor(props) {
+        super(props);
+        this.articleVoteHandler = this.articleVoteHandler.bind(this);
+    }
     componentDidMount() {
         if (this.props.articles && this.props.articles.length < 1) {
             this.props.fetchArticles();
@@ -36,6 +40,7 @@ class ArticlePage extends Component {
                 <Article
                     article={article}
                     user={user}
+                    voteArticle={this.articleVoteHandler}
                 />
                 <hr className='article-page-hr' />
                 <Comments
@@ -44,6 +49,9 @@ class ArticlePage extends Component {
                 />
             </div>
         );
+    }
+    articleVoteHandler(vote, id) {
+        this.props.voteArticle(vote, id);
     }
 }
 
@@ -54,6 +62,9 @@ function mapDispatchToProps(dispatch) {
         },
         fetchUsers: () => {
             dispatch(actions.fetchUsers());
+        },
+        voteArticle: (vote, id) => {
+            dispatch(actions.voteArticle(vote, id));
         }
     };
 }
@@ -71,7 +82,8 @@ ArticlePage.propTypes = {
     fetchArticles: PropTypes.func.isRequired,
     match: PropTypes.object.isRequired,
     users: PropTypes.array.isRequired,
-    fetchUsers: PropTypes.func.isRequired
+    fetchUsers: PropTypes.func.isRequired,
+    voteArticle: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticlePage);
