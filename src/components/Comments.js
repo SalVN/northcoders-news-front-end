@@ -23,7 +23,7 @@ class Comments extends Component {
     }
     render() {
         return (
-            <div className='columns'>
+            <div id='comments' className='columns'>
                 <div className='column is-one-quarter'>
                     <div className='comments-title'>
                         <span className='comments-title comments-title-main'>Comments</span>

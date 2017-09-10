@@ -6,7 +6,7 @@ import './css/Article.css';
 
 const Article = function (props) {
     return (
-        <div className='box'>
+        <div className='box article-card-style'>
             <div className='columns'>
                 <div className='column is-1'>
                     <button className='button is-black is-inverted is-small'><i className="fa fa-arrow-up" aria-hidden="true"></i></button>
@@ -39,14 +39,14 @@ const Article = function (props) {
                         </span>
                         <span>
                             <span className='article-card-subheading-key'>comments:</span>
-                            {/*<Link to='#'>*/}
-                            <span className='article-card-subheading-value-notlink'>
-                                <strong>{props.article.commentCount}</strong>
+                            <a href='#comments'>
+                            <span className='article-card-subheading-value'>
+                                <strong>{props.article.comment_count}</strong>
                             </span>
-                            {/*</Link>*/}
+                            </a>
                         </span>
                     </p>
-                    <div>{props.article.body}</div>
+                    <div className='article-body'>{props.article.body}</div>
                 </div>
             </div>
         </div>

@@ -39,7 +39,6 @@ class ArticlePage extends Component {
                 />
                 <hr className='article-page-hr' />
                 <Comments
-                    commentCount={article.comment_count}
                     id={this.props.match.params.id}
                     users={this.props.users}
                 />
