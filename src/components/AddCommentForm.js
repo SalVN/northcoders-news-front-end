@@ -13,7 +13,6 @@ class AddCommentForm extends React.Component {
             text: ''
         };
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
     render() {
         return (
@@ -27,7 +26,7 @@ class AddCommentForm extends React.Component {
                             </div>
                             <div className='media-content'>
                                 <div className='content'>
-                                    <form onSubmit={this.handleSubmit}>
+                                    <form onSubmit={this.props.handleSubmit}>
                                         <label className='comment-form-heading' htmlFor="comment-input">Join the conversation:</label>
                                         <br />
                                         <div className='comment-form' onBlur={this.props.toggleForm.bind(this, this.state.text)}>
@@ -64,28 +63,6 @@ class AddCommentForm extends React.Component {
             text: e.target.value
         });
     }
-    handleSubmit(e) {
-        e.preventDefault();
-        const obj = {
-            body: this.state.text,
-            created_by: USERNAME
-        };
-        this.props.addComment(obj, this.props.id);
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        addComment: (comment, id) => {
-            dispatch(actions.addComment(comment, id));
-        }
-    };
-}
-
-function mapStateToProps(state) {
-    return {
-        loading: state.loading
-    };
 }
 
 AddCommentForm.propTypes = {
@@ -93,7 +70,8 @@ AddCommentForm.propTypes = {
     addComment: PropTypes.func.isRequired,
     toggleForm: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
-    showForm: PropTypes.bool.isRequired
+    showForm: PropTypes.bool.isRequired,
+    handleSubmit: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddCommentForm);
+export default AddCommentForm;

@@ -19,6 +19,7 @@ class Comments extends Component {
         this.toggleForm = this.toggleForm.bind(this);
         this.deleteHandler = this.deleteHandler.bind(this);
         this.voteHandler = this.voteHandler.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     componentDidMount() {
         this.props.fetchComments(this.props.id);
@@ -44,9 +45,13 @@ class Comments extends Component {
                             <h3>Your comment has been added</h3>
                         </div>
                     }
-                    <AddCommentForm user={this.props.user} showForm={this.state.showForm} toggleForm={this.toggleForm} id={this.props.id} />
+                    <AddCommentForm 
+                    user={this.props.user} 
+                    showForm={this.state.showForm} 
+                    toggleForm={this.toggleForm} 
+                    handleSubmit={this.handleSubmit}
+                    id={this.props.id} />
                     <CommentsList
-                        id={this.props.id}
                         users={this.props.users}
                         comments={this.props.comments}
                         deleteHandler={this.deleteHandler}
@@ -70,6 +75,18 @@ class Comments extends Component {
     voteHandler(vote, id) {
         this.props.voteComment(vote, id);
     }
+    handleSubmit(e) {
+        e.preventDefault();
+        const obj = {
+            body: e.target[0].value,
+            created_by: USERNAME
+        };
+        this.props.addComment(obj, this.props.id);
+        this.setState({
+            added: true,
+            showForm: false
+        });
+    }
 }
 
 function mapDispatchToProps(dispatch) {
@@ -85,6 +102,9 @@ function mapDispatchToProps(dispatch) {
         },
         fetchUser: (username) => {
             dispatch(actions.fetchOneUser(username));
+        },
+        addComment: (comment, id) => {
+            dispatch(actions.addComment(comment, id));
         }
     };
 }
@@ -106,7 +126,8 @@ Comments.propTypes = {
     deleteComment: PropTypes.func.isRequired,
     voteComment: PropTypes.func.isRequired,
     fetchUser: PropTypes.func.isRequired,
-    user: PropTypes.object.isRequired
+    user: PropTypes.object.isRequired,
+    addComment: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comments);
