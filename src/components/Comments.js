@@ -20,9 +20,6 @@ class Comments extends Component {
     }
     componentDidMount() {
         this.props.fetchComments(this.props.id);
-        if (this.props.users && this.props.users.length < 1) {
-            this.props.fetchUsers();
-        }
     }
     render() {
         return (
@@ -87,9 +84,6 @@ function mapDispatchToProps(dispatch) {
         },
         voteComment: (vote, id) => {
             dispatch(actions.voteComment(vote, id));
-        },
-        fetchUsers: () => {
-            dispatch(actions.fetchUsers());
         }
     };
 }
@@ -98,7 +92,6 @@ function mapStateToProps(state) {
     return {
         comments: state.comments.comments,
         loading: state.loading,
-        users: state.users.users
     };
 }
 
@@ -107,7 +100,6 @@ Comments.propTypes = {
     comments: PropTypes.array.isRequired,
     users: PropTypes.array.isRequired,
     fetchComments: PropTypes.func.isRequired,
-    fetchUsers: PropTypes.func.isRequired,
     deleteComment: PropTypes.func.isRequired,
     voteComment: PropTypes.func.isRequired
 };

@@ -19,11 +19,11 @@ const Article = function (props) {
                         <span>
                             <span className='article-subheading-key'>added by:</span>
                             <Link to='#'>
-                                {/*<span>
-                                    {this.props.userData &&
-                                        <img className='article-card-avatar' src={props.userData.avatar_url} alt='user avatar' />
+                                <span>
+                                    {props.user &&
+                                        <img className='article-card-avatar' src={props.user.avatar_url} alt='user avatar' />
                                     }
-                                </span>*/}
+                                </span>
                                 <span className='article-subheading-value'>
                                     <strong>{props.article.created_by}</strong>
                                 </span>
@@ -55,6 +55,7 @@ const Article = function (props) {
 
 Article.propTypes = {
     article: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired
 };
 
 export default Article;
