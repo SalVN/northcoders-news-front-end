@@ -44,7 +44,7 @@ class TopicNavBar extends Component {
                             this.props.topics.map((topic) => {
                                 return (
                                     <span key={topic._id} className='navbar-item is-hoverable'>
-                                        <NavLink className='navbar-text-css' to={`/topics/${topic.slug}/articles`}>
+                                        <NavLink onClick={this.toggleBurger} className='navbar-text-css' to={`/topics/${topic.slug}/articles`}>
                                             <span><strong>{`< ${topic.title.toUpperCase()} />`}</strong></span>
                                         </NavLink>
                                     </span>
