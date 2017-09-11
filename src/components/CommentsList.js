@@ -23,16 +23,21 @@ class CommentsList extends Component {
     render() {
         let newest = (this.state.sortedBy === 'newest') ? 'comment-sort-active' : 'comment-sort-links';
         let votes = (this.state.sortedBy === 'votes') ? 'comment-sort-active' : 'comment-sort-links';
+        let oldest = (this.state.sortedBy === 'oldest') ? 'comment-sort-active' : 'comment-sort-links';
+
         const users = this.props.users;
         sortComments(this.props.comments, this.state.sortedBy);
         return (
             <div>
                 <div className='comment-sort-links'>
                     <a onClick={this.sortComments} className={`${newest}`}>
-                        <span className='comment-sort-left'>sort comments by date added</span>
+                        <span className='comment-sort-left'>sort by newest</span>
+                    </a>
+                    <a onClick={this.sortComments} className={`${oldest}`}>
+                        <span className='comment-sort-left'>sort by oldest</span>
                     </a>
                     <a onClick={this.sortComments} className={`${votes}`}>
-                        <span>sort comments by votes</span>
+                        <span>sort by votes</span>
                     </a>
                 </div>
                 {this.props.comments.map(comment => {
@@ -56,11 +61,12 @@ class CommentsList extends Component {
             </div>
         );
     }
-    sortComments (e) {
+    sortComments(e) {
         e.preventDefault();
         let sort;
-        if (e.target.innerText === 'sort comments by date added') sort = 'newest';
-        if (e.target.innerText === 'sort comments by votes') sort = 'votes';
+        if (e.target.innerText === 'sort by newest') sort = 'newest';
+        if (e.target.innerText === 'sort by votes') sort = 'votes';
+        if (e.target.innerText === 'sort by oldest') sort = 'oldest';
         this.setState({
             sortedBy: sort
         });
