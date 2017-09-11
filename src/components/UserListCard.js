@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import * as actions from '../actions/actions';
 import './css/UserListCard.css';
-import { USERNAME } from '../../config';
 import UserRankingCard from './UserRankingCard';
 
 class UserListCard extends Component {
@@ -32,7 +31,7 @@ class UserListCard extends Component {
                             {this.props.users &&
                                 this.props.users.map((user, i) => {
                                     return (
-                                        <UserRankingCard user={user} index={i}/>
+                                        <UserRankingCard key={user.username} user={user} index={i}/>
                                     );
                                 })
                             }
@@ -59,7 +58,7 @@ function mapStateToProps(state) {
 }
 
 UserListCard.propTypes = {
-    users: PropTypes.object.isRequired,
+    users: PropTypes.array.isRequired,
     fetchUsers: PropTypes.func.isRequired
 };
 

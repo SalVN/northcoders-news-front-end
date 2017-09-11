@@ -12,7 +12,7 @@ const UserRankingCard = function (props) {
                     <p className='user-list-card-number'><strong>{props.index + 1}</strong></p>
                 </div>
                 <div className='column is-two-thirds'>
-                    <Link to='#'>
+                    <Link to={`/users/${props.user.username}`}>
                     <div>
                         <img className='user-list-image' src={`${props.user.avatar_url}`} />
                         <span className='user-list-username-text'>

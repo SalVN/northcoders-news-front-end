@@ -392,7 +392,6 @@ describe('reducer', () => {
         });
 
         it('should update the number of votes to the appropriate comment in the comments list', () => {
-            console.log(result.comments);
             expect(result.comments[0].votes).toBe(1);
             expect(result.comments[1].votes).toBe(0);
             expect(result.comments[2].votes).toBe(0);

@@ -23,33 +23,33 @@ const ArticleCard = function (props) {
             </Link>
             <p>
               <span>
-                <span className='article-card-subheading-key'>added by:</span>
-                <Link to='#'>
+                {props.userData &&
                   <span>
-                    {props.userData &&
+                    <span className='article-card-subheading-key'>added by:</span>
+                    <Link to={`/users/${props.userData.username}`}>
                       <img className='article-card-avatar' src={props.userData.avatar_url} alt='user avatar' />
-                    }
+                      <span className='article-card-subheading-value'>
+                        <strong>{props.author}</strong>
+                      </span>
+                    </Link>
                   </span>
-                  <span className='article-card-subheading-value'>
-                    <strong>{props.author}</strong>
-                  </span>
-                </Link>
-              </span>
-              <span>
-                <span className='article-card-subheading-key'>tags:</span>
-                <Link to={`/topics/${props.tags}/articles`}>
-                  <span className='article-card-subheading-value'>
-                    <strong>{props.tags}</strong>
-                  </span>
-                </Link>
-              </span>
-              <span>
-                <span className='article-card-subheading-key'>comments:</span>
-                <a href={`/articles/${props.id}#comments`}>
-                <span className='article-card-subheading-value'>
-                  <strong>{props.comment_count}</strong>
+                }
+                <span>
+                  <span className='article-card-subheading-key'>tags:</span>
+                  <Link to={`/topics/${props.tags}/articles`}>
+                    <span className='article-card-subheading-value'>
+                      <strong>{props.tags}</strong>
+                    </span>
+                  </Link>
                 </span>
-                </a>
+                <span>
+                  <span className='article-card-subheading-key'>comments:</span>
+                  <a href={`/articles/${props.id}#comments`}>
+                    <span className='article-card-subheading-value'>
+                      <strong>{props.comment_count}</strong>
+                    </span>
+                  </a>
+                </span>
               </span>
             </p>
           </div>
