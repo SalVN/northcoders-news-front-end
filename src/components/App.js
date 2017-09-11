@@ -5,6 +5,7 @@ import './css/App.css';
 import TopicNavBar from './TopicNavBar';
 import MainBanner from './MainBanner';
 import UserCard from './UserCard';
+import UserListCard from './UserListCard';
 
 class App extends React.Component {
   render() {
@@ -18,6 +19,7 @@ class App extends React.Component {
           </div>
           <div className='column is-one-quarter'>
             <UserCard />
+            <UserListCard />
           </div>
         </div>
       </div>
