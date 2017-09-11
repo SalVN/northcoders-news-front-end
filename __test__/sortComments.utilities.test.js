@@ -47,11 +47,19 @@ describe('#sortComments', () => {
         expect(result[2].body).toBe('comment 2');
     });
 
-    it('sorts the comments by the number of votes if sortedBy === "newest"', () => {
+    it('sorts the comments by date if sortedBy === "votes"', () => {
         const result = sortComments(comments, 'votes');
         expect(result[0].body).toBe('comment 3');
         expect(result[1].body).toBe('comment 1');
         expect(result[2].body).toBe('comment 2');
+    });
+
+
+    it('sorts the comments by date if sortedBy === "oldest"', () => {
+        const result = sortComments(comments, 'oldest');
+        expect(result[0].body).toBe('comment 2');
+        expect(result[1].body).toBe('comment 3');
+        expect(result[2].body).toBe('comment 1');
     });
 
 
