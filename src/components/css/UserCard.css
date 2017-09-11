@@ -26,3 +26,17 @@
     color: grey;
     font-size: 14px;
 }
+
+.user-card-mini-title {
+    margin-top: 10px;
+    color: #373737;
+    font-size: 12px;
+    text-align: center;
+}
+
+.user-card-number {
+    color: #c1002e;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+}

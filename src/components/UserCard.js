@@ -15,14 +15,26 @@ class UserCard extends Component {
     render() {
         return (
             <div className='card-box'>
-                <div className='card'>
-                    <div className='background'>
-                        <img className='user-card-avatar' src={this.props.user.avatar_url}/>
-                    </div>
-                    <div className='card-content'>
-                        <div>
-                            <p className='user-card-name'>{this.props.user.name}</p>
-                            <p className='user-card-username'>{`@${this.props.user.username}`}</p>
+                <div className='container-fluid'>
+                    <div className='card'>
+                        <div className='background'>
+                            <img className='user-card-avatar' src={this.props.user.avatar_url} />
+                        </div>
+                        <div className='card-content'>
+                            <div>
+                                <p className='user-card-name'><strong>{this.props.user.name}</strong></p>
+                                <p className='user-card-username'>{`@${this.props.user.username}`}</p>
+                            </div>
+                            <div className='columns'>
+                                <div className='column is-half-desktop is-gapless'>
+                                    <div className='user-card-mini-title'>Comments</div>
+                                    <div className='user-card-number'>{this.props.user.comment_count}</div>
+                                </div>
+                                <div className='column is-half-desktop is-gapless'>
+                                    <div className='user-card-mini-title'>Popularity</div>
+                                    <div className='user-card-number'>{this.props.user.comments_vote_count + this.props.user.articles_vote_count}</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

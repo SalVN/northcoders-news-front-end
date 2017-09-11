@@ -61,9 +61,7 @@ class Article extends React.Component {
 Article.propTypes = {
     article: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
-    voteArticle: PropTypes.func.isRequired,
-    articles: PropTypes.array.isRequired,
-    index: PropTypes.number.isRequired
+    voteArticle: PropTypes.func.isRequired
 };
 
 export default Article;
