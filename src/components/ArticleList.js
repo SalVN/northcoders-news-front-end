@@ -20,6 +20,7 @@ class ArticleList extends React.Component {
     if (this.props.sortBy) {
       sortArticles(this.props.articles, this.props.sortBy);
     }
+    const articles = this.props.articles;
     return (
       <div id='ArticleList' className='content'>
         {this.props.articles.length > 0 &&

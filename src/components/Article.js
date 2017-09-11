@@ -4,59 +4,66 @@ import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 import './css/Article.css';
 
-const Article = function (props) {
-    return (
-        <div className='box article-card-style'>
-            <div className='columns'>
-                <div className='column is-1'>
-                    <button onClick={props.voteArticle.bind(this, 'up', props.article._id)} className='button is-black is-inverted is-small'><i className="fa fa-arrow-up" aria-hidden="true"></i></button>
-                    <p className='comment-card-votes'><strong>{props.article.votes}</strong></p>
-                    <button onClick={props.voteArticle.bind(this, 'down', props.article._id)} className='button is-black is-inverted is-small'><i className="fa fa-arrow-down" aria-hidden="true"></i></button>
-                </div>
-                <div className='column'>
-                    <div className='title is-3 article-title'>{props.article.title}</div>
-                    <p>
-                        <span>
-                            <span className='article-subheading-key'>added by:</span>
-                            <Link to='#'>
-                                <span>
-                                    {props.user &&
-                                        <img className='article-card-avatar' src={props.user.avatar_url} alt='user avatar' />
-                                    }
-                                </span>
-                                <span className='article-subheading-value'>
-                                    <strong>{props.article.created_by}</strong>
-                                </span>
-                            </Link>
-                        </span>
-                        <span>
-                            <span className='article-card-subheading-key'>tags:</span>
-                            <Link to={`/topics/${props.article.belongs_to}/articles`}>
-                                <span className='article-card-subheading-value'>
-                                    <strong>{props.article.belongs_to}</strong>
-                                </span>
-                            </Link>
-                        </span>
-                        <span>
-                            <span className='article-card-subheading-key'>comments:</span>
-                            <a href='#comments'>
-                            <span className='article-card-subheading-value'>
-                                <strong>{props.article.comment_count}</strong>
+class Article extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (
+            <div className='box article-card-style'>
+                <div className='columns'>
+                    <div className='column is-1'>
+                        <button onClick={this.props.voteArticle.bind(this, 'up', this.props.article._id)} className='button is-black is-inverted is-small'><i className="fa fa-arrow-up" aria-hidden="true"></i></button>
+                        <p className='comment-card-votes article-votes'><strong>{this.props.article.votes}</strong></p>
+                        <button onClick={this.props.voteArticle.bind(this, 'down', this.props.article._id)} className='button is-black is-inverted is-small'><i className="fa fa-arrow-down" aria-hidden="true"></i></button>
+                    </div>
+                    <div className='column'>
+                        <div className='title is-3 article-title'>{this.props.article.title}</div>
+                        <p>
+                            <span>
+                                <span className='article-subheading-key'>added by:</span>
+                                <Link to='#'>
+                                    <span>
+                                        {this.props.user &&
+                                            <img className='article-card-avatar' src={this.props.user.avatar_url} alt='user avatar' />
+                                        }
+                                    </span>
+                                    <span className='article-subheading-value'>
+                                        <strong>{this.props.article.created_by}</strong>
+                                    </span>
+                                </Link>
                             </span>
-                            </a>
-                        </span>
-                    </p>
-                    <div className='article-body'>{props.article.body}</div>
+                            <span>
+                                <span className='article-card-subheading-key'>tags:</span>
+                                <Link to={`/topics/${this.props.article.belongs_to}/articles`}>
+                                    <span className='article-card-subheading-value'>
+                                        <strong>{this.props.article.belongs_to}</strong>
+                                    </span>
+                                </Link>
+                            </span>
+                            <span>
+                                <span className='article-card-subheading-key'>comments:</span>
+                                <a href='#comments'>
+                                    <span className='article-card-subheading-value'>
+                                        <strong>{this.props.article.comment_count}</strong>
+                                    </span>
+                                </a>
+                            </span>
+                        </p>
+                        <div className='article-body'>{this.props.article.body}</div>
+                    </div>
                 </div>
             </div>
-        </div>
-    );
-};
+        );
+    }
+}
 
 Article.propTypes = {
     article: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
-    voteArticle: PropTypes.func.isRequired
+    voteArticle: PropTypes.func.isRequired,
+    articles: PropTypes.array.isRequired,
+    index: PropTypes.number.isRequired
 };
 
 export default Article;

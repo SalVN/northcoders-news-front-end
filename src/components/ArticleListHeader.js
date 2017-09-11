@@ -10,7 +10,7 @@ const ArticleListHeader = function (props) {
                 <div className='column is-3'>
                     <h2 className='page-title'><strong>{props.title}</strong></h2>
                 </div>
-                <div className='column is-1 is-offset-5 label'>
+                <div className='column is-2 is-offset-4 label'>
                     <label htmlFor="Sort by">Sort by:</label>
                 </div>
                 <div className='column is-3'>

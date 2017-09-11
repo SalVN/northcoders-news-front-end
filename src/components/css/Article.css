@@ -19,3 +19,8 @@
 .article-card-style {
     margin: 10px;
 }
+
+.article-votes {
+    text-align: left;
+    margin-left: -5px;
+}

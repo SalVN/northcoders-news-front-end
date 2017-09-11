@@ -6,6 +6,7 @@ import './css/ArticlePage.css';
 import Article from './Article';
 import Comments from './Comments';
 import * as actions from '../actions/actions';
+import {getIndex} from '../utilities/getIndex';
 
 class ArticlePage extends Component {
     constructor(props) {
@@ -35,12 +36,15 @@ class ArticlePage extends Component {
                 return acc;
             }, {});
         }
+        const index = getIndex(this.props.articles, article._id);
         return (
             <div className='article-page'>
                 <Article
                     article={article}
                     user={user}
                     voteArticle={this.articleVoteHandler}
+                    index={index}
+                    articles={this.props.articles}
                 />
                 <hr className='article-page-hr' />
                 <Comments
