@@ -11,7 +11,7 @@ class Article extends React.Component {
     render() {
         return (
             <div className='box article-card-style'>
-                <div className='columns'>
+                <div className='columns is-mobile'>
                     <div className='column is-1'>
                         <button onClick={this.props.voteArticle.bind(this, 'up', this.props.article._id)} className='button is-black is-inverted is-small'><i className="fa fa-arrow-up" aria-hidden="true"></i></button>
                         <p className='comment-card-votes article-votes'><strong>{this.props.article.votes}</strong></p>
