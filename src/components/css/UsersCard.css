@@ -1,0 +1,18 @@
+.users-list-image {
+    width: 36px;
+    height: 36px;
+    margin-right: 20px;
+}
+
+.users-list-username-text {
+    color: #c1002e;
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: -10px;
+    margin-bottom: 5px;
+}
+
+.users-box-style {
+    margin-left: 20px;
+    margin-right: 20px;
+}

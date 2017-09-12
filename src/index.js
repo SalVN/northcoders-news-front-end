@@ -14,6 +14,7 @@ import MainArticleList from './components/MainArticleList';
 import ArticlePage from './components/ArticlePage';
 import TopicArticleList from './components/TopicArticleList';
 import UserPage from './components/UserPage';
+import UsersPage from './components/UsersPage';
 import PageNotFound from './components/PageNotFound';
 import UserNotFound from './components/UserNotFound';
 import reducer from './reducer/';
@@ -26,6 +27,7 @@ ReactDOM.render(<Provider store={store}>
     <App>
       <Switch>
         <Route exact path='/' component={MainArticleList} />
+        <Route exact path='/users' component={UsersPage}/>
         <Route path='/articles/:id' component={ArticlePage} />
         <Route path='/topics/:id/articles' component={TopicArticleList} />
         <Route path='/users/not-found' component={UserNotFound}/>
