@@ -12,11 +12,13 @@ class TopicArticleList extends React.Component {
     super(props);
     this.state = {
       sortBy: 'votes',
-      showDropdown: false
+      showDropdown: false,
+      maximum: 10
     };
     this.voteHandlerTopicArticles = this.voteHandlerTopicArticles.bind(this);
     this.handleClickSelect = this.handleClickSelect.bind(this);
     this.toggleDropdown = this.toggleDropdown.bind(this);
+    this.viewMoreArticles = this.viewMoreArticles.bind(this);
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.match.params.id !== this.props.match.params.id) {
@@ -39,6 +41,8 @@ class TopicArticleList extends React.Component {
           articles={this.props.topicArticles}
           voteArticle={this.voteHandlerTopicArticles}
           sortBy={this.state.sortBy}
+          maximum={this.state.maximum}
+          viewMoreArticles={this.viewMoreArticles}
         />
       </div>
     );
@@ -56,6 +60,12 @@ class TopicArticleList extends React.Component {
   toggleDropdown() {
     this.setState({
       showDropdown: !this.state.showDropdown
+    });
+  }
+  viewMoreArticles() {
+    const newMax = this.state.maximum + 10;
+    this.setState({
+      maximum: newMax
     });
   }
 }
