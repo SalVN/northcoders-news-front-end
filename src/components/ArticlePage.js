@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { BrowserRouter as Router, Redirect } from 'react-router-dom';
 
 import './css/ArticlePage.css';
 import Article from './Article';
 import Comments from './Comments';
 import * as actions from '../actions/actions';
-import {getIndex} from '../utilities/getIndex';
+import { getIndex } from '../utilities/getIndex';
 
 class ArticlePage extends Component {
     constructor(props) {
@@ -24,11 +25,15 @@ class ArticlePage extends Component {
     render() {
         let article;
         let user;
+        let articleNotFound = false;
         if (this.props.articles) {
             article = this.props.articles.reduce((acc, article) => {
                 if (article._id === this.props.match.params.id) acc = article;
                 return acc;
             }, {});
+            if (article && !article._id) {
+                articleNotFound = true;
+            }
         }
         if (this.props.users && article) {
             user = this.props.users.reduce((acc, user) => {
@@ -39,6 +44,9 @@ class ArticlePage extends Component {
         const index = getIndex(this.props.articles, article._id);
         return (
             <div className='article-page'>
+                { articleNotFound &&
+                    <Redirect to='/not-found'/>
+                }
                 <Article
                     article={article}
                     user={user}

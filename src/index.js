@@ -30,6 +30,7 @@ ReactDOM.render(<Provider store={store}>
         <Route path='/topics/:id/articles' component={TopicArticleList} />
         <Route path='/users/not-found' component={UserNotFound}/>
         <Route path='/users/:id' component={UserPage} />
+        <Route path='not-found' component={PageNotFound} />
         <Route component={PageNotFound}/>
       </Switch>
     </App>
