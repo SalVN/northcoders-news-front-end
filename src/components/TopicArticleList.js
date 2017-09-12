@@ -11,10 +11,12 @@ class TopicArticleList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sortBy: 'votes'
+      sortBy: 'votes',
+      showDropdown: false
     };
     this.voteHandlerTopicArticles = this.voteHandlerTopicArticles.bind(this);
     this.handleClickSelect = this.handleClickSelect.bind(this);
+    this.toggleDropdown = this.toggleDropdown.bind(this);
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.match.params.id !== this.props.match.params.id) {
@@ -30,6 +32,8 @@ class TopicArticleList extends React.Component {
         <ArticleListHeader
           title={`${this.props.match.params.id[0].toUpperCase()}${this.props.match.params.id.slice(1)}`}
           handleClickSelect={this.handleClickSelect}
+          toggleDropdown={this.toggleDropdown}
+          showDropdown={this.state.showDropdown}
         />
         <ArticleList
           articles={this.props.topicArticles}
@@ -45,7 +49,13 @@ class TopicArticleList extends React.Component {
   handleClickSelect(e) {
     e.preventDefault();
     this.setState({
-      sortBy: e.target.value
+      sortBy: e.target.attributes[0].value,
+      showDropdown: false
+    });
+  }
+  toggleDropdown() {
+    this.setState({
+      showDropdown: !this.state.showDropdown
     });
   }
 }

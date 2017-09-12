@@ -9,11 +9,12 @@ import UserListCard from './UserListCard';
 
 class App extends React.Component {
   render() {
+  let pageStyling = window.innerWidth < 700 ? 'main-page-mobile' : 'main-page';
     return (
       <div className='page'>
         <TopicNavBar />
         <MainBanner />
-        <div className='columns main-page'>
+        <div className={`columns ${pageStyling}`}>
           <div className='column is-three-quarters'>
             {this.props.children}
           </div>
