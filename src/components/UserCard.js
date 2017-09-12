@@ -26,11 +26,11 @@ class UserCard extends Component {
                                 <p className='user-card-username'>{`@${this.props.user.username}`}</p>
                             </div>
                             <div className='columns'>
-                                <div className='column is-half-desktop is-gapless'>
+                                <div className='column is-half'>
                                     <div className='user-card-mini-title'>Comments</div>
                                     <div className='user-card-number'>{this.props.user.comment_count}</div>
                                 </div>
-                                <div className='column is-half-desktop is-gapless'>
+                                <div className='column is-half'>
                                     <div className='user-card-mini-title'>Popularity</div>
                                     <div className='user-card-number'>{this.props.user.comments_vote_count + this.props.user.articles_vote_count}</div>
                                 </div>

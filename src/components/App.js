@@ -20,7 +20,9 @@ class App extends React.Component {
               {this.props.children}
             </div>
             <div className='column is-one-quarter'>
-              <UserCard />
+              <div className='is-hidden-mobile'>
+                <UserCard />
+              </div>
               <UserListCard />
             </div>
           </div>
