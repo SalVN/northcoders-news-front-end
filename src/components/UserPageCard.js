@@ -11,10 +11,10 @@ class UserPageCard extends Component {
                     <div className='card'>
                         <div className='user-page-card-background'>
                             <div className='columns'>
-                                <div className='column is-one-quarter avatar-container'>
+                                <div className='column is-one-quarter is-mobile avatar-container'>
                                     <img className='user-card-avatar-page' src={this.props.user.avatar_url} />
                                 </div>
-                                <div className='column'>
+                                <div className='column is-three-quarters is-mobile'>
                                     <p className='user-page-card-name'>{this.props.user.name}</p>
                                     <p className='user-page-card-username'>{`@${this.props.user.username}`}</p>
                                 </div>

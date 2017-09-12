@@ -10,7 +10,7 @@ class MainBanner extends React.Component {
         <div className='hero-body hero-css'>
           <div className='container'>
             <Link to='/'>
-              <h1 className='title main-heading'><strong>NORTHCODERS News</strong></h1>
+              <h1 className='title main-heading is-size-1 is-size-3-mobile'><strong>NORTHCODERS News</strong></h1>
             </Link>
           </div>
         </div>
