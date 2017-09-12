@@ -20,7 +20,8 @@ class UserPage extends Component {
         this.state = {
             articlesSortBy: 'votes',
             articlesMaximum: 2,
-            showDropdown: false
+            showDropdown: false,
+            voted: false
         };
         this.voteHandlerMainArticles = this.voteHandlerMainArticles.bind(this);
         this.handleClickSelectArticles = this.handleClickSelectArticles.bind(this);
@@ -33,6 +34,12 @@ class UserPage extends Component {
         }
         if (!this.props.articles || this.props.articles.length < 1) {
             this.props.fetchArticles();
+        }
+    }
+    componentWillReceiveProps() {
+        if (this.state.voted) {
+            this.props.fetchUsers();
+            this.setState({ voted: false });
         }
     }
     render() {
@@ -56,6 +63,12 @@ class UserPage extends Component {
                     userNotFound &&
                     <Redirect to='/users/not-found' />
                 }
+                {
+                    this.props.usersLoading &&
+                    <span>
+                        <i className='fa fa-refresh fa-spin' />
+                    </span>
+                }
                 {((this.props.users && this.props.users.length > 0) && (this.props.articles && this.props.articles.length > 0)) &&
                     <UserPageCard articlesNo={userArticles.length} ranking={index + 1} user={this.props.users[index]} />
                 }
@@ -67,6 +80,12 @@ class UserPage extends Component {
                         toggleDropdown={this.toggleDropdown}
                         showDropdown={this.state.showDropdown}
                     />
+                    {
+                        this.props.articlesLoading &&
+                        <span>
+                            <i className='fa fa-refresh fa-spin' />
+                        </span>
+                    }
                     {
                         userArticles && userArticles.length > 0
                             ? <ArticleList
@@ -86,6 +105,9 @@ class UserPage extends Component {
     }
     voteHandlerMainArticles(vote, id) {
         this.props.voteArticle(vote, id);
+        this.setState({
+            voted: true
+        });
     }
     handleClickSelectArticles(e) {
         e.preventDefault();
@@ -124,7 +146,9 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
     return {
         users: state.users.users,
-        articles: state.articles.articles
+        usersLoading: state.users.loading,
+        articles: state.articles.articles,
+        articlesLoading: state.articles.loading
     };
 }
 
@@ -135,7 +159,9 @@ UserPage.propTypes = {
     match: PropTypes.object.isRequired,
     fetchArticles: PropTypes.func.isRequired,
     articles: PropTypes.array.isRequired,
-    voteArticle: PropTypes.func.isRequired
+    voteArticle: PropTypes.func.isRequired,
+    usersLoading: PropTypes.bool.isRequired,
+    articlesLoading: PropTypes.bool.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserPage);

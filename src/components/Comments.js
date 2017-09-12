@@ -15,7 +15,8 @@ class Comments extends Component {
         this.state = {
             showForm: false,
             added: false,
-            maximum: 8
+            maximum: 8,
+            voted: false
         };
         this.toggleForm = this.toggleForm.bind(this);
         this.deleteHandler = this.deleteHandler.bind(this);
@@ -29,6 +30,13 @@ class Comments extends Component {
             this.props.fetchUser(USERNAME);
         }
     }
+    componentWillReceiveProps(newProps) {
+        if ((newProps.comments && newProps.comments.length !== this.props.comments.length) || this.state.voted) {
+            this.props.fetchUsers();
+            this.props.fetchUser(USERNAME);
+            this.setState({voted: false});
+        }
+    }
     render() {
         return (
             <div id='comments' className='columns'>
@@ -37,7 +45,7 @@ class Comments extends Component {
                         <span className='comments-title is-size-2-desktop is-size-4-tablet comments-title-main'>Comments</span>
                         {this.props.comments
                             ? <span className='comments-title-sub is-hidden-tablet-only comments-title-sub'>{`(${this.props.comments.length})`}</span>
-                            : <span className='comments-title-sub is-hidden-tablet-only'>{'(0)'}</span>
+                            : (<span className='comments-title-sub is-hidden-tablet-only'>{'(0)'}</span>)
                         }
                     </p>
                     <p className='is-hidden-mobile is-hidden-desktop'>
@@ -53,20 +61,27 @@ class Comments extends Component {
                             <h3>Your comment has been added</h3>
                         </div>
                     }
-                    <AddCommentForm
-                        user={this.props.user}
-                        showForm={this.state.showForm}
-                        toggleForm={this.toggleForm}
-                        handleSubmit={this.handleSubmit}
-                        id={this.props.id} />
-                    <CommentsList
-                        users={this.props.users}
-                        comments={this.props.comments}
-                        deleteHandler={this.deleteHandler}
-                        voteHandler={this.voteHandler}
-                        maximum={this.state.maximum}
-                        viewMoreComments={this.viewMoreComments}
-                    />
+                    {this.props.commentsLoading
+                        ? <span>
+                            <i className='fa fa-refresh fa-spin' />
+                        </span>
+                        :
+                        <div>
+                            <AddCommentForm
+                                user={this.props.user}
+                                showForm={this.state.showForm}
+                                toggleForm={this.toggleForm}
+                                handleSubmit={this.handleSubmit}
+                                id={this.props.id} />
+                            <CommentsList
+                                users={this.props.users}
+                                comments={this.props.comments}
+                                deleteHandler={this.deleteHandler}
+                                voteHandler={this.voteHandler}
+                                maximum={this.state.maximum}
+                                viewMoreComments={this.viewMoreComments}
+                            />
+                        </div>}
                 </div>
             </div>
         );
@@ -84,6 +99,9 @@ class Comments extends Component {
     }
     voteHandler(vote, id) {
         this.props.voteComment(vote, id);
+        this.setState({
+            voted: true
+        });
     }
     handleSubmit(e) {
         e.preventDefault();
@@ -121,6 +139,9 @@ function mapDispatchToProps(dispatch) {
         },
         addComment: (comment, id) => {
             dispatch(actions.addComment(comment, id));
+        },
+        fetchUsers: () => {
+            dispatch(actions.fetchUsers());
         }
     };
 }
@@ -128,7 +149,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
     return {
         comments: state.comments.comments,
-        loading: state.loading,
+        commentsLoading: state.commentsloading,
         userLoading: state.oneUser.loading,
         user: state.oneUser.user
     };
@@ -143,7 +164,9 @@ Comments.propTypes = {
     voteComment: PropTypes.func.isRequired,
     fetchUser: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
-    addComment: PropTypes.func.isRequired
+    addComment: PropTypes.func.isRequired,
+    fetchUsers: PropTypes.func.isRequired,
+    commentsLoading: PropTypes.bool.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comments);

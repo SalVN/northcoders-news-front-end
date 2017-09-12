@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import { sortComments } from '../utilities/sortComments';
 
 import CommentCard from './CommentCard';
@@ -24,7 +25,6 @@ class CommentsList extends Component {
         let newest = (this.state.sortedBy === 'newest') ? 'comment-sort-active' : 'comment-sort-links';
         let votes = (this.state.sortedBy === 'votes') ? 'comment-sort-active' : 'comment-sort-links';
         let oldest = (this.state.sortedBy === 'oldest') ? 'comment-sort-active' : 'comment-sort-links';
-
         const users = this.props.users;
         sortComments(this.props.comments, this.state.sortedBy);
         const commentsToRender = this.props.comments.slice(0, this.props.maximum);

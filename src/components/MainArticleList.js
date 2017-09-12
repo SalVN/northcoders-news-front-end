@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import * as actions from '../actions/actions';
+
 import ArticleList from './ArticleList';
 import ArticleListHeader from './ArticleListHeader';
 import './css/MainArticleList.css';
@@ -13,7 +14,8 @@ class MainArticleList extends React.Component {
         this.state = {
             sortBy: 'votes',
             showDropdown: false,
-            maximum: 10
+            maximum: 10,
+            voted: false
         };
         this.voteHandlerMainArticles = this.voteHandlerMainArticles.bind(this);
         this.handleClickSelect = this.handleClickSelect.bind(this);
@@ -25,6 +27,12 @@ class MainArticleList extends React.Component {
             this.props.fetchArticles();
         }
     }
+    componentWillReceiveProps() {
+        if (this.state.voted) {
+            this.props.fetchUsers();
+            this.setState({ voted: false });
+        }
+    }
     render() {
         return (
             <div id='ArticleList' className='content'>
@@ -34,18 +42,27 @@ class MainArticleList extends React.Component {
                     toggleDropdown={this.toggleDropdown}
                     showDropdown={this.state.showDropdown}
                 />
-                <ArticleList
-                    articles={this.props.articles}
-                    voteArticle={this.voteHandlerMainArticles}
-                    sortBy={this.state.sortBy}
-                    maximum={this.state.maximum}
-                    viewMoreArticles={this.viewMoreArticles}
-                />
+                {
+                    this.props.articlesLoading
+                        ? <span>
+                            <i className='fa fa-refresh fa-spin' />
+                        </span>
+                        : <ArticleList
+                            articles={this.props.articles}
+                            voteArticle={this.voteHandlerMainArticles}
+                            sortBy={this.state.sortBy}
+                            maximum={this.state.maximum}
+                            viewMoreArticles={this.viewMoreArticles}
+                        />
+                }
             </div>
         );
     }
     voteHandlerMainArticles(vote, id) {
         this.props.voteArticle(vote, id);
+        this.setState({
+            voted: true
+        });
     }
     handleClickSelect(e) {
         e.preventDefault();
@@ -59,7 +76,7 @@ class MainArticleList extends React.Component {
             showDropdown: !this.state.showDropdown
         });
     }
-    viewMoreArticles () {
+    viewMoreArticles() {
         const newMax = this.state.maximum + 10;
         this.setState({
             maximum: newMax
@@ -74,6 +91,9 @@ function mapDispatchToProps(dispatch) {
         },
         voteArticle: (vote, id) => {
             dispatch(actions.voteArticle(vote, id));
+        },
+        fetchUsers: () => {
+            dispatch(actions.fetchUsers());
         }
     };
 }
@@ -81,15 +101,16 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
     return {
         articles: state.articles.articles,
-        loading: state.articles.loading,
+        articlesLoading: state.articles.loading,
     };
 }
 
 MainArticleList.propTypes = {
     articles: PropTypes.array.isRequired,
-    loading: PropTypes.bool.isRequired,
+    articlesLoading: PropTypes.bool.isRequired,
     fetchArticles: PropTypes.func.isRequired,
-    voteArticle: PropTypes.func.isRequired
+    voteArticle: PropTypes.func.isRequired,
+    fetchUsers: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainArticleList);

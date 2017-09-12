@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Redirect } from 'react-router-dom';
 
-
 import * as actions from '../actions/actions';
+
 import ArticleList from './ArticleList';
 import ArticleListHeader from './ArticleListHeader';
 import './css/TopicArticleList.css';
@@ -15,7 +15,8 @@ class TopicArticleList extends React.Component {
         this.state = {
             sortBy: 'votes',
             showDropdown: false,
-            maximum: 10
+            maximum: 10,
+            voted: false
         };
         this.voteHandlerTopicArticles = this.voteHandlerTopicArticles.bind(this);
         this.handleClickSelect = this.handleClickSelect.bind(this);
@@ -25,6 +26,10 @@ class TopicArticleList extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.match.params.id !== this.props.match.params.id) {
             nextProps.fetchTopicArticles(nextProps.match.params.id);
+        }
+        if (this.state.voted) {
+            this.props.fetchUsers();
+            this.setState({ voted: false });
         }
     }
     componentDidMount() {
@@ -50,18 +55,27 @@ class TopicArticleList extends React.Component {
                     toggleDropdown={this.toggleDropdown}
                     showDropdown={this.state.showDropdown}
                 />
-                <ArticleList
-                    articles={this.props.topicArticles}
-                    voteArticle={this.voteHandlerTopicArticles}
-                    sortBy={this.state.sortBy}
-                    maximum={this.state.maximum}
-                    viewMoreArticles={this.viewMoreArticles}
-                />
+                {this.props.articlesLoading
+                    ? <span>
+                        <i className='fa fa-refresh fa-spin' />
+                    </span>
+                    :
+                    <ArticleList
+                        articles={this.props.topicArticles}
+                        voteArticle={this.voteHandlerTopicArticles}
+                        sortBy={this.state.sortBy}
+                        maximum={this.state.maximum}
+                        viewMoreArticles={this.viewMoreArticles}
+                    />
+                }
             </div>
         );
     }
     voteHandlerTopicArticles(vote, id) {
         this.props.voteArticle(vote, id);
+        this.setState({
+            voted: true
+        });
     }
     handleClickSelect(e) {
         e.preventDefault();
@@ -90,14 +104,18 @@ function mapDispatchToProps(dispatch) {
         },
         voteArticle: (vote, id) => {
             dispatch(actions.voteTopicArticle(vote, id));
+        },
+        fetchUsers: () => {
+            dispatch(actions.fetchUsers());
         }
+
     };
 }
 
 function mapStateToProps(state) {
     return {
         topicArticles: state.topicArticles.topicArticles,
-        loading: state.topicArticles.loading,
+        articlesLoading: state.topicArticles.loading,
         error: state.topicArticles.error,
         topics: state.topics.topics
     };
@@ -105,12 +123,14 @@ function mapStateToProps(state) {
 
 TopicArticleList.propTypes = {
     topicArticles: PropTypes.array.isRequired,
-    loading: PropTypes.bool.isRequired,
+    articlesLoading: PropTypes.bool.isRequired,
     fetchTopicArticles: PropTypes.func.isRequired,
     match: PropTypes.object.isRequired,
     voteArticle: PropTypes.func.isRequired,
     error: PropTypes.object,
-    topics: PropTypes.any.isRequired
+    topics: PropTypes.any.isRequired,
+    fetchUsers: PropTypes.func.isRequired,
+    fetchUser: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopicArticleList);

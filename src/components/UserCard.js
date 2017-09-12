@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import * as actions from '../actions/actions';
-import './css/UserCard.css';
 import { USERNAME } from '../../config';
+
+import './css/UserCard.css';
 
 class UserCard extends Component {
     componentDidMount() {

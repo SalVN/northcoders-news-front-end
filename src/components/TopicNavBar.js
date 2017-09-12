@@ -40,10 +40,16 @@ class TopicNavBar extends Component {
                 <div className={`navbar-menu ${activeBurger}`}>
                     <div className='navbar-start'>
                         {
+                            this.props.topicsLoading &&
+                                <span className='navbar-item'>
+                                    <i className='fa fa-refresh fa-spin' />
+                                </span>
+                        }
+                        {
                             this.props.topics &&
                             this.props.topics.map((topic) => {
                                 return (
-                                    <span key={topic._id} className='navbar-item is-hoverable'>
+                                    <span key={topic._id} className='navbar-item'>
                                         <NavLink onClick={this.toggleBurger} className='navbar-text-css' to={`/topics/${topic.slug}/articles`}>
                                             <span><strong>{`< ${topic.title.toUpperCase()} />`}</strong></span>
                                         </NavLink>

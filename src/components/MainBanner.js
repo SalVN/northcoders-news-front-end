@@ -2,8 +2,7 @@ import React from 'react';
 import './css/MainBanner.css';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 
-class MainBanner extends React.Component {
-  render() {
+const MainBanner = function () {
     return (
       <section className='hero is-primary is-bold'>
         <div className='hero-body hero-css'>
@@ -15,10 +14,6 @@ class MainBanner extends React.Component {
         </div>
       </section>
     );
-  }
-}
-
-MainBanner.propTypes = {
 };
 
 export default MainBanner;

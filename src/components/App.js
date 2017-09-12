@@ -1,16 +1,16 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import './css/App.css';
 import TopicNavBar from './TopicNavBar';
 import MainBanner from './MainBanner';
 import UserCard from './UserCard';
 import UserListCard from './UserListCard';
 
-class App extends React.Component {
+import './css/App.css';
+
+class App extends Component {
   render() {
     let pageStyling = window.innerWidth < 800 ? 'main-page-mobile' : 'main-page';
-    console.log(pageStyling);
     return (
       <div className='page'>
         <TopicNavBar />

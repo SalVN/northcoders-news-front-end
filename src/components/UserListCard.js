@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
 import { sortUsers } from '../utilities/sortUsers';
 
-import './css/UserListCard.css';
 import UserRankingCard from './UserRankingCard';
+import './css/UserListCard.css';
 
 class UserListCard extends Component {
     constructor(props) {
@@ -18,7 +18,6 @@ class UserListCard extends Component {
         this.toggleDropdown = this.toggleDropdown.bind(this);
         this.sortUserList = this.sortUserList.bind(this);
     }
-
     componentDidMount() {
         if (this.props.users && this.props.users.length < 1) {
             this.props.fetchUsers();
@@ -93,7 +92,6 @@ class UserListCard extends Component {
     }
     sortUserList(e) {
         e.preventDefault();
-        console.dir(e.target.innerText);
         this.setState({
             showDropdown: false,
             sortBy: e.target.innerText

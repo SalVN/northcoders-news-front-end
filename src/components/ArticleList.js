@@ -1,13 +1,12 @@
 import React from 'react';
-import ArticleCard from './ArticleCard';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import * as actions from '../actions/actions';
-import './css/ArticleList.css';
-
 import { sortArticles } from '../utilities/sortArticles';
 
+import ArticleCard from './ArticleCard';
+import './css/ArticleList.css';
 
 class ArticleList extends React.Component {
   componentDidMount() {
@@ -24,6 +23,12 @@ class ArticleList extends React.Component {
     const articlesToRender = this.props.articles.slice(0, this.props.maximum);
     return (
       <div id='ArticleList' className='content'>
+        {
+          this.props.usersLoading &&
+          <span>
+            <i className='fa fa-refresh fa-spin'/>
+          </span>
+        }
         {this.props.articles.length > 0 &&
           articlesToRender.map((article, i) => {
             const username = article.created_by;
@@ -68,14 +73,14 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    loading: state.users.loading,
+    usersLoading: state.users.loading,
     users: state.users.users
   };
 }
 
 ArticleList.propTypes = {
   articles: PropTypes.array.isRequired,
-  loading: PropTypes.bool.isRequired,
+  usersLoading: PropTypes.bool.isRequired,
   fetchUsers: PropTypes.func.isRequired,
   voteArticle: PropTypes.func.isRequired,
   users: PropTypes.array.isRequired,

@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import moment from 'moment';
 
-import './css/CommentCard.css';
 import { USERNAME } from '../../config';
+
+import './css/CommentCard.css';
 
 const CommentCard = function (props) {
   return (

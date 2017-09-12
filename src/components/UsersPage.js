@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import * as actions from '../actions/actions';
-import { sortUsers } from '../utilities/sortUsers';
 
 import './css/UsersPage.css';
 import UsersCard from './UsersCard';
-import UsersListHeader from './UsersListHeader';
 
 class UsersPage extends Component {
     componentDidMount() {
@@ -21,7 +19,7 @@ class UsersPage extends Component {
                 <h2 className='users-page-header'><strong>Users</strong></h2>
                 <div className='container-fluid'>
                     {this.props.users &&
-                        this.props.users.map((user, i) => {
+                        this.props.users.map((user) => {
                             return (
                                 <UsersCard key={user.username} user={user} />
                             );

@@ -24,16 +24,14 @@ const ArticleCard = function (props) {
 
             <div className='columns is-gapless is-desktop'>
               <div className='column is-narrow'>
+                <span className='article-card-subheading-key'>added by:</span>
                 {props.userData &&
-                  <span>
-                    <span className='article-card-subheading-key'>added by:</span>
-                    <Link to={`/users/${props.userData.username}`}>
-                      <img className='article-card-avatar' src={props.userData.avatar_url} alt='user avatar' />
-                      <span className='article-card-subheading-value'>
-                        <strong>{props.author}</strong>
-                      </span>
-                    </Link>
-                  </span>
+                  <Link to={`/users/${props.userData.username}`}>
+                    <img className='article-card-avatar' src={props.userData.avatar_url} alt='user avatar' />
+                    <span className='article-card-subheading-value'>
+                      <strong>{props.author}</strong>
+                    </span>
+                  </Link>
                 }
               </div>
               <div className='column is-narrow'>

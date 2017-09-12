@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Redirect } from 'react-router-dom';
 
-import './css/ArticlePage.css';
-import Article from './Article';
-import Comments from './Comments';
 import * as actions from '../actions/actions';
 import { getIndex } from '../utilities/getIndex';
+
+import Article from './Article';
+import Comments from './Comments';
+import './css/ArticlePage.css';
 
 class ArticlePage extends Component {
     constructor(props) {
@@ -44,16 +45,22 @@ class ArticlePage extends Component {
         const index = getIndex(this.props.articles, article._id);
         return (
             <div className='article-page'>
-                { articleNotFound &&
-                    <Redirect to='/not-found'/>
+                {articleNotFound &&
+                    <Redirect to='/not-found' />
                 }
-                <Article
-                    article={article}
-                    user={user}
-                    voteArticle={this.articleVoteHandler}
-                    index={index}
-                    articles={this.props.articles}
-                />
+                {
+                    this.props.articlesLoading
+                        ? <span>
+                            <i className='fa fa-refresh fa-spin' />
+                        </span>
+                        : <Article
+                            article={article}
+                            user={user}
+                            voteArticle={this.articleVoteHandler}
+                            index={index}
+                            articles={this.props.articles}
+                        />
+                }
                 <hr className='article-page-hr' />
                 <Comments
                     id={this.props.match.params.id}
@@ -84,7 +91,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
     return {
         articles: state.articles.articles,
-        loading: state.loading,
+        articlesLoading: state.articles.loading,
         users: state.users.users
     };
 }
@@ -95,7 +102,8 @@ ArticlePage.propTypes = {
     match: PropTypes.object.isRequired,
     users: PropTypes.array.isRequired,
     fetchUsers: PropTypes.func.isRequired,
-    voteArticle: PropTypes.func.isRequired
+    voteArticle: PropTypes.func.isRequired,
+    articlesLoading: PropTypes.bool.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticlePage);
