@@ -44,9 +44,11 @@ class MainArticleList extends React.Component {
                 />
                 {
                     this.props.articlesLoading
-                        ? <span>
-                            <i className='fa fa-refresh fa-spin' />
-                        </span>
+                        ? <div className='article-list-loading-icon'>
+                            <span>
+                                <i className='fa fa-refresh fa-spin' />
+                            </span>
+                        </div>
                         : <ArticleList
                             articles={this.props.articles}
                             voteArticle={this.voteHandlerMainArticles}

@@ -50,9 +50,11 @@ class ArticlePage extends Component {
                 }
                 {
                     this.props.articlesLoading
-                        ? <span>
-                            <i className='fa fa-refresh fa-spin' />
-                        </span>
+                        ? <div className='article-list-loading-icon'>
+                            <span>
+                                <i className='fa fa-refresh fa-spin' />
+                            </span>
+                        </div>
                         : <Article
                             article={article}
                             user={user}

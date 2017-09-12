@@ -25,9 +25,11 @@ class ArticleList extends React.Component {
       <div id='ArticleList' className='content'>
         {
           this.props.usersLoading &&
-          <span>
-            <i className='fa fa-refresh fa-spin'/>
-          </span>
+          <div className='article-list-loading-icon'>
+            <span>
+              <i className='fa fa-refresh fa-spin' />
+            </span>
+          </div>
         }
         {this.props.articles.length > 0 &&
           articlesToRender.map((article, i) => {

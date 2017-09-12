@@ -72,7 +72,16 @@ class UserListCard extends Component {
                             </div>
                         </header>
                         <div className='card-content'>
-                            {this.props.users &&
+                            {
+                                this.props.usersLoading &&
+                                <div className='article-list-loading-icon'>
+                                    <span>
+                                        <i className='fa fa-refresh fa-spin' />
+                                    </span>
+                                </div>
+                            }
+                            {
+                                this.props.users &&
                                 this.props.users.map((user, i) => {
                                     return (
                                         <UserRankingCard key={user.username} user={user} criteria={this.state.sortBy} index={i} />
@@ -109,13 +118,15 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
     return {
-        users: state.users.users
+        users: state.users.users,
+        usersLoading: state.users.loading
     };
 }
 
 UserListCard.propTypes = {
     users: PropTypes.array.isRequired,
-    fetchUsers: PropTypes.func.isRequired
+    fetchUsers: PropTypes.func.isRequired,
+    usersLoading: PropTypes.bool.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserListCard);

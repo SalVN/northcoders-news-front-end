@@ -41,9 +41,11 @@ class TopicNavBar extends Component {
                     <div className='navbar-start'>
                         {
                             this.props.topicsLoading &&
-                                <span className='navbar-item'>
+                            <div className='navbar-item article-list-loading-icon'>
+                                <span>
                                     <i className='fa fa-refresh fa-spin' />
                                 </span>
+                            </div>
                         }
                         {
                             this.props.topics &&

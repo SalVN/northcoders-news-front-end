@@ -8,3 +8,8 @@
     border-radius: 10px;
     margin-bottom: 20px;
 }
+
+.article-list-loading-icon {
+    color: #c1002e;
+    text-align: center;
+}

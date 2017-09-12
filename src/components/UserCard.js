@@ -22,20 +22,31 @@ class UserCard extends Component {
                             <img className='user-card-avatar' src={this.props.user.avatar_url} />
                         </div>
                         <div className='card-content'>
-                            <div>
-                                <p className='user-card-name'><strong>{this.props.user.name}</strong></p>
-                                <p className='user-card-username'>{`@${this.props.user.username}`}</p>
-                            </div>
-                            <div className='columns'>
-                                <div className='column is-half'>
-                                    <div className='user-card-mini-title'>Comments</div>
-                                    <div className='user-card-number'>{this.props.user.comment_count}</div>
-                                </div>
-                                <div className='column is-half'>
-                                    <div className='user-card-mini-title'>Popularity</div>
-                                    <div className='user-card-number'>{this.props.user.comments_vote_count + this.props.user.articles_vote_count}</div>
-                                </div>
-                            </div>
+                            {
+                                this.props.userLoading
+                                    ? <div className='article-list-loading-icon'>
+                                        <span>
+                                            <i className='fa fa-refresh fa-spin' />
+                                        </span>
+                                    </div>
+
+                                    : <div>
+                                        <div>
+                                            <p className='user-card-name'><strong>{this.props.user.name}</strong></p>
+                                            <p className='user-card-username'>{`@${this.props.user.username}`}</p>
+                                        </div>
+                                        <div className='columns'>
+                                            <div className='column is-half'>
+                                                <div className='user-card-mini-title'>Comments</div>
+                                                <div className='user-card-number'>{this.props.user.comment_count}</div>
+                                            </div>
+                                            <div className='column is-half'>
+                                                <div className='user-card-mini-title'>Popularity</div>
+                                                <div className='user-card-number'>{this.props.user.comments_vote_count + this.props.user.articles_vote_count}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -61,7 +72,8 @@ function mapStateToProps(state) {
 
 UserCard.propTypes = {
     user: PropTypes.object.isRequired,
-    fetchUser: PropTypes.func.isRequired
+    fetchUser: PropTypes.func.isRequired,
+    userLoading: PropTypes.bool.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserCard);

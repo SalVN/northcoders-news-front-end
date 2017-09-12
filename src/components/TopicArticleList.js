@@ -56,9 +56,11 @@ class TopicArticleList extends React.Component {
                     showDropdown={this.state.showDropdown}
                 />
                 {this.props.articlesLoading
-                    ? <span>
-                        <i className='fa fa-refresh fa-spin' />
-                    </span>
+                    ? <div className='article-list-loading-icon'>
+                        <span>
+                            <i className='fa fa-refresh fa-spin' />
+                        </span>
+                    </div>
                     :
                     <ArticleList
                         articles={this.props.topicArticles}
@@ -129,8 +131,7 @@ TopicArticleList.propTypes = {
     voteArticle: PropTypes.func.isRequired,
     error: PropTypes.object,
     topics: PropTypes.any.isRequired,
-    fetchUsers: PropTypes.func.isRequired,
-    fetchUser: PropTypes.func.isRequired
+    fetchUsers: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopicArticleList);

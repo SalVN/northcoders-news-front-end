@@ -34,7 +34,7 @@ class Comments extends Component {
         if ((newProps.comments && newProps.comments.length !== this.props.comments.length) || this.state.voted) {
             this.props.fetchUsers();
             this.props.fetchUser(USERNAME);
-            this.setState({voted: false});
+            this.setState({ voted: false });
         }
     }
     render() {
@@ -62,9 +62,11 @@ class Comments extends Component {
                         </div>
                     }
                     {this.props.commentsLoading
-                        ? <span>
-                            <i className='fa fa-refresh fa-spin' />
-                        </span>
+                        ? <div className='article-list-loading-icon'>
+                            <span>
+                                <i className='fa fa-refresh fa-spin' />
+                            </span>
+                        </div>
                         :
                         <div>
                             <AddCommentForm

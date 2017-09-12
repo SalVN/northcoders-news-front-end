@@ -65,9 +65,11 @@ class UserPage extends Component {
                 }
                 {
                     this.props.usersLoading &&
-                    <span>
-                        <i className='fa fa-refresh fa-spin' />
-                    </span>
+                    <div className='article-list-loading-icon'>
+                        <span>
+                            <i className='fa fa-refresh fa-spin' />
+                        </span>
+                    </div>
                 }
                 {((this.props.users && this.props.users.length > 0) && (this.props.articles && this.props.articles.length > 0)) &&
                     <UserPageCard articlesNo={userArticles.length} ranking={index + 1} user={this.props.users[index]} />
@@ -82,9 +84,11 @@ class UserPage extends Component {
                     />
                     {
                         this.props.articlesLoading &&
-                        <span>
-                            <i className='fa fa-refresh fa-spin' />
-                        </span>
+                        <div className='article-list-loading-icon'>
+                            <span>
+                                <i className='fa fa-refresh fa-spin' />
+                            </span>
+                        </div>
                     }
                     {
                         userArticles && userArticles.length > 0
