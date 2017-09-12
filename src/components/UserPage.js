@@ -17,11 +17,13 @@ class UserPage extends Component {
         super(props);
         this.state = {
             articlesSortBy: 'votes',
-            articlesMaximum: 2
+            articlesMaximum: 2,
+            showDropdown: false
         };
         this.voteHandlerMainArticles = this.voteHandlerMainArticles.bind(this);
         this.handleClickSelectArticles = this.handleClickSelectArticles.bind(this);
         this.increaseArticlesMax = this.increaseArticlesMax.bind(this);
+        this.toggleDropdown = this.toggleDropdown.bind(this);
     }
     componentDidMount() {
         if (!this.props.users || this.props.users.length < 1) {
@@ -57,6 +59,8 @@ class UserPage extends Component {
                     <ArticleListHeader
                         title={`${nameUser} Articles`}
                         handleClickSelect={this.handleClickSelectArticles}
+                        toggleDropdown={this.toggleDropdown}
+                        showDropdown={this.state.showDropdown}
                     />
                     {
                         userArticles && userArticles.length > 0
@@ -81,13 +85,19 @@ class UserPage extends Component {
     handleClickSelectArticles(e) {
         e.preventDefault();
         this.setState({
-            articlesSortBy: e.target.value
+            articlesSortBy: e.target.attributes[0].value,
+            showDropdown: false
         });
     }
     increaseArticlesMax() {
         const newMax = this.state.articlesMaximum + 4;
         this.setState({
             articlesMaximum: newMax
+        });
+    }
+    toggleDropdown() {
+        this.setState({
+            showDropdown: !this.state.showDropdown
         });
     }
 }
