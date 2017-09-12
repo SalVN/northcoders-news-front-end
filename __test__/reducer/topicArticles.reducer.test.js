@@ -1,6 +1,6 @@
-import * as actions from '../src/actions/actions';
+import * as actions from '../../src/actions/actions';
 
-import reducer from '../src/reducer/topicArticles.reducer';
+import reducer from '../../src/reducer/topicArticles.reducer';
 
 describe('reducer', () => {
     const initialState = {

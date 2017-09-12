@@ -1,4 +1,4 @@
-import { sortUsers } from '../src/utilities/sortUsers';
+import { sortUsers } from '../../src/utilities/sortUsers';
 
 
 describe('#sortUsers', () => {

@@ -1,5 +1,5 @@
-import * as actions from '../src/actions/actions';
-import reducer from '../src/reducer/users.reducer';
+import * as actions from '../../src/actions/actions';
+import reducer from '../../src/reducer/users.reducer';
 
 describe('reducer', () => {
     const initialState = {

@@ -1,4 +1,4 @@
-import { sortArticles } from '../src/utilities/sortArticles';
+import { sortArticles } from '../../src/utilities/sortArticles';
 
 
 describe('#sortArticles', () => {

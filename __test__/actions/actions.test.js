@@ -1,5 +1,5 @@
-import * as actions from '../src/actions/actions';
-import * as types from '../src/actions/types';
+import * as actions from '../../src/actions/actions';
+import * as types from '../../src/actions/types';
 
 describe('actions', () => {
     describe('#fetchArticles', () => {

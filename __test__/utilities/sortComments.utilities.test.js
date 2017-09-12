@@ -1,4 +1,4 @@
-import { sortComments } from '../src/utilities/sortComments';
+import { sortComments } from '../../src/utilities/sortComments';
 
 
 describe('#sortComments', () => {

@@ -1,4 +1,4 @@
-import { getIndex } from '../src/utilities/getIndex';
+import { getIndex } from '../../src/utilities/getIndex';
 
 
 describe('#getIndex', () => {
