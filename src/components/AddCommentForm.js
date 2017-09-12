@@ -12,6 +12,10 @@ class AddCommentForm extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
     render() {
+        const charactersLeft = 1000 - this.state.text.length;
+        let disabled = charactersLeft >= 1000 || charactersLeft < 0
+            ? true
+            : false;
         return (
             <div>
                 {this.props.showForm
@@ -30,7 +34,8 @@ class AddCommentForm extends React.Component {
                                             <textarea className='add-comment-textarea' onChange={this.handleChange} id="comment-input" defaultValue={this.state.text} placeholder='Join the conversation' />
                                         </div>
                                         <div className='button-div'>
-                                            <button className='button add-comment-submit' type='submit'>Submit</button>
+                                            <span className='characters-left'>{charactersLeft}</span>
+                                            <button disabled={disabled} className={'button add-comment-submit'} type='submit'>Submit</button>
                                         </div>
                                     </form>
                                 </div>

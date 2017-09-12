@@ -31,7 +31,7 @@ class ArticlePage extends Component {
                 if (article._id === this.props.match.params.id) acc = article;
                 return acc;
             }, {});
-            if (article && !article._id) {
+            if (this.props.articles.length > 0 && article && !article._id) {
                 articleNotFound = true;
             }
         }

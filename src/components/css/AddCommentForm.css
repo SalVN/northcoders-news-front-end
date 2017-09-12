@@ -45,7 +45,7 @@
 }
 
 .button-div {
-    text-align: right;
+    text-align: right !important;
     margin-top: 10px;
 }
 
@@ -54,5 +54,10 @@
     color: white;
     border-radius: 20px;
     border: 0px;
-    margin-top: 20px;
+    margin-top: 0px;
+}
+
+.characters-left {
+    margin-right: 20px;
+    font-weight: 400;
 }
