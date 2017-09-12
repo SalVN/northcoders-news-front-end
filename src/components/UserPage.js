@@ -43,9 +43,6 @@ class UserPage extends Component {
             index = getIndexUsername(this.props.users, this.props.match.params.id);
             userArticles = returnFilteredArticles(this.props.articles, this.props.users[index].username);
         }
-        let disableViewMoreArticles = this.state.articlesMaximum >= userArticles.length
-            ? 'disabled'
-            : '';
         let nameUser = this.props.users && index
             ? `${this.props.users[index].username}'s`
             : '';
@@ -65,15 +62,15 @@ class UserPage extends Component {
                     {
                         userArticles && userArticles.length > 0
                             ? <ArticleList
-                                articles={userArticles.slice(0, this.state.articlesMaximum)}
+                                articles={userArticles}
                                 voteArticle={this.voteHandlerMainArticles}
                                 sortBy={this.state.articlesSortBy}
+                                maximum={this.state.articlesMaximum}
+                                viewMoreArticles={this.increaseArticlesMax}
+
                             />
                             : <p>This user hasn't uploaded any articles yet</p>
                     }
-                    <div className='button-div'>
-                        <button onClick={this.increaseArticlesMax} className={`button is-small view-more-button ${disableViewMoreArticles}`}>View More</button>
-                    </div>
                 </div>
                 <hr />
             </div>
