@@ -9,7 +9,8 @@ import UserListCard from './UserListCard';
 
 class App extends React.Component {
   render() {
-    let pageStyling = window.innerWidth < 700 ? 'main-page-mobile' : 'main-page';
+    let pageStyling = window.innerWidth < 800 ? 'main-page-mobile' : 'main-page';
+    console.log(pageStyling);
     return (
       <div className='page'>
         <TopicNavBar />

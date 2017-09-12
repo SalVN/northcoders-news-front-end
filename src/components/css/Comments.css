@@ -6,6 +6,7 @@
 
 .comments-title-main {
     color: #c1002e !important;
+    margin-left: 10px;
     margin-right: 10px;
     font-size: 24px;
 }
@@ -13,4 +14,8 @@
 .comments-title-sub {
     font-size: 20px;
     color: grey;
+}
+
+.tablet {
+    margin-left: 10px;
 }

@@ -1,5 +1,6 @@
 .hero-css {
     background-color: #c1002e;
+    min-height: 150px;
 }
 
 .main-heading {

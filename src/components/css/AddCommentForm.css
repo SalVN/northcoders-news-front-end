@@ -1,7 +1,7 @@
 
 .comment-form-heading {
    font-weight: bold;
-   margin-left: 10px;
+   color: #FC84A0;
 }
 
 .comment-form {
@@ -39,13 +39,14 @@
     max-height: 300px;
     font-size: 14px;
     padding: 5px;
-    margin-top: 5px;
+    margin-top: -28px;
     border-radius: 10px;
     border: 1px solid black;
 }
 
 .button-div {
     text-align: right;
+    margin-top: 10px;
 }
 
 .add-comment-submit {
@@ -53,4 +54,5 @@
     color: white;
     border-radius: 20px;
     border: 0px;
+    margin-top: 20px;
 }

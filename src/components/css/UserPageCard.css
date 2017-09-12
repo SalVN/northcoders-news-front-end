@@ -1,5 +1,5 @@
 .user-page-card-box {
-    margin-top: 20px;
+    margin: 20px;
     border: 1px solid lightgrey;
 }
 
@@ -41,7 +41,6 @@
 }
 
 .content-container {
-    /*margin-top: -20px;*/
     background-color: lightgray;
     min-height: 75px;
 }

@@ -31,13 +31,19 @@ class Comments extends Component {
         return (
             <div id='comments' className='columns'>
                 <div className='column is-one-quarter'>
-                    <div className='comments-title'>
-                        <span className='comments-title comments-title-main'>Comments</span>
+                    <p className='comments-title'>
+                        <span className='comments-title is-size-2-desktop is-size-4-tablet comments-title-main'>Comments</span>
                         {this.props.comments
-                            ? <span className='comments-title comments-title-sub'>{`(${this.props.comments.length})`}</span>
-                            : <span className='comments-title comments-title-sub'>{'(0)'}</span>
+                            ? <span className='comments-title-sub is-hidden-tablet-only comments-title-sub'>{`(${this.props.comments.length})`}</span>
+                            : <span className='comments-title-sub is-hidden-tablet-only'>{'(0)'}</span>
                         }
-                    </div>
+                    </p>
+                    <p className='is-hidden-mobile is-hidden-desktop'>
+                        {this.props.comments
+                            ? <span className='comments-title comments-title-sub tablet'>{`(${this.props.comments.length})`}</span>
+                            : <span className='comments-title comments-title-sub tablet'>{'(0)'}</span>
+                        }
+                    </p>
                 </div>
                 <div className='column'>
                     {this.state.added &&
@@ -45,12 +51,12 @@ class Comments extends Component {
                             <h3>Your comment has been added</h3>
                         </div>
                     }
-                    <AddCommentForm 
-                    user={this.props.user} 
-                    showForm={this.state.showForm} 
-                    toggleForm={this.toggleForm} 
-                    handleSubmit={this.handleSubmit}
-                    id={this.props.id} />
+                    <AddCommentForm
+                        user={this.props.user}
+                        showForm={this.state.showForm}
+                        toggleForm={this.toggleForm}
+                        handleSubmit={this.handleSubmit}
+                        id={this.props.id} />
                     <CommentsList
                         users={this.props.users}
                         comments={this.props.comments}

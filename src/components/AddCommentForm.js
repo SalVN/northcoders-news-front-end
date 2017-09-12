@@ -27,7 +27,7 @@ class AddCommentForm extends React.Component {
                                         <label className='comment-form-heading' htmlFor="comment-input">Join the conversation:</label>
                                         <br />
                                         <div className='comment-form' onBlur={this.props.toggleForm.bind(this, this.state.text)}>
-                                            <textarea className='add-comment-textarea' onChange={this.handleChange} id="comment-input" defaultValue={this.state.text} placeholder='Join the discussion' />
+                                            <textarea className='add-comment-textarea' onChange={this.handleChange} id="comment-input" defaultValue={this.state.text} placeholder='Join the conversation' />
                                         </div>
                                         <div className='button-div'>
                                             <button className='button add-comment-submit' type='submit'>Submit</button>

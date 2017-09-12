@@ -8,6 +8,8 @@
 .main-page-mobile {
     background-color: white;
     margin-bottom: 30px;
+    margin-top: -20px;
+    padding-top: 30px;
 }
 
 .page {
