@@ -58,6 +58,20 @@ describe('reducer', () => {
         expect(result).toBe(initialState);
     });
 
+    it('uses the initial state if no state is provided', () => {
+        const result = reducer();
+        expect(result.topicArticles).toEqual([]);
+        expect(result.loading).toBe(false);
+        expect(result.error).toBe(null);
+    });
+
+    it('returns the initial state if an incorrect action is provided', () => {
+        const resultEmpty = reducer(initialState, 'FETCH');
+        const resultUsers = reducer(topicState, 'FETCH');
+        expect(resultEmpty).toBe(initialState);
+        expect(resultUsers).toBe(topicState);
+    });
+
     describe('FETCH_TOPIC_ARTICLES_REQUEST', () => {
         const action = actions.fetchTopicArticlesRequest();
         const result = reducer(initialState, action);

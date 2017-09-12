@@ -18,6 +18,18 @@ describe('reducer', () => {
         expect(result).toBe(initialState);
     });
 
+    it('uses the initial state if no state is provided', () => {
+        const result = reducer();
+        expect(result.topics).toEqual([]);
+        expect(result.loading).toBe(false);
+        expect(result.error).toBe(null);
+    });
+
+    it('returns the initial state if an incorrect action is provided', () => {
+        const result = reducer(initialState, 'FETCH');
+        expect(result).toBe(initialState);
+    });
+
     describe('FETCH_TOPICS_REQUEST', () => {
         const action = actions.fetchTopicsRequest();
         const result = reducer(initialState, action);

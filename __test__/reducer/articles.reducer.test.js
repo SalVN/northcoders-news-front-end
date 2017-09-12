@@ -54,6 +54,20 @@ describe('reducer', () => {
         expect(typeof reducer).toBe('function');
     });
 
+    it('uses the initial state if no state is provided', () => {
+        const result = reducer();
+        expect(result.articles).toEqual([]);
+        expect(result.loading).toBe(false);
+        expect(result.error).toBe(null);
+    });
+
+    it('returns the initial state if an incorrect action is provided', () => {
+        const resultEmpty = reducer(initialState, 'FETCH');
+        const resultArticles = reducer(articlesState, 'FETCH');
+        expect(resultEmpty).toBe(initialState);
+        expect(resultArticles).toBe(articlesState);
+    });
+
     it('returns the initial state if no action is provided', () => {
         const result = reducer(initialState);
         expect(result).toBe(initialState);
@@ -169,7 +183,7 @@ describe('reducer', () => {
             votes: 2,
             comment_count: 2
         }];
-        const action = actions.voteArticleSuccess({article: article});
+        const action = actions.voteArticleSuccess({ article: article });
         const result = reducer(articlesState, action);
         it('should return loading as false', () => {
             expect(result.loading).toBe(false);

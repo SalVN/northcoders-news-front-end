@@ -88,6 +88,20 @@ describe('reducer', () => {
             expect(result.error).toBe(null);
         });
 
+        it('uses the initial state if no state is provided', () => {
+            const result = reducer();
+            expect(result.comments).toEqual([]);
+            expect(result.loading).toBe(false);
+            expect(result.error).toBe(null);
+        });
+
+        it('returns the initial state if an incorrect action is provided', () => {
+            const resultEmpty = reducer(initialState, 'FETCH');
+            const resultComments = reducer(commentsState, 'FETCH');
+            expect(resultEmpty).toBe(initialState);
+            expect(resultComments).toBe(commentsState);
+        });
+
         it('should not mutate the initial state', () => {
             expect(result).not.toBe(initialState);
             expect(result.comments).not.toBe(initialState.comments);
@@ -163,7 +177,7 @@ describe('reducer', () => {
     });
 
     describe('ADD_COMMENT_SUCCESS', () => {
-        const data = {savedComment: JSON.stringify({ body: 'Add New Comment', created_by: 'northcoder' })};
+        const data = { savedComment: JSON.stringify({ body: 'Add New Comment', created_by: 'northcoder' }) };
         const action = actions.addCommentSuccess(data);
         const resultEmpty = reducer(initialState, action);
         const resultComments = reducer(commentsState, action);
@@ -354,33 +368,33 @@ describe('reducer', () => {
         };
 
         const updatedComments = [{
-        _id: '59b11ae18807841d9bf13234',
-        body: 'this is a comment',
-        belongs_to: '59b11ae18807841d9bf13232',
-        __v: 0,
-        created_by: 'northcoder',
-        votes: 1,
-        created_at: 1504778965845
-    },
-    {
-        _id: '59b11ae18807841d9bf13235',
-        body: 'this is another comment',
-        belongs_to: '59b11ae18807841d9bf13232',
-        __v: 0,
-        created_by: 'northcoder',
-        votes: 0,
-        created_at: 1504778965845
-    },
-    {
-        _id: '59b11ae18807841d9bf13236',
-        body: 'this is my comment',
-        belongs_to: '59b11ae18807841d9bf13232',
-        __v: 0,
-        created_by: 'northcoder',
-        votes: 0,
-        created_at: 1504778977306
-    }];
-        const action = actions.voteCommentSuccess({comment: comment});
+            _id: '59b11ae18807841d9bf13234',
+            body: 'this is a comment',
+            belongs_to: '59b11ae18807841d9bf13232',
+            __v: 0,
+            created_by: 'northcoder',
+            votes: 1,
+            created_at: 1504778965845
+        },
+        {
+            _id: '59b11ae18807841d9bf13235',
+            body: 'this is another comment',
+            belongs_to: '59b11ae18807841d9bf13232',
+            __v: 0,
+            created_by: 'northcoder',
+            votes: 0,
+            created_at: 1504778965845
+        },
+        {
+            _id: '59b11ae18807841d9bf13236',
+            body: 'this is my comment',
+            belongs_to: '59b11ae18807841d9bf13232',
+            __v: 0,
+            created_by: 'northcoder',
+            votes: 0,
+            created_at: 1504778977306
+        }];
+        const action = actions.voteCommentSuccess({ comment: comment });
         const result = reducer(commentsState, action);
         it('should return loading as false', () => {
             expect(result.loading).toBe(false);

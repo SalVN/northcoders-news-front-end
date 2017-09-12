@@ -12,3 +12,5 @@ bundle.js
 bundle.js.map
 **/*/bundle.js
 **/*/bundle.js.map
+.nyc_output
+coverage

@@ -37,6 +37,20 @@ describe('reducer', () => {
         expect(resultUsers).toBe(userState);
     });
 
+    it('uses the initial state if no state is provided', () => {
+        const result = reducer();
+        expect(result.user).toEqual({});
+        expect(result.loading).toBe(false);
+        expect(result.error).toBe(null);
+    });
+
+    it('returns the initial state if an incorrect action is provided', () => {
+        const resultEmpty = reducer(initialState, 'FETCH');
+        const resultUsers = reducer(userState, 'FETCH');
+        expect(resultEmpty).toBe(initialState);
+        expect(resultUsers).toBe(userState);
+    });
+
     describe('FETCH_ONE_USER_REQUEST', () => {
         const action = actions.fetchOneUserRequest();
         const resultEmpty = reducer(initialState, action);
@@ -63,7 +77,7 @@ describe('reducer', () => {
     });
 
     describe('FETCH_ONE_USER_SUCCESS', () => {
-        const action = actions.fetchOneUserSuccess({user: user});
+        const action = actions.fetchOneUserSuccess({ user: user });
         const resultEmpty = reducer(initialState, action);
         const resultUser = reducer(userState, action);
         it('should return loading as false', () => {

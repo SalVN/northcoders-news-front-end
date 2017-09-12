@@ -29,7 +29,6 @@ function reducer(prevState = initialState, action) {
     return newState;
   }
   return prevState;
-
 }
 
 export default reducer;
