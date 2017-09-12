@@ -29,6 +29,10 @@ class UserListCard extends Component {
             sortUsers(this.props.users, this.state.sortBy);
         }
         let activeDropdown = this.state.showDropdown ? 'is-active' : '';
+        let rankingActive = this.state.sortBy === 'Sort by ranking' ? 'is-active' : '';
+        let commentsActive = this.state.sortBy === 'Sort by comments' ? 'is-active' : '';
+        let commentVotesActive = this.state.sortBy === 'Sort by comment votes' ? 'is-active' : '';
+        let articleVotesActive = this.state.sortBy === 'Sort by article votes' ? 'is-active' : '';
         return (
             <div className='card-box'>
                 <div className='container-fluid'>
@@ -46,16 +50,16 @@ class UserListCard extends Component {
                                         </div>
                                         <div className="dropdown-menu" id="dropdown-menu" role="menu">
                                             <div className="dropdown-content">
-                                                <a onClick={this.sortUserList} className="dropdown-item">
+                                                <a onClick={this.sortUserList} className={`dropdown-item ${rankingActive}`}>
                                                     Sort by ranking
                                                 </a>
-                                                <a onClick={this.sortUserList} className="dropdown-item">
+                                                <a onClick={this.sortUserList} className={`dropdown-item ${commentsActive}`}>
                                                     Sort by comments
                                                 </a>
-                                                <a onClick={this.sortUserList} className="dropdown-item">
+                                                <a onClick={this.sortUserList} className={`dropdown-item ${commentVotesActive}`}>
                                                     Sort by comment votes
                                                 </a>
-                                                <a onClick={this.sortUserList} className="dropdown-item">
+                                                <a onClick={this.sortUserList} className={`dropdown-item ${articleVotesActive}`}>
                                                     Sort by article votes
                                                 </a>
                                                 <a onClick={this.toggleDropdown} className="dropdown-item cancel">
