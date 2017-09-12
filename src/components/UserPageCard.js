@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import * as actions from '../actions/actions';
 import './css/UserPageCard.css';
 
 class UserPageCard extends Component {
@@ -55,8 +54,6 @@ class UserPageCard extends Component {
         );
     }
 }
-
-
 
 UserPageCard.propTypes = {
     user: PropTypes.object.isRequired,

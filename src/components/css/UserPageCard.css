@@ -12,11 +12,12 @@
 }
 
 .user-card-avatar-page {
-    height: 100px;
-    width: 100px;
+    max-height: 100px;
+    max-width: 100px;
     border-radius: 50px;
     margin: 30px;
     border: 2px solid #c1002e;
+    background-color: white;
 }
 
 .user-page-card-name {

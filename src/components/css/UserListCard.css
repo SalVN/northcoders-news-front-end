@@ -41,3 +41,13 @@
     border-bottom: 1px solid lightgrey;
     margin-bottom: 5px;
 }
+
+.dropdown-button {
+    border: 0;
+    margin-right: 10px;
+}
+
+.cancel {
+    color: #c1002e;
+    font-weight: 500;
+}
