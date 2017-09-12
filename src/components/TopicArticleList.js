@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { BrowserRouter as Router, Redirect } from 'react-router-dom';
+
 
 import * as actions from '../actions/actions';
 import ArticleList from './ArticleList';
@@ -29,8 +31,16 @@ class TopicArticleList extends React.Component {
     this.props.fetchTopicArticles(this.props.match.params.id);
   }
   render() {
+    let topicNotFound = false;
+    if (this.props.error && this.props.error.response.status === 404) {
+      topicNotFound = true;
+    }
     return (
       <div id='TopicArticleList' className='content'>
+        {
+          topicNotFound &&
+          <Redirect to='/not-found' />
+        }
         <ArticleListHeader
           title={`${this.props.match.params.id[0].toUpperCase()}${this.props.match.params.id.slice(1)}`}
           handleClickSelect={this.handleClickSelect}
@@ -84,7 +94,8 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   return {
     topicArticles: state.topicArticles.topicArticles,
-    loading: state.topicArticles.loading
+    loading: state.topicArticles.loading,
+    error: state.topicArticles.error
   };
 }
 
@@ -93,7 +104,8 @@ TopicArticleList.propTypes = {
   loading: PropTypes.bool.isRequired,
   fetchTopicArticles: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
-  voteArticle: PropTypes.func.isRequired
+  voteArticle: PropTypes.func.isRequired,
+  error: PropTypes.object
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopicArticleList);
