@@ -6,11 +6,12 @@ import * as types from './types';
 export function fetchArticles() {
     return function (dispatch) {
         dispatch(fetchArticlesRequest());
-        axios.get(`${ROOT}/articles`)
+        return axios.get(`${ROOT}/articles`)
             .then(res => {
                 dispatch(fetchArticlesSuccess(res.data.articles));
             })
             .catch(err => {
+                console.log(err)
                 dispatch(fetchArticlesError(err));
             });
     };
