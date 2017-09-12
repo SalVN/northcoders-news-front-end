@@ -1,0 +1,18 @@
+.page-not-found-card {
+    margin: 20px;
+    text-align: center;
+}
+
+.page-not-found-title {
+    color: #c1002e;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.page-not-found-button {
+    background-color: #c1002e;
+    color: white;
+    border-radius: 20px;
+    border: 0px;
+    margin-top: 20px;
+}
