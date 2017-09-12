@@ -1,0 +1,10 @@
+.show-more-button-div {
+    text-align: center;
+    margin-top: -15px;
+}
+
+.show-more-button {
+    background-color: #c1002e;
+    color: white;
+    border-radius: 10px;
+}

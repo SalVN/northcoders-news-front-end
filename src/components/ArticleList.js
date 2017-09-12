@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import * as actions from '../actions/actions';
+import './css/ArticleList.css';
 
 import { sortArticles } from '../utilities/sortArticles';
 
@@ -20,10 +21,11 @@ class ArticleList extends React.Component {
     if (this.props.sortBy) {
       sortArticles(this.props.articles, this.props.sortBy);
     }
+    const articlesToRender = this.props.articles.slice(0, this.props.maximum);
     return (
       <div id='ArticleList' className='content'>
         {this.props.articles.length > 0 &&
-          this.props.articles.map((article, i) => {
+          articlesToRender.map((article, i) => {
             const username = article.created_by;
             let index;
             users &&
@@ -45,6 +47,11 @@ class ArticleList extends React.Component {
               />
             );
           })
+        }
+        {this.props.maximum <= this.props.articles.length &&
+          <div className='show-more-button-div'>
+            <button className='button is-small show-more-button' onClick={this.props.viewMoreArticles}>Show more</button>
+          </div>
         }
       </div>
     );
@@ -72,7 +79,9 @@ ArticleList.propTypes = {
   fetchUsers: PropTypes.func.isRequired,
   voteArticle: PropTypes.func.isRequired,
   users: PropTypes.array.isRequired,
-  sortBy: PropTypes.string.isRequired
+  sortBy: PropTypes.string.isRequired,
+  maximum: PropTypes.number.isRequired,
+  viewMoreArticles: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticleList);
