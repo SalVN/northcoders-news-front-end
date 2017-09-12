@@ -4,7 +4,8 @@
 
 .card-header-style {
     background-color: #c1002e;
-    height: 50px;
+    min-height: 50px;
+    max-height: 100px;
     width: 100%;
 }
 

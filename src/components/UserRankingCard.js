@@ -12,8 +12,8 @@ const UserRankingCard = function (props) {
     if (props.criteria === 'Sort by comment votes') data = props.user.comments_vote_count;
     return (
         <div className='container-fluid mini-card' key={props.user.username}>
-            <div className='columns'>
-                <div className='column is-1'>
+            <div className='columns is-mobile'>
+                <div className='column is-1 is-hidden-tablet-only'>
                     <p className='user-list-card-number'><strong>{props.index + 1}</strong></p>
                 </div>
                 <div className='column is-two-thirds'>

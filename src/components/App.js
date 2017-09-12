@@ -9,18 +9,20 @@ import UserListCard from './UserListCard';
 
 class App extends React.Component {
   render() {
-  let pageStyling = window.innerWidth < 700 ? 'main-page-mobile' : 'main-page';
+    let pageStyling = window.innerWidth < 700 ? 'main-page-mobile' : 'main-page';
     return (
       <div className='page'>
         <TopicNavBar />
         <MainBanner />
-        <div className={`columns ${pageStyling}`}>
-          <div className='column is-three-quarters'>
-            {this.props.children}
-          </div>
-          <div className='column is-one-quarter'>
-            <UserCard />
-            <UserListCard />
+        <div className={pageStyling}>
+          <div className={'columns is-gapless'}>
+            <div className='column is-three-quarters'>
+              {this.props.children}
+            </div>
+            <div className='column is-one-quarter'>
+              <UserCard />
+              <UserListCard />
+            </div>
           </div>
         </div>
       </div>
