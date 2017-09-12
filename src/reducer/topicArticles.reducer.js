@@ -20,6 +20,7 @@ function reducer(prevState = initialState, action) {
   if (action.type === types.FETCH_TOPIC_ARTICLES_SUCCESS) {
     newState.topicArticles = action.data;
     newState.loading = false;
+    newState.error = null;
     return newState;
   }
 
