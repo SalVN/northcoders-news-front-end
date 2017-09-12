@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { BrowserRouter as Router, Redirect } from 'react-router-dom';
+
 
 import * as actions from '../actions/actions';
 import { getIndexUsername } from '../utilities/getIndex';
@@ -36,18 +38,24 @@ class UserPage extends Component {
     render() {
         let index;
         let userArticles = [];
+        let userNotFound = false;
         if (this.props.users && this.props.users.length > 0) {
             this.props.users.sort((a, b) => {
                 return (b.articles_vote_count + b.comments_vote_count) - (a.articles_vote_count + a.comments_vote_count);
             });
             index = getIndexUsername(this.props.users, this.props.match.params.id);
-            userArticles = returnFilteredArticles(this.props.articles, this.props.users[index].username);
+            if (!this.props.users[index]) userNotFound = true;
+            else userArticles = returnFilteredArticles(this.props.articles, this.props.users[index].username);
         }
         let nameUser = this.props.users && index
             ? `${this.props.users[index].username}'s`
             : '';
         return (
             <div>
+                {
+                    userNotFound &&
+                    <Redirect to='/users/not-found' />
+                }
                 {((this.props.users && this.props.users.length > 0) && (this.props.articles && this.props.articles.length > 0)) &&
                     <UserPageCard articlesNo={userArticles.length} ranking={index + 1} user={this.props.users[index]} />
                 }
