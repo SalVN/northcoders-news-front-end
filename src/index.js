@@ -15,6 +15,7 @@ import ArticlePage from './components/ArticlePage';
 import TopicArticleList from './components/TopicArticleList';
 import UserPage from './components/UserPage';
 import PageNotFound from './components/PageNotFound';
+import UserNotFound from './components/UserNotFound';
 import reducer from './reducer/';
 
 const store = createStore(reducer, applyMiddleware(thunk, logger));
@@ -27,6 +28,7 @@ ReactDOM.render(<Provider store={store}>
         <Route exact path='/' component={MainArticleList} />
         <Route path='/articles/:id' component={ArticlePage} />
         <Route path='/topics/:id/articles' component={TopicArticleList} />
+        <Route path='/users/not-found' component={UserNotFound}/>
         <Route path='/users/:id' component={UserPage} />
         <Route component={PageNotFound}/>
       </Switch>
