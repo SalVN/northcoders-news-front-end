@@ -11,10 +11,12 @@ class MainArticleList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            sortBy: 'votes'
+            sortBy: 'votes',
+            showDropdown: false
         };
         this.voteHandlerMainArticles = this.voteHandlerMainArticles.bind(this);
         this.handleClickSelect = this.handleClickSelect.bind(this);
+        this.toggleDropdown = this.toggleDropdown.bind(this);
     }
     componentDidMount() {
         if (this.props.articles && this.props.articles.length < 1) {
@@ -24,9 +26,11 @@ class MainArticleList extends React.Component {
     render() {
         return (
             <div id='ArticleList' className='content'>
-                <ArticleListHeader 
+                <ArticleListHeader
                     title={'Articles'}
                     handleClickSelect={this.handleClickSelect}
+                    toggleDropdown={this.toggleDropdown}
+                    showDropdown={this.state.showDropdown}
                 />
                 <ArticleList
                     articles={this.props.articles}
@@ -42,7 +46,13 @@ class MainArticleList extends React.Component {
     handleClickSelect(e) {
         e.preventDefault();
         this.setState({
-            sortBy: e.target.value
+            sortBy: e.target.attributes[0].value,
+            showDropdown: false
+        });
+    }
+    toggleDropdown() {
+        this.setState({
+            showDropdown: !this.state.showDropdown
         });
     }
 }

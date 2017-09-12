@@ -39,7 +39,7 @@ class UserListCard extends Component {
                     <div className='card'>
                         <header className='card-header'>
                             <div className='card-header-style'>
-                                <p className='card-header-title'>
+                                <div className='card-header-title'>
                                     <div className={`dropdown ${activeDropdown}`}>
                                         <div className="dropdown-trigger">
                                             <button onClick={this.toggleDropdown} className="button is-small is-primary is-inverted is-outlined dropdown-button" aria-haspopup="true" aria-controls="dropdown-menu">
@@ -69,7 +69,7 @@ class UserListCard extends Component {
                                         </div>
                                     </div>
                                     <span>User Ranking</span>
-                                </p>
+                                </div>
                             </div>
                         </header>
                         <div className='card-content'>
