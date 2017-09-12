@@ -14,12 +14,14 @@ class Comments extends Component {
         super(props);
         this.state = {
             showForm: false,
-            added: false
+            added: false,
+            maximum: 8
         };
         this.toggleForm = this.toggleForm.bind(this);
         this.deleteHandler = this.deleteHandler.bind(this);
         this.voteHandler = this.voteHandler.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.viewMoreComments = this.viewMoreComments.bind(this);
     }
     componentDidMount() {
         this.props.fetchComments(this.props.id);
@@ -62,6 +64,8 @@ class Comments extends Component {
                         comments={this.props.comments}
                         deleteHandler={this.deleteHandler}
                         voteHandler={this.voteHandler}
+                        maximum={this.state.maximum}
+                        viewMoreComments={this.viewMoreComments}
                     />
                 </div>
             </div>
@@ -91,6 +95,12 @@ class Comments extends Component {
         this.setState({
             added: true,
             showForm: false
+        });
+    }
+    viewMoreComments() {
+        const newMax = this.state.maximum + 10;
+        this.setState({
+            maximum: newMax
         });
     }
 }

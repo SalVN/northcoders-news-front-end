@@ -27,6 +27,7 @@ class CommentsList extends Component {
 
         const users = this.props.users;
         sortComments(this.props.comments, this.state.sortedBy);
+        const commentsToRender = this.props.comments.slice(0, this.props.maximum);
         return (
             <div>
                 <div className='comment-sort-links'>
@@ -40,7 +41,7 @@ class CommentsList extends Component {
                         <span>sort by votes</span>
                     </a>
                 </div>
-                {this.props.comments.map(comment => {
+                {commentsToRender.map(comment => {
                     const username = comment.created_by;
                     let index;
                     users &&
@@ -58,6 +59,11 @@ class CommentsList extends Component {
                         </div>
                     );
                 })}
+                {this.props.maximum <= this.props.comments.length &&
+                    <div className='show-more-button-div'>
+                        <button className='button is-small show-more-button' onClick={this.props.viewMoreComments}>Show more</button>
+                    </div>
+                }
             </div>
         );
     }
@@ -78,7 +84,9 @@ CommentsList.propTypes = {
     comments: PropTypes.array.isRequired,
     users: PropTypes.array.isRequired,
     deleteHandler: PropTypes.func.isRequired,
-    voteHandler: PropTypes.func.isRequired
+    voteHandler: PropTypes.func.isRequired,
+    maximum: PropTypes.number.isRequired,
+    viewMoreComments: PropTypes.func.isRequired
 };
 
 export default CommentsList;
