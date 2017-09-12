@@ -22,7 +22,7 @@ class Article extends React.Component {
                         <p>
                             <span>
                                 <span className='article-subheading-key'>added by:</span>
-                                <Link to='#'>
+                                <Link to={`/users/${this.props.article.created_by}`}>
                                     <span>
                                         {this.props.user &&
                                             <img className='article-card-avatar' src={this.props.user.avatar_url} alt='user avatar' />
