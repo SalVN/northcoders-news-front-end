@@ -53,7 +53,7 @@ class TopicNavBar extends Component {
                     </div>
                     <div className='navbar-end'>
                         <span className='navbar-item'>
-                            <Link className='user' to='#'>
+                            <Link className='user' to={`/users/${this.props.user.username}`}>
                                 <span><img className='avatar' src={`${this.props.user.avatar_url}`} /></span>
                                 <span className='navbar-user-text'><strong>{this.props.user.username}</strong></span>
                             </Link>
