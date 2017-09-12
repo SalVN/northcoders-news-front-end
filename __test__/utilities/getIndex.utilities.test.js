@@ -1,5 +1,4 @@
-import { getIndex } from '../../src/utilities/getIndex';
-
+import { getIndex, getIndexUsername } from '../../src/utilities/getIndex';
 
 describe('#getIndex', () => {
     const comments = [{
@@ -43,3 +42,45 @@ describe('#getIndex', () => {
         expect(resultB).toBe(2);
     });
 });
+
+describe('#getIndexUsername', () => {
+    const users = [{
+        _id: '59b1b18b327cce1fb043bdb1',
+        username: 'user1',
+        name: 'One',
+        avatar_url: 'https://avatars3.githubusercontent.com/u/6791502?v=3&s=200',
+        __v: 0
+    }, {
+        _id: '59b1b18b327cce1fb043bdb2',
+        username: 'user2',
+        name: 'Two',
+        avatar_url: 'https://avatars3.githubusercontent.com/u/6791502?v=3&s=200',
+        __v: 0
+    }, {
+        _id: '59b1b18b327cce1fb043bdb3',
+        username: 'user3',
+        name: 'Three',
+        avatar_url: 'https://avatars3.githubusercontent.com/u/6791502?v=3&s=200',
+        __v: 0
+    }, {
+        _id: '59b1b18b327cce1fb043bdb4',
+        username: 'user4',
+        name: 'Four',
+        avatar_url: 'https://avatars3.githubusercontent.com/u/6791502?v=3&s=200',
+        __v: 0
+    }];
+    it('is a function', () => {
+        expect(typeof getIndexUsername).toBe('function');
+    });
+
+    it('should return the index of the provided id', () => {
+        const idA = 'user2';
+        const resultA = getIndexUsername(users, idA);
+        expect(resultA).toBe(1);
+
+        const idB = 'user4';
+        const resultB = getIndexUsername(users, idB);
+        expect(resultB).toBe(3);
+    });
+});
+
