@@ -172,7 +172,7 @@ export function addCommentError(err) {
 export function deleteComment(id) {
     return function (dispatch) {
         dispatch(deleteCommentRequest());
-        axios.delete(`${ROOT}/comments/${id}`)
+        return axios.delete(`${ROOT}/comments/${id}`)
             .then(res => {
                 dispatch(deleteCommentSuccess(res.data));
             })
@@ -202,11 +202,10 @@ export function deleteCommentError(err) {
     };
 }
 
-
 export function voteArticle(vote, id) {
     return function (dispatch) {
         dispatch(voteArticleRequest());
-        axios.put(`${ROOT}/articles/${id}?vote=${vote}`)
+        return axios.put(`${ROOT}/articles/${id}?vote=${vote}`)
             .then(res => {
                 dispatch(voteArticleSuccess(res.data));
             })
@@ -236,11 +235,10 @@ export function voteArticleError(err) {
     };
 }
 
-
 export function voteTopicArticle(vote, id) {
     return function (dispatch) {
         dispatch(voteTopicArticleRequest());
-        axios.put(`${ROOT}/articles/${id}?vote=${vote}`)
+        return axios.put(`${ROOT}/articles/${id}?vote=${vote}`)
             .then(res => {
                 dispatch(voteTopicArticleSuccess(res.data));
             })
@@ -273,7 +271,7 @@ export function voteTopicArticleError(err) {
 export function fetchUsers() {
     return function (dispatch) {
         dispatch(fetchUsersRequest());
-        axios.get(`${ROOT}/users`)
+        return axios.get(`${ROOT}/users`)
             .then(res => {
                 dispatch(fetchUsersSuccess(res.data));
             })
@@ -306,7 +304,7 @@ export function fetchUsersError(err) {
 export function fetchOneUser(username) {
     return function (dispatch) {
         dispatch(fetchOneUserRequest());
-        axios.get(`${ROOT}/users/${username}`)
+        return axios.get(`${ROOT}/users/${username}`)
             .then(res => {
                 dispatch(fetchOneUserSuccess(res.data));
             })
@@ -339,7 +337,7 @@ export function fetchOneUserError(err) {
 export function voteComment(vote, id) {
     return function (dispatch) {
         dispatch(voteCommentRequest());
-        axios.put(`${ROOT}/comments/${id}?vote=${vote}`)
+        return axios.put(`${ROOT}/comments/${id}?vote=${vote}`)
             .then(res => {
                 dispatch(voteCommentSuccess(res.data));
             })

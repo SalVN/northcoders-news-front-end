@@ -382,39 +382,39 @@ describe('actions', () => {
                 expect(typeof actions.addComment).toBe('function');
             });
 
-            // it('creates FETCH_ARTICLES_SUCCESS when fetching articles has completed successfully', () => {
-            //     moxios.stubRequest(`${ROOT}/articles`,
-            //         {
-            //             status: 200,
-            //             response: { articles: ['articles'] }
-            //         }
-            //     );
+            it('creates ADD_COMMENT_SUCCESS when fetching articles has completed successfully', () => {
+                moxios.stubRequest(`${ROOT}/articles/id/comments`,
+                    {
+                        status: 201,
+                        response: { comment: 'comment' }
+                    }
+                );
 
-            //     const expectedActions = [
-            //         { type: types.FETCH_ARTICLES_REQUEST },
-            //         { type: types.FETCH_ARTICLES_SUCCESS, data: ['articles'] }
-            //     ];
-            //     const store = mockStore({ articles: [] });
+                const expectedActions = [
+                    { type: types.ADD_COMMENT_REQUEST },
+                    { type: types.ADD_COMMENT_SUCCESS, data: { comment: 'comment' } }
+                ];
+                const store = mockStore({ comments: {} });
 
-            //     return store.dispatch(actions.fetchArticles())
-            //         .then(() => {
-            //             expect(store.getActions()).toEqual(expectedActions);
-            //         });
-            // });
+                return store.dispatch(actions.addComment('comment', 'id'))
+                    .then(() => {
+                        expect(store.getActions()).toEqual(expectedActions);
+                    });
+            });
 
-            // it('creates FETCH_ARTICLES_ERROR when fetching articles is unsuccessful', () => {
-            //     moxios.stubRequest(`${ROOT}/articles`, { status: 400 });
-            //     const expectedActions = [
-            //         { type: types.FETCH_ARTICLES_REQUEST },
-            //         { type: types.FETCH_ARTICLES_ERROR, data: new Error('Request failed with status code 400') }
-            //     ];
-            //     const store = mockStore({ articles: [] });
+            it('tries posting twice when an error is thrown', () => {
+                moxios.stubRequest(`${ROOT}/articles/id/comments`, { status: 404, data: new Error('Request failed with status code 404') });
+                const expectedActions = [
+                    { type: types.ADD_COMMENT_REQUEST },
+                    { type: types.ADD_COMMENT_REQUEST }
+                ];
+                const store = mockStore({ data: {} });
 
-            //     return store.dispatch(actions.fetchArticles())
-            //         .then(() => {
-            //             expect(store.getActions()).toEqual(expectedActions);
-            //         });
-            // });
+                return store.dispatch(actions.addComment('comment', 'id'))
+                    .then(() => {
+                        expect(store.getActions()).toEqual(expectedActions);
+                    });
+            });
         });
         describe('#addCommentRequest', () => {
             it('is a function', () => {
@@ -456,8 +456,52 @@ describe('actions', () => {
     });
 
     describe('#deleteComment', () => {
-        it('is a function', () => {
-            expect(typeof actions.deleteComment).toBe('function');
+        describe('function', () => {
+            beforeEach(function () {
+                moxios.install();
+            });
+
+            afterEach(function () {
+                moxios.uninstall();
+            });
+
+            it('is a function', () => {
+                expect(typeof actions.deleteComment).toBe('function');
+            });
+
+            it('creates DELETE_COMMENT_SUCCESS when deleting the comment has completed successfully', () => {
+                moxios.stubRequest(`${ROOT}/comments/id`,
+                    {
+                        status: 200,
+                        response: { comment: 'comment' }
+                    }
+                );
+
+                const expectedActions = [
+                    { type: types.DELETE_COMMENT_REQUEST },
+                    { type: types.DELETE_COMMENT_SUCCESS, data: { comment: 'comment' } }
+                ];
+                const store = mockStore({ comments: [] });
+
+                return store.dispatch(actions.deleteComment('id'))
+                    .then(() => {
+                        expect(store.getActions()).toEqual(expectedActions);
+                    });
+            });
+
+            it('tries deleting twice when an error is thrown', () => {
+                moxios.stubRequest(`${ROOT}/comments/id`, { status: 400 });
+                const expectedActions = [
+                    { type: types.DELETE_COMMENT_REQUEST },
+                    { type: types.DELETE_COMMENT_REQUEST }
+                ];
+                const store = mockStore({ comments: [] });
+
+                return store.dispatch(actions.deleteComment('id'))
+                    .then(() => {
+                        expect(store.getActions()).toEqual(expectedActions);
+                    });
+            });
         });
         describe('#deleteCommentRequest', () => {
             it('is a function', () => {
@@ -499,8 +543,52 @@ describe('actions', () => {
     });
 
     describe('#voteArticle', () => {
-        it('is a function', () => {
-            expect(typeof actions.voteArticle).toBe('function');
+        describe('function', () => {
+            beforeEach(function () {
+                moxios.install();
+            });
+
+            afterEach(function () {
+                moxios.uninstall();
+            });
+
+            it('is a function', () => {
+                expect(typeof actions.voteArticle).toBe('function');
+            });
+
+            it('creates VOTE_ARTICLE_SUCCESS when the put request has completed successfully', () => {
+                moxios.stubRequest(`${ROOT}/articles/id?vote=up`,
+                    {
+                        status: 200,
+                        response: { article: 'article' }
+                    }
+                );
+
+                const expectedActions = [
+                    { type: types.VOTE_ARTICLE_REQUEST },
+                    { type: types.VOTE_ARTICLE_SUCCESS, data: { article: 'article' } }
+                ];
+                const store = mockStore({ articles: [] });
+
+                return store.dispatch(actions.voteArticle('up', 'id'))
+                    .then(() => {
+                        expect(store.getActions()).toEqual(expectedActions);
+                    });
+            });
+
+            it('creates VOTE_ARTICLES_ERROR when the put request is unsuccessful', () => {
+                moxios.stubRequest(`${ROOT}/articles/id?vote=up`, { status: 400 });
+                const expectedActions = [
+                    { type: types.VOTE_ARTICLE_REQUEST },
+                    { type: types.VOTE_ARTICLE_ERROR, data: new Error('Request failed with status code 400') }
+                ];
+                const store = mockStore({ articles: [] });
+
+                return store.dispatch(actions.voteArticle('up', 'id'))
+                    .then(() => {
+                        expect(store.getActions()).toEqual(expectedActions);
+                    });
+            });
         });
         describe('#voteArticleRequest', () => {
             it('is a function', () => {
@@ -541,9 +629,140 @@ describe('actions', () => {
         });
     });
 
+    describe('#voteTopicArticle', () => {
+        describe('function', () => {
+            beforeEach(function () {
+                moxios.install();
+            });
+
+            afterEach(function () {
+                moxios.uninstall();
+            });
+
+            it('is a function', () => {
+                expect(typeof actions.voteTopicArticle).toBe('function');
+            });
+
+            it('creates VOTE_TOPIC_ARTICLE_SUCCESS when the put request has completed successfully', () => {
+                moxios.stubRequest(`${ROOT}/articles/id?vote=up`,
+                    {
+                        status: 200,
+                        response: { article: 'article' }
+                    }
+                );
+
+                const expectedActions = [
+                    { type: types.VOTE_TOPIC_ARTICLE_REQUEST },
+                    { type: types.VOTE_TOPIC_ARTICLE_SUCCESS, data: { article: 'article' } }
+                ];
+                const store = mockStore({ articles: [] });
+
+                return store.dispatch(actions.voteTopicArticle('up', 'id'))
+                    .then(() => {
+                        expect(store.getActions()).toEqual(expectedActions);
+                    });
+            });
+
+            it('creates VOTE_TOPIC_ARTICLE_ERROR when the put request is unsuccessful', () => {
+                moxios.stubRequest(`${ROOT}/articles/id?vote=up`, { status: 400 });
+                const expectedActions = [
+                    { type: types.VOTE_TOPIC_ARTICLE_REQUEST },
+                    { type: types.VOTE_TOPIC_ARTICLE_ERROR, data: new Error('Request failed with status code 400') }
+                ];
+                const store = mockStore({ articles: [] });
+
+                return store.dispatch(actions.voteTopicArticle('up', 'id'))
+                    .then(() => {
+                        expect(store.getActions()).toEqual(expectedActions);
+                    });
+            });
+        });
+        describe('#voteTopicArticleRequest', () => {
+            it('is a function', () => {
+                expect(typeof actions.voteTopicArticleRequest).toBe('function');
+            });
+
+            it('should return the expected action', function () {
+                expect(actions.voteTopicArticleRequest()).toEqual({
+                    type: types.VOTE_TOPIC_ARTICLE_REQUEST
+                });
+            });
+        });
+
+        describe('#voteTopicArticleSuccess', () => {
+            it('is a function', () => {
+                expect(typeof actions.voteTopicArticleSuccess).toBe('function');
+            });
+
+            it('should the expected action', function () {
+                expect(actions.voteTopicArticleSuccess({ votedArticle: 'votedArticle' })).toEqual({
+                    type: types.VOTE_TOPIC_ARTICLE_SUCCESS,
+                    data: { votedArticle: 'votedArticle' }
+                });
+            });
+        });
+
+        describe('#voteTopicArticleError', () => {
+            it('is a function', () => {
+                expect(typeof actions.voteTopicArticleError).toBe('function');
+            });
+
+            it('returns the expected action', function () {
+                expect(actions.voteTopicArticleError('err')).toEqual({
+                    type: types.VOTE_TOPIC_ARTICLE_ERROR,
+                    data: 'err'
+                });
+            });
+        });
+    });
+
     describe('#fetchUsers', () => {
-        it('is a function', () => {
-            expect(typeof actions.fetchUsers).toBe('function');
+        describe('function', () => {
+            beforeEach(function () {
+                moxios.install();
+            });
+
+            afterEach(function () {
+                moxios.uninstall();
+            });
+
+            it('is a function', () => {
+                expect(typeof actions.fetchUsers).toBe('function');
+            });
+
+            it('creates FETCH_USERS_SUCCESS when fetching the users has completed successfully', () => {
+                moxios.stubRequest(`${ROOT}/users`,
+                    {
+                        status: 200,
+                        response: { users: ['users'] }
+                    }
+                );
+
+                const expectedActions = [
+                    { type: types.FETCH_USERS_REQUEST },
+                    { type: types.FETCH_USERS_SUCCESS, data: { users: ['users'] } }
+                ];
+                const store = mockStore({ users: [] });
+
+                return store.dispatch(actions.fetchUsers())
+                    .then(() => {
+                        expect(store.getActions()).toEqual(expectedActions);
+                    });
+            });
+
+            it('creates FETCH_USERS_ERROR when fetching the users is unsuccessful', () => {
+                moxios.stubRequest(`${ROOT}/users`, { status: 400 });
+                const expectedActions = [
+                    { type: types.FETCH_USERS_REQUEST },
+                    { type: types.FETCH_USERS_ERROR, data: new Error('Request failed with status code 400') }
+                ];
+                const store = mockStore({ users: [] });
+
+                return store.dispatch(actions.fetchUsers())
+                    .then(() => {
+                        expect(store.getActions()).toEqual(expectedActions);
+                    });
+            });
         });
         describe('#fetchUsersRequest', () => {
             it('is a function', () => {
@@ -585,8 +804,52 @@ describe('actions', () => {
     });
 
     describe('#fetchOneUser', () => {
-        it('is a function', () => {
-            expect(typeof actions.fetchOneUser).toBe('function');
+        describe('function', () => {
+            beforeEach(function () {
+                moxios.install();
+            });
+
+            afterEach(function () {
+                moxios.uninstall();
+            });
+
+            it('is a function', () => {
+                expect(typeof actions.fetchOneUser).toBe('function');
+            });
+
+            it('creates FETCH_ONE_USER_SUCCESS when fetching the user has completed successfully', () => {
+                moxios.stubRequest(`${ROOT}/users/id`,
+                    {
+                        status: 200,
+                        response: { user: 'user' }
+                    }
+                );
+
+                const expectedActions = [
+                    { type: types.FETCH_ONE_USER_REQUEST },
+                    { type: types.FETCH_ONE_USER_SUCCESS, data: { user: 'user' } }
+                ];
+                const store = mockStore({ oneUser: [] });
+
+                return store.dispatch(actions.fetchOneUser('id'))
+                    .then(() => {
+                        expect(store.getActions()).toEqual(expectedActions);
+                    });
+            });
+
+            it('creates FETCH_ONE_USER_ERROR when fetching the user is unsuccessful', () => {
+                moxios.stubRequest(`${ROOT}/users/user`, { status: 400 });
+                const expectedActions = [
+                    { type: types.FETCH_ONE_USER_REQUEST },
+                    { type: types.FETCH_ONE_USER_ERROR, data: new Error('Request failed with status code 400') }
+                ];
+                const store = mockStore({ oneUser: {} });
+
+                return store.dispatch(actions.fetchOneUser('user'))
+                    .then(() => {
+                        expect(store.getActions()).toEqual(expectedActions);
+                    });
+            });
         });
         describe('#fetchOneUserRequest', () => {
             it('is a function', () => {
@@ -628,8 +891,52 @@ describe('actions', () => {
     });
 
     describe('#voteComment', () => {
-        it('is a function', () => {
-            expect(typeof actions.voteComment).toBe('function');
+        describe('function', () => {
+            beforeEach(function () {
+                moxios.install();
+            });
+
+            afterEach(function () {
+                moxios.uninstall();
+            });
+
+            it('is a function', () => {
+                expect(typeof actions.voteComment).toBe('function');
+            });
+
+            it('creates VOTE_COMMENT_SUCCESS when the put request has completed successfully', () => {
+                moxios.stubRequest(`${ROOT}/comments/id?vote=up`,
+                    {
+                        status: 200,
+                        response: { comment: 'comment' }
+                    }
+                );
+
+                const expectedActions = [
+                    { type: types.VOTE_COMMENT_REQUEST },
+                    { type: types.VOTE_COMMENT_SUCCESS, data: { comment: 'comment' } }
+                ];
+                const store = mockStore({ comments: [] });
+
+                return store.dispatch(actions.voteComment('up', 'id'))
+                    .then(() => {
+                        expect(store.getActions()).toEqual(expectedActions);
+                    });
+            });
+
+            it('creates VOTE_COMMENT_ERROR when the put request is unsuccessful', () => {
+                moxios.stubRequest(`${ROOT}/comments/id?vote=up`, { status: 400 });
+                const expectedActions = [
+                    { type: types.VOTE_COMMENT_REQUEST },
+                    { type: types.VOTE_COMMENT_ERROR, data: new Error('Request failed with status code 400') }
+                ];
+                const store = mockStore({ comments: [] });
+
+                return store.dispatch(actions.voteComment('up', 'id'))
+                    .then(() => {
+                        expect(store.getActions()).toEqual(expectedActions);
+                    });
+            });
         });
         describe('#voteCommentRequest', () => {
             it('is a function', () => {
