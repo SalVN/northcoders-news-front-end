@@ -282,8 +282,52 @@ describe('actions', () => {
     });
 
     describe('#fetchTopicArticles', () => {
-        it('is a function', () => {
-            expect(typeof actions.fetchTopicArticles).toBe('function');
+        describe('function', () => {
+            beforeEach(function () {
+                moxios.install();
+            });
+
+            afterEach(function () {
+                moxios.uninstall();
+            });
+
+            it('is a function', () => {
+                expect(typeof actions.fetchTopicArticles).toBe('function');
+            });
+
+            it('creates FETCH_TOPIC_ARTICLES_SUCCESS when fetching topic articles has completed successfully', () => {
+                moxios.stubRequest(`${ROOT}/topics/id/articles`,
+                    {
+                        status: 200,
+                        response: { articles: ['topicArticles'] }
+                    }
+                );
+
+                const expectedActions = [
+                    { type: types.FETCH_TOPIC_ARTICLES_REQUEST },
+                    { type: types.FETCH_TOPIC_ARTICLES_SUCCESS, data: ['topicArticles'] }
+                ];
+                const store = mockStore({ topicArticles: [] });
+
+                return store.dispatch(actions.fetchTopicArticles('id'))
+                    .then(() => {
+                        expect(store.getActions()).toEqual(expectedActions);
+                    });
+            });
+
+            it('creates FETCH_ARTICLES_ERROR when fetching articles is unsuccessful', () => {
+                moxios.stubRequest(`${ROOT}/articles`, { status: 400 });
+                const expectedActions = [
+                    { type: types.FETCH_ARTICLES_REQUEST },
+                    { type: types.FETCH_ARTICLES_ERROR, data: new Error('Request failed with status code 400') }
+                ];
+                const store = mockStore({ articles: [] });
+
+                return store.dispatch(actions.fetchArticles())
+                    .then(() => {
+                        expect(store.getActions()).toEqual(expectedActions);
+                    });
+            });
         });
         describe('#fetchTopicArticlesRequest', () => {
             it('is a function', () => {
