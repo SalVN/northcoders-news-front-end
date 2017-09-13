@@ -45,7 +45,7 @@ exports[`CommentsList renders correctly 1`] = `
           className="media-left"
         >
           <button
-            className="button is-black is-inverted is-small"
+            className="button is-black is-inverted is-small up"
             onClick={[Function]}
           >
             <i
@@ -61,7 +61,7 @@ exports[`CommentsList renders correctly 1`] = `
             </strong>
           </p>
           <button
-            className="button is-black is-inverted is-small"
+            className="button is-black is-inverted is-small down"
             onClick={[Function]}
           >
             <i
@@ -127,7 +127,7 @@ exports[`CommentsList renders correctly 1`] = `
           className="media-left"
         >
           <button
-            className="button is-black is-inverted is-small"
+            className="button is-black is-inverted is-small up"
             onClick={[Function]}
           >
             <i
@@ -143,7 +143,7 @@ exports[`CommentsList renders correctly 1`] = `
             </strong>
           </p>
           <button
-            className="button is-black is-inverted is-small"
+            className="button is-black is-inverted is-small down"
             onClick={[Function]}
           >
             <i
