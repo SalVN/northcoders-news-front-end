@@ -14,95 +14,145 @@ const mockStore = configureMockStore(middlewares);
 describe('actions', () => {
 
     describe('#fetchArticles', () => {
-        beforeEach(function () {
-            moxios.install();
-        });
+        describe('function', () => {
+            beforeEach(function () {
+                moxios.install();
+            });
 
-        afterEach(function () {
-            moxios.uninstall();
-        });
+            afterEach(function () {
+                moxios.uninstall();
+            });
 
-        it('is a function', () => {
-            expect(typeof actions.fetchArticles).toBe('function');
-        });
+            it('is a function', () => {
+                expect(typeof actions.fetchArticles).toBe('function');
+            });
 
-        it('creates FETCH_ARTICLES_SUCCESS when fetching articles has completed successfully', () => {
-            moxios.stubRequest(`${ROOT}/articles`,
-                {
-                    status: 200,
-                    response: { articles: ['articles'] }
-                }
-            );
+            it('creates FETCH_ARTICLES_SUCCESS when fetching articles has completed successfully', () => {
+                moxios.stubRequest(`${ROOT}/articles`,
+                    {
+                        status: 200,
+                        response: { articles: ['articles'] }
+                    }
+                );
 
-            const expectedActions = [
-                { type: types.FETCH_ARTICLES_REQUEST },
-                { type: types.FETCH_ARTICLES_SUCCESS, data: ['articles'] }
-            ];
-            const store = mockStore({ articles: [] });
+                const expectedActions = [
+                    { type: types.FETCH_ARTICLES_REQUEST },
+                    { type: types.FETCH_ARTICLES_SUCCESS, data: ['articles'] }
+                ];
+                const store = mockStore({ articles: [] });
 
-            return store.dispatch(actions.fetchArticles())
-                .then(() => {
-                    expect(store.getActions()).toEqual(expectedActions);
-                });
-        });
+                return store.dispatch(actions.fetchArticles())
+                    .then(() => {
+                        expect(store.getActions()).toEqual(expectedActions);
+                    });
+            });
 
-        it('creates FETCH_ARTICLES_ERROR when fetching articles is unsuccessful', () => {
-            moxios.stubRequest(`${ROOT}/articles`, { status: 400});
-            const expectedActions = [
-                { type: types.FETCH_ARTICLES_REQUEST },
-                { type: types.FETCH_ARTICLES_ERROR, data: new Error('Request failed with status code 400') }
-            ];
-            const store = mockStore({ articles: [] });
+            it('creates FETCH_ARTICLES_ERROR when fetching articles is unsuccessful', () => {
+                moxios.stubRequest(`${ROOT}/articles`, { status: 400 });
+                const expectedActions = [
+                    { type: types.FETCH_ARTICLES_REQUEST },
+                    { type: types.FETCH_ARTICLES_ERROR, data: new Error('Request failed with status code 400') }
+                ];
+                const store = mockStore({ articles: [] });
 
-            return store.dispatch(actions.fetchArticles())
-                .then(() => {
-                    expect(store.getActions()).toEqual(expectedActions);
-                });
-        });
-    });
-
-
-    describe('#fetchArticlesRequest', () => {
-        it('is a function', () => {
-            expect(typeof actions.fetchArticlesRequest).toBe('function');
-        });
-
-        it('should return the expected action', function () {
-            expect(actions.fetchArticlesRequest()).toEqual({
-                type: types.FETCH_ARTICLES_REQUEST
+                return store.dispatch(actions.fetchArticles())
+                    .then(() => {
+                        expect(store.getActions()).toEqual(expectedActions);
+                    });
             });
         });
-    });
 
-    describe('#fetchArticlesSuccess', () => {
-        it('is a function', () => {
-            expect(typeof actions.fetchArticlesSuccess).toBe('function');
-        });
+        describe('#fetchArticlesRequest', () => {
+            beforeEach(function () {
+                moxios.install();
+            });
+            it('is a function', () => {
+                expect(typeof actions.fetchArticlesRequest).toBe('function');
+            });
 
-        it('should the expected action', function () {
-            expect(actions.fetchArticlesSuccess(['articles'])).toEqual({
-                type: types.FETCH_ARTICLES_SUCCESS,
-                data: ['articles']
+            it('should return the expected action', function () {
+                expect(actions.fetchArticlesRequest()).toEqual({
+                    type: types.FETCH_ARTICLES_REQUEST
+                });
             });
         });
-    });
 
-    describe('#fetchArticlesError', () => {
-        it('is a function', () => {
-            expect(typeof actions.fetchArticlesError).toBe('function');
+        describe('#fetchArticlesSuccess', () => {
+            it('is a function', () => {
+                expect(typeof actions.fetchArticlesSuccess).toBe('function');
+            });
+
+            it('should the expected action', function () {
+                expect(actions.fetchArticlesSuccess(['articles'])).toEqual({
+                    type: types.FETCH_ARTICLES_SUCCESS,
+                    data: ['articles']
+                });
+            });
         });
 
-        it('returns the expected action', function () {
-            expect(actions.fetchArticlesError('err')).toEqual({
-                type: types.FETCH_ARTICLES_ERROR,
-                data: 'err'
+        describe('#fetchArticlesError', () => {
+            it('is a function', () => {
+                expect(typeof actions.fetchArticlesError).toBe('function');
+            });
+
+            it('returns the expected action', function () {
+                expect(actions.fetchArticlesError('err')).toEqual({
+                    type: types.FETCH_ARTICLES_ERROR,
+                    data: 'err'
+                });
             });
         });
     });
 
     describe('#fetchTopics', () => {
-        it('is a function', () => {
-            expect(typeof actions.fetchTopics).toBe('function');
+
+
+        describe('function', () => {
+            beforeEach(function () {
+                moxios.install();
+            });
+
+            afterEach(function () {
+                moxios.uninstall();
+            });
+
+            it('is a function', () => {
+                expect(typeof actions.fetchTopics).toBe('function');
+            });
+
+            it('creates FETCH_TOPICS_SUCCESS when fetching topics has completed successfully', () => {
+                moxios.stubRequest(`${ROOT}/topics`,
+                    {
+                        status: 200,
+                        response: { topics: ['topics'] }
+                    }
+                );
+
+                const expectedActions = [
+                    { type: types.FETCH_TOPICS_REQUEST },
+                    { type: types.FETCH_TOPICS_SUCCESS, data: ['topics'] }
+                ];
+                const store = mockStore({ topics: [] });
+
+                return store.dispatch(actions.fetchTopics())
+                    .then(() => {
+                        expect(store.getActions()).toEqual(expectedActions);
+                    });
+            });
+
+            it('creates FETCH_TOPICS_ERROR when fetching topics is unsuccessful', () => {
+                moxios.stubRequest(`${ROOT}/topics`, { status: 400 });
+                const expectedActions = [
+                    { type: types.FETCH_TOPICS_REQUEST },
+                    { type: types.FETCH_TOPICS_ERROR, data: new Error('Request failed with status code 400') }
+                ];
+                const store = mockStore({ topics: [] });
+
+                return store.dispatch(actions.fetchTopics())
+                    .then(() => {
+                        expect(store.getActions()).toEqual(expectedActions);
+                    });
+            });
         });
 
         describe('#fetchTopicsRequest', () => {

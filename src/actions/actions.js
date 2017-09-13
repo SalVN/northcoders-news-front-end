@@ -11,7 +11,6 @@ export function fetchArticles() {
                 dispatch(fetchArticlesSuccess(res.data.articles));
             })
             .catch(err => {
-                console.log(err)
                 dispatch(fetchArticlesError(err));
             });
     };
@@ -40,7 +39,7 @@ export function fetchArticlesError(err) {
 export function fetchTopics() {
     return function (dispatch) {
         dispatch(fetchTopicsRequest());
-        axios.get(`${ROOT}/topics`)
+        return axios.get(`${ROOT}/topics`)
             .then(res => {
                 dispatch(fetchTopicsSuccess(res.data.topics));
             })
