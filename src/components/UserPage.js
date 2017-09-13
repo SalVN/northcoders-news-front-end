@@ -100,7 +100,7 @@ class UserPage extends Component {
                                 viewMoreArticles={this.increaseArticlesMax}
 
                             />
-                            : <p>This user hasn't uploaded any articles yet</p>
+                            : <p className='user-page-no-articles'>This user hasn't uploaded any articles yet</p>
                     }
                 </div>
                 <hr />

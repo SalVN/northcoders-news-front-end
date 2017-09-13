@@ -139,7 +139,7 @@ export function fetchTopicArticlesError(err) {
 export function addComment(data, id) {
     return function (dispatch) {
         dispatch(addCommentRequest());
-        axios.post(`${ROOT}/articles/${id}/comments`, data)
+        return axios.post(`${ROOT}/articles/${id}/comments`, data)
             .then(res => {
                 dispatch(addCommentSuccess(res.data));
             })

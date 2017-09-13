@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 import * as actions from '../actions/actions';
 import { USERNAME } from '../../config';
@@ -31,10 +32,12 @@ class UserCard extends Component {
                                     </div>
 
                                     : <div>
-                                        <div>
-                                            <p className='user-card-name'><strong>{this.props.user.name}</strong></p>
-                                            <p className='user-card-username'>{`@${this.props.user.username}`}</p>
-                                        </div>
+                                        <Link to={`users/${this.props.user.username}`}>
+                                            <div>
+                                                <p className='user-card-name'><strong>{this.props.user.name}</strong></p>
+                                                <p className='user-card-username'>{`@${this.props.user.username}`}</p>
+                                            </div>
+                                        </Link>
                                         <div className='columns'>
                                             <div className='column is-half'>
                                                 <div className='user-card-mini-title'>Comments</div>
