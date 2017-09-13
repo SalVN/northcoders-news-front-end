@@ -7,7 +7,7 @@ import * as actions from '../actions/actions';
 import './css/UsersPage.css';
 import UsersCard from './UsersCard';
 
-class UsersPage extends Component {
+export class UsersPage extends Component {
     componentDidMount() {
         if (this.props.users && this.props.users.length < 1) {
             this.props.fetchUsers();

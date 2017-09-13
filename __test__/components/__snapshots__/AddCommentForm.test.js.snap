@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddCommentForm renders correctly 1`] = `
+<div>
+  <div
+    className="box box-style box-style-comment box-style-comment-small"
+  >
+    <article
+      className="media"
+    >
+      <div
+        className="media-left"
+      >
+        <img
+          className="comment-form-image"
+          src="https://avatars3.githubusercontent.com/u/6791502?v=3&s=200"
+        />
+      </div>
+      <div
+        className="media-content"
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="comment-form-small"
+            onClick={[Function]}
+          >
+            <p>
+              Join the conversation
+            </p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>
+`;
