@@ -24,4 +24,9 @@ describe('PageNotFound', () => {
         ).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
+    it('contains one link', () => {
+        const enzymeWrapper = shallow(<PageNotFound />);
+        expect(enzymeWrapper.find('Link').length).toBe(1);
+    });
 });

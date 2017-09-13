@@ -24,4 +24,10 @@ describe('UserNotFound', () => {
         ).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
+    it('contains one link', () => {
+        const enzymeWrapper = shallow(<UserNotFound />);
+        expect(enzymeWrapper.find('Link').length).toBe(1);
+    });
+
 });

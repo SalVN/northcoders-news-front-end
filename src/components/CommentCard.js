@@ -16,7 +16,6 @@ const CommentCard = function (props) {
           <p className='comment-card-votes'><strong>{props.comment.votes}</strong></p>
           <button onClick={props.voteHandler.bind(this, 'down', props.comment._id)} className='button is-black is-inverted is-small'><i className="fa fa-arrow-down" aria-hidden="true"></i></button>
         </div>
-
         <div className='media-content'>
           <div className='content'>
 

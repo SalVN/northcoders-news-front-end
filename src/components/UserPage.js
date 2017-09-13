@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Redirect } from 'react-router-dom';
 
-
 import * as actions from '../actions/actions';
 import { getIndexUsername } from '../utilities/getIndex';
 
