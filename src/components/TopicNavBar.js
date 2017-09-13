@@ -7,7 +7,7 @@ import * as actions from '../actions/actions';
 import './css/TopicNavBar.css';
 import { USERNAME } from '../../config';
 
-class TopicNavBar extends Component {
+export class TopicNavBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -61,10 +61,13 @@ class TopicNavBar extends Component {
                     </div>
                     <div className='navbar-end'>
                         <span className='navbar-item'>
-                            <Link className='user' to={`/users/${this.props.user.username}`}>
-                                <span><img className='avatar' src={`${this.props.user.avatar_url}`} /></span>
-                                <span className='navbar-user-text'><strong>{this.props.user.username}</strong></span>
-                            </Link>
+                            {
+                                this.props.user &&
+                                <Link className='user' to={`/users/${this.props.user.username}`}>
+                                    <span><img className='avatar' src={`${this.props.user.avatar_url}`} /></span>
+                                    <span className='navbar-user-text'><strong>{this.props.user.username}</strong></span>
+                                </Link>
+                            }
                         </span>
                     </div>
                 </div>

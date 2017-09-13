@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TopicNavBar renders correctly 1`] = `
+<nav
+  className="navbar navbar-css"
+>
+  <div
+    className="navbar-brand"
+  >
+    <span
+      className="navbar-item"
+    >
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        <img
+          alt="Northcoders logo"
+          className="logo"
+          src="https://avatars3.githubusercontent.com/u/6791502?v=3&s=200"
+        />
+      </a>
+    </span>
+    <div
+      className="navbar-burger "
+      onClick={[Function]}
+    >
+      <div
+        className="navbar-burger"
+      >
+        <span />
+        <span />
+        <span />
+      </div>
+    </div>
+  </div>
+  <div
+    className="navbar-menu "
+  >
+    <div
+      className="navbar-start"
+    />
+    <div
+      className="navbar-end"
+    >
+      <span
+        className="navbar-item"
+      />
+    </div>
+  </div>
+</nav>
+`;

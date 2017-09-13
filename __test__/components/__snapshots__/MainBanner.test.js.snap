@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainBanner renders correctly 1`] = `
+<section
+  className="hero is-primary is-bold"
+>
+  <div
+    className="hero-body hero-css"
+  >
+    <div
+      className="container"
+    >
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        <h1
+          className="title main-heading is-size-1 is-size-3-mobile"
+        >
+          <strong>
+            NORTHCODERS News
+          </strong>
+        </h1>
+      </a>
+    </div>
+  </div>
+</section>
+`;
