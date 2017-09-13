@@ -21,6 +21,11 @@ describe('MainBanner', () => {
         expect(enzymeWrapper.find('h1').nodes[0].props.children.props.children).toBe('NORTHCODERS News');
     });
 
+    it('contains one link', () => {
+        const enzymeWrapper = shallow(<MainBanner />);
+        expect(enzymeWrapper.find('Link').length).toBe(1);
+    });
+
     it('renders correctly', () => {
         const tree = renderer.create(
             <MemoryRouter>
