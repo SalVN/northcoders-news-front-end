@@ -44,7 +44,7 @@ exports[`UserRankingCard renders correctly 1`] = `
       <p
         className="user-list-card-ranking-number"
       >
-        NaN
+        50
       </p>
     </div>
   </div>

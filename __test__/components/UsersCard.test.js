@@ -34,4 +34,11 @@ describe('UsersCard', () => {
         ).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
+    it('contains one link', () => {
+        const enzymeWrapper = shallow(<UsersCard
+            user={user}
+        />);
+        expect(enzymeWrapper.find('Link').length).toBe(1);
+    });
 });

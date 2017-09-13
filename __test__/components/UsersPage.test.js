@@ -61,7 +61,6 @@ describe('UsersPage', () => {
         });
     });
 
-
     it('does not render any cards if there are no users', () => {
         const enzymeWrapper = shallow(<UsersPage
             users={[]}
