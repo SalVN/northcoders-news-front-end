@@ -1,7 +1,5 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import nock from 'nock';
-import fetchMock from 'fetch-mock';
 import { ROOT } from '../../config';
 import moxios from 'moxios';
 
@@ -195,8 +193,53 @@ describe('actions', () => {
     });
 
     describe('#fetchComments', () => {
-        it('is a function', () => {
-            expect(typeof actions.fetchComments).toBe('function');
+
+        describe('function', () => {
+            beforeEach(function () {
+                moxios.install();
+            });
+
+            afterEach(function () {
+                moxios.uninstall();
+            });
+
+            it('is a function', () => {
+                expect(typeof actions.fetchComments).toBe('function');
+            });
+
+            it('creates FETCH_COMMENTS_SUCCESS when fetching comments has completed successfully', () => {
+                moxios.stubRequest(`${ROOT}/articles/id/comments`,
+                    {
+                        status: 200,
+                        response: { comments: ['comments'] }
+                    }
+                );
+
+                const expectedActions = [
+                    { type: types.FETCH_COMMENTS_REQUEST },
+                    { type: types.FETCH_COMMENTS_SUCCESS, data: ['comments'] }
+                ];
+                const store = mockStore({ comments: [] });
+
+                return store.dispatch(actions.fetchComments('id'))
+                    .then(() => {
+                        expect(store.getActions()).toEqual(expectedActions);
+                    });
+            });
+
+            it('creates FETCH_COMMENTS_ERROR when fetching articles is unsuccessful', () => {
+                moxios.stubRequest(`${ROOT}/articles/id/comments`, { status: 400 });
+                const expectedActions = [
+                    { type: types.FETCH_COMMENTS_REQUEST },
+                    { type: types.FETCH_COMMENTS_ERROR, data: new Error('Request failed with status code 400') }
+                ];
+                const store = mockStore({ comments: [] });
+
+                return store.dispatch(actions.fetchComments('id'))
+                    .then(() => {
+                        expect(store.getActions()).toEqual(expectedActions);
+                    });
+            });
         });
 
         describe('#fetchCommentsRequest', () => {

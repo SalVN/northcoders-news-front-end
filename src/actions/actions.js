@@ -71,12 +71,14 @@ export function fetchTopicsError(err) {
 
 export function fetchComments(id) {
     return function (dispatch) {
+        console.log('fc');
         dispatch(fetchCommentsRequest());
-        axios.get(`${ROOT}/articles/${id}/comments`)
+        return axios.get(`${ROOT}/articles/${id}/comments`)
             .then(res => {
                 dispatch(fetchCommentsSuccess(res.data.comments));
             })
             .catch(err => {
+                console.log('err')
                 dispatch(fetchCommentsError(err));
             });
     };
