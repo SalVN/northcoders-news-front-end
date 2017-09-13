@@ -1,0 +1,284 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommentsList renders correctly 1`] = `
+<div>
+  <div
+    className="comment-sort-links"
+  >
+    <a
+      className="comment-sort-active"
+      onClick={[Function]}
+    >
+      <span
+        className="comment-sort-left"
+      >
+        sort by newest
+      </span>
+    </a>
+    <a
+      className="comment-sort-links"
+      onClick={[Function]}
+    >
+      <span
+        className="comment-sort-left"
+      >
+        sort by oldest
+      </span>
+    </a>
+    <a
+      className="comment-sort-links"
+      onClick={[Function]}
+    >
+      <span>
+        sort by votes
+      </span>
+    </a>
+  </div>
+  <div>
+    <div
+      className="card box-style"
+    >
+      <article
+        className="media"
+      >
+        <div
+          className="media-left"
+        >
+          <button
+            className="button is-black is-inverted is-small"
+            onClick={[Function]}
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-arrow-up"
+            />
+          </button>
+          <p
+            className="comment-card-votes"
+          >
+            <strong>
+              0
+            </strong>
+          </p>
+          <button
+            className="button is-black is-inverted is-small"
+            onClick={[Function]}
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-arrow-down"
+            />
+          </button>
+        </div>
+        <div
+          className="media-content"
+        >
+          <div
+            className="content"
+          >
+            <div>
+              <img
+                alt="user avatar"
+                className="comment-card-avatar"
+                src="https://avatars3.githubusercontent.com/u/6791502?v=3&s=200"
+              />
+              <a
+                href="/users/northcoder"
+                onClick={[Function]}
+              >
+                <span
+                  className="comment-card-name"
+                >
+                  <strong>
+                    northcoder
+                  </strong>
+                </span>
+              </a>
+              <p
+                className="comment-card-date"
+              >
+                7th September 2017, 10:09
+              </p>
+            </div>
+            <div
+              className="comment-card-body"
+            >
+              this is my comment
+            </div>
+            <button
+              className="button is-small delete-button"
+              onClick={[Function]}
+            >
+              Delete Comment
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+  <div>
+    <div
+      className="card box-style"
+    >
+      <article
+        className="media"
+      >
+        <div
+          className="media-left"
+        >
+          <button
+            className="button is-black is-inverted is-small"
+            onClick={[Function]}
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-arrow-up"
+            />
+          </button>
+          <p
+            className="comment-card-votes"
+          >
+            <strong>
+              0
+            </strong>
+          </p>
+          <button
+            className="button is-black is-inverted is-small"
+            onClick={[Function]}
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-arrow-down"
+            />
+          </button>
+        </div>
+        <div
+          className="media-content"
+        >
+          <div
+            className="content"
+          >
+            <div>
+              <img
+                alt="user avatar"
+                className="comment-card-avatar"
+                src="https://avatars3.githubusercontent.com/u/6791502?v=3&s=200"
+              />
+              <a
+                href="/users/northcoder"
+                onClick={[Function]}
+              >
+                <span
+                  className="comment-card-name"
+                >
+                  <strong>
+                    northcoder
+                  </strong>
+                </span>
+              </a>
+              <p
+                className="comment-card-date"
+              >
+                7th September 2017, 10:09
+              </p>
+            </div>
+            <div
+              className="comment-card-body"
+            >
+              this is a comment
+            </div>
+            <button
+              className="button is-small delete-button"
+              onClick={[Function]}
+            >
+              Delete Comment
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+  <div>
+    <div
+      className="card box-style"
+    >
+      <article
+        className="media"
+      >
+        <div
+          className="media-left"
+        >
+          <button
+            className="button is-black is-inverted is-small"
+            onClick={[Function]}
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-arrow-up"
+            />
+          </button>
+          <p
+            className="comment-card-votes"
+          >
+            <strong>
+              0
+            </strong>
+          </p>
+          <button
+            className="button is-black is-inverted is-small"
+            onClick={[Function]}
+          >
+            <i
+              aria-hidden="true"
+              className="fa fa-arrow-down"
+            />
+          </button>
+        </div>
+        <div
+          className="media-content"
+        >
+          <div
+            className="content"
+          >
+            <div>
+              <img
+                alt="user avatar"
+                className="comment-card-avatar"
+                src="https://avatars3.githubusercontent.com/u/6791502?v=3&s=200"
+              />
+              <a
+                href="/users/northcoder"
+                onClick={[Function]}
+              >
+                <span
+                  className="comment-card-name"
+                >
+                  <strong>
+                    northcoder
+                  </strong>
+                </span>
+              </a>
+              <p
+                className="comment-card-date"
+              >
+                7th September 2017, 10:09
+              </p>
+            </div>
+            <div
+              className="comment-card-body"
+            >
+              this is another comment
+            </div>
+            <button
+              className="button is-small delete-button"
+              onClick={[Function]}
+            >
+              Delete Comment
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArticleListHeader renders correctly 1`] = `
+<div
+  className="content"
+>
+  <div
+    className="columns"
+  >
+    <div
+      className="column"
+    >
+      <h2
+        className="page-title"
+      >
+        <strong />
+      </h2>
+    </div>
+    <div
+      className="column label has-text-left-mobile has-text-right-tablet"
+    >
+      <div
+        className="dropdown has-text-left "
+      >
+        <div
+          className="dropdown-trigger"
+        >
+          <button
+            aria-controls="dropdown-menu"
+            aria-haspopup="true"
+            className="button dropdown-button-article-list"
+            onClick={undefined}
+          >
+            <label
+              htmlFor="Sort by"
+            >
+              Sort by:
+            </label>
+            <span
+              className="icon"
+            >
+              <i
+                aria-hidden="true"
+                className="fa fa-caret-down"
+              />
+            </span>
+          </button>
+        </div>
+        <div
+          className="dropdown-menu"
+          id="dropdown-menu"
+          role="menu"
+        >
+          <div
+            className="dropdown-content"
+          >
+            <a
+              className="dropdown-item"
+              onClick={undefined}
+              value="votes"
+            >
+              Popularity
+            </a>
+            <a
+              className="dropdown-item"
+              onClick={undefined}
+              value="comments"
+            >
+              Number of Comments
+            </a>
+            <a
+              className="dropdown-item"
+              onClick={undefined}
+              value="random"
+            >
+              Random
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -6,7 +6,7 @@ import { sortComments } from '../utilities/sortComments';
 import CommentCard from './CommentCard';
 import './css/CommentsList.css';
 
-class CommentsList extends Component {
+export class CommentsList extends Component {
     constructor(props) {
         super(props);
         this.state = {

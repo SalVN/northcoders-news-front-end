@@ -8,7 +8,7 @@ import { sortArticles } from '../utilities/sortArticles';
 import ArticleCard from './ArticleCard';
 import './css/ArticleList.css';
 
-class ArticleList extends React.Component {
+export class ArticleList extends React.Component {
   componentDidMount() {
     if (this.props.users && this.props.users.length < 1) {
       this.props.fetchUsers();

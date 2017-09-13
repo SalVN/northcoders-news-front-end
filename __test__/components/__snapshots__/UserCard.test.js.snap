@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserCard renders correctly 1`] = `
+<div
+  className="card-box"
+>
+  <div
+    className="container-fluid"
+  >
+    <div
+      className="card"
+    >
+      <div
+        className="background"
+      >
+        <img
+          className="user-card-avatar"
+          src="https://avatars3.githubusercontent.com/u/6791502?v=3&s=200"
+        />
+      </div>
+      <div
+        className="card-content"
+      >
+        <div>
+          <a
+            href="users/northcoder"
+            onClick={[Function]}
+          >
+            <div>
+              <p
+                className="user-card-name"
+              >
+                <strong>
+                  Awesome Northcoder
+                </strong>
+              </p>
+              <p
+                className="user-card-username"
+              >
+                @northcoder
+              </p>
+            </div>
+          </a>
+          <div
+            className="columns"
+          >
+            <div
+              className="column is-half"
+            >
+              <div
+                className="user-card-mini-title"
+              >
+                Comments
+              </div>
+              <div
+                className="user-card-number"
+              />
+            </div>
+            <div
+              className="column is-half"
+            >
+              <div
+                className="user-card-mini-title"
+              >
+                Popularity
+              </div>
+              <div
+                className="user-card-number"
+              >
+                NaN
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

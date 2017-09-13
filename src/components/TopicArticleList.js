@@ -9,7 +9,7 @@ import ArticleList from './ArticleList';
 import ArticleListHeader from './ArticleListHeader';
 import './css/TopicArticleList.css';
 
-class TopicArticleList extends React.Component {
+export class TopicArticleList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

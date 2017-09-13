@@ -8,7 +8,7 @@ import { USERNAME } from '../../config';
 
 import './css/UserCard.css';
 
-class UserCard extends Component {
+export class UserCard extends Component {
     componentDidMount() {
         if (!this.props.user.username) {
             this.props.fetchUser(USERNAME);

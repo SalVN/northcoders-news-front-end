@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserNotFound renders correctly 1`] = `
+<div
+  className="card page-not-found-card"
+>
+  <div
+    className="card-image"
+  >
+    <img
+      src="http://res.cloudinary.com/dl37xtqhv/image/upload/v1505237987/woman-565104_1920_amcmvg.jpg"
+    />
+  </div>
+  <div
+    className="card-content"
+  >
+    <div
+      className="page-not-found-title"
+    >
+      User Not Found
+    </div>
+    <div>
+      That user does not exist
+    </div>
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <button
+        className="button page-not-found-button"
+      >
+        Return to home page
+      </button>
+    </a>
+  </div>
+</div>
+`;

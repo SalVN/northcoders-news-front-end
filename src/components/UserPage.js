@@ -14,7 +14,7 @@ import ArticleList from './ArticleList';
 import { returnFilteredArticles } from '../utilities/filterArticles';
 import './css/UserPage.css';
 
-class UserPage extends Component {
+export class UserPage extends Component {
     constructor(props) {
         super(props);
         this.state = {

@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Article renders correctly 1`] = `
+<div
+  className="box article-card-style"
+>
+  <div
+    className="columns is-mobile"
+  >
+    <div
+      className="column is-1"
+    >
+      <button
+        className="button is-black is-inverted is-small"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="fa fa-arrow-up"
+        />
+      </button>
+      <p
+        className="comment-card-votes article-votes"
+      >
+        <strong>
+          3
+        </strong>
+      </p>
+      <button
+        className="button is-black is-inverted is-small"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="fa fa-arrow-down"
+        />
+      </button>
+    </div>
+    <div
+      className="column"
+    >
+      <div
+        className="title is-3 article-title"
+      >
+        Football is fun
+      </div>
+      <p>
+        <span>
+          <span
+            className="article-subheading-key"
+          >
+            added by:
+          </span>
+          <a
+            href="/users/undefined"
+            onClick={[Function]}
+          >
+            <span>
+              <img
+                alt="user avatar"
+                className="article-card-avatar"
+                src="https://avatars3.githubusercontent.com/u/6791502?v=3&s=200"
+              />
+            </span>
+            <span
+              className="article-subheading-value"
+            >
+              <strong />
+            </span>
+          </a>
+        </span>
+        <span>
+          <span
+            className="article-card-subheading-key"
+          >
+            tags:
+          </span>
+          <a
+            href="/topics/football/articles"
+            onClick={[Function]}
+          >
+            <span
+              className="article-card-subheading-value"
+            >
+              <strong>
+                football
+              </strong>
+            </span>
+          </a>
+        </span>
+        <span>
+          <span
+            className="article-card-subheading-key"
+          >
+            comments:
+          </span>
+          <a
+            href="#comments"
+          >
+            <span
+              className="article-card-subheading-value"
+            >
+              <strong>
+                0
+              </strong>
+            </span>
+          </a>
+        </span>
+      </p>
+      <div
+        className="article-body"
+      >
+        something
+      </div>
+    </div>
+  </div>
+</div>
+`;

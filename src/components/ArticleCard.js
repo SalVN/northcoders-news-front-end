@@ -11,11 +11,13 @@ const ArticleCard = function (props) {
         <div className='media-left article-number is-hidden-mobile'>
           {props.number + 1}
         </div>
-        <div className='media-left is-hidden-mobile'>
-          <button className='button is-black is-inverted is-small' onClick={props.voteHandler.bind(this, 'up', props.id)}><i className="fa fa-arrow-up" aria-hidden="true"></i></button>
-          <p className='article-card-votes'><strong>{props.votes}</strong></p>
-          <button className='button is-black is-inverted is-small' onClick={props.voteHandler.bind(this, 'down', props.id)}><i className="fa fa-arrow-down" aria-hidden="true"></i></button>
-        </div>
+        {props.voteHandler &&
+          <div className='media-left is-hidden-mobile'>
+            < button className='button is-black is-inverted is-small' onClick={props.voteHandler.bind(this, 'up', props.id)}><i className="fa fa-arrow-up" aria-hidden="true"></i></button>
+            <p className='article-card-votes'><strong>{props.votes}</strong></p>
+            <button className='button is-black is-inverted is-small' onClick={props.voteHandler.bind(this, 'down', props.id)}><i className="fa fa-arrow-down" aria-hidden="true"></i></button>
+          </div>
+        }
         <div className='media-content'>
           <div className='content'>
             <Link to={`/articles/${props.id}`}>

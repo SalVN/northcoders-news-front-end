@@ -8,7 +8,7 @@ import { sortUsers } from '../utilities/sortUsers';
 import UserRankingCard from './UserRankingCard';
 import './css/UserListCard.css';
 
-class UserListCard extends Component {
+export class UserListCard extends Component {
     constructor(props) {
         super(props);
         this.state = {

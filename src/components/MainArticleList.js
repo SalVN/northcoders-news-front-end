@@ -8,7 +8,7 @@ import ArticleList from './ArticleList';
 import ArticleListHeader from './ArticleListHeader';
 import './css/MainArticleList.css';
 
-class MainArticleList extends React.Component {
+export class MainArticleList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

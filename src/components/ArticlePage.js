@@ -10,7 +10,7 @@ import Article from './Article';
 import Comments from './Comments';
 import './css/ArticlePage.css';
 
-class ArticlePage extends Component {
+export class ArticlePage extends Component {
     constructor(props) {
         super(props);
         this.articleVoteHandler = this.articleVoteHandler.bind(this);

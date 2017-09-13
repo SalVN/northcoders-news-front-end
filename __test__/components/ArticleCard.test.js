@@ -3,28 +3,22 @@ import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 import { Route, MemoryRouter } from 'react-router-dom';
 
+import ArticleCard from '../../src/components/ArticleCard';
 
-import MainBanner from '../../src/components/MainBanner';
-
-describe('MainBanner', () => {
+describe('ArticleCard', () => {
     it('is a function', () => {
-        expect(typeof MainBanner).toEqual('function');
+        expect(typeof ArticleCard).toEqual('function');
     });
 
     it('renders', () => {
-        const enzymeWrapper = shallow(<MainBanner />);
+        const enzymeWrapper = shallow(<ArticleCard voteHandler={(x) => { return x; }} />);
         expect(enzymeWrapper.children().length).toEqual(1);
-    });
-
-    it('contains the title NORTHCODERS News', () => {
-        const enzymeWrapper = shallow(<MainBanner />);
-        expect(enzymeWrapper.find('h1').nodes[0].props.children.props.children).toBe('NORTHCODERS News');
     });
 
     it('renders correctly', () => {
         const tree = renderer.create(
             <MemoryRouter>
-                <MainBanner />
+                <ArticleCard voteHandler={(x) => { return x; }} />
             </MemoryRouter>
         ).toJSON();
         expect(tree).toMatchSnapshot();
