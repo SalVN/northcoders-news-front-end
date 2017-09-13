@@ -3,32 +3,10 @@ import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import { Route, MemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 
 const mockStore = configureStore();
-const initialState = {
-    topics: {
-        loading: false,
-        topics: [{
-            _id: '59b04728371c52f1739aba0b',
-            title: 'Football',
-            slug: 'football',
-            __v: 0
-        },
-        {
-            _id: '59b04728371c52f1739aba0c',
-            title: 'Cooking',
-            slug: 'cooking',
-            __v: 0
-        },
-        {
-            _id: '59b04728371c52f1739aba0d',
-            title: 'Cats',
-            slug: 'cats',
-            __v: 0
-        }]
-    }
-};
+const initialState = {};
 
 import { ArticleList } from '../../src/components/ArticleList';
 
@@ -38,6 +16,7 @@ describe('ArticleList', () => {
         title: 'Football is fun',
         body: 'something',
         belongs_to: 'football',
+        created_by: 'northcoder',
         __v: 0,
         votes: 3,
         comment_count: 0
@@ -47,6 +26,7 @@ describe('ArticleList', () => {
         title: 'Cats are great',
         body: 'something',
         belongs_to: 'cats',
+        created_by: 'northcoder',
         __v: 0,
         votes: 2,
         comment_count: 2
@@ -75,8 +55,13 @@ describe('ArticleList', () => {
         const enzymeWrapper = shallow(<ArticleList
             store={store}
             articles={articles}
+            usersLoading={false}
+            fetchUsers={x => x}
+            voteArticle={x => x}
             users={users}
+            sortBy={'votes'}
             maximum={2}
+            viewMoreArticles={x => x}
         />);
         expect(enzymeWrapper.children().length).toEqual(3);
     });
@@ -84,14 +69,19 @@ describe('ArticleList', () => {
     it('renders correctly', () => {
         const store = mockStore(initialState);
         const tree = renderer.create(
-            <Provider>
+            <Provider store={store}>
                 <MemoryRouter>
                     <ArticleList
+                        store={store}
                         articles={articles}
-                        maximum={2}
-                        voteHandler={(x) => { return x; }}
+                        usersLoading={false}
+                        fetchUsers={x => x}
+                        voteArticle={x => x}
                         users={users}
-                        store={store} />
+                        sortBy={'votes'}
+                        maximum={2}
+                        viewMoreArticles={x => x}
+                    />
                 </MemoryRouter>
             </Provider>
         ).toJSON();

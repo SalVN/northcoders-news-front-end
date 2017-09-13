@@ -11,6 +11,31 @@ exports[`UsersPage renders correctly 1`] = `
   </h2>
   <div
     className="container-fluid"
-  />
+  >
+    <div
+      className="card users-box-style"
+    >
+      <div
+        className="column is-two-thirds"
+      >
+        <a
+          href="/users/northcoder"
+          onClick={[Function]}
+        >
+          <div>
+            <img
+              className="users-list-image"
+              src="https://avatars3.githubusercontent.com/u/6791502?v=3&s=200"
+            />
+            <span
+              className="users-list-username-text"
+            >
+              northcoder
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
 </div>
 `;

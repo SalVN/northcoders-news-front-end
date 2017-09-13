@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import { Route, MemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 
 const mockStore = configureStore();
 const initialState = {};
@@ -25,6 +25,25 @@ describe('UserPage', () => {
         __v: 0
     }];
 
+    const articles = [{
+        _id: '59b01acf006c8dbca914672f',
+        title: 'Football is fun',
+        body: 'something',
+        belongs_to: 'football',
+        __v: 0,
+        votes: 3,
+        comment_count: 0
+    },
+    {
+        _id: '59b01acf006c8dbca914672e',
+        title: 'Cats are great',
+        body: 'something',
+        belongs_to: 'cats',
+        __v: 0,
+        votes: 2,
+        comment_count: 2
+    }];
+
     it('is a function', () => {
         expect(typeof UserPage).toEqual('function');
     });
@@ -33,13 +52,19 @@ describe('UserPage', () => {
         const store = mockStore(initialState);
         const enzymeWrapper = shallow(<UserPage
             users={users}
+            fetchUsers={x => x}
             match={
                 {
                     params: {
-                        id: '59b01acf006c8dbca914672f'
+                        id: 'northcoder'
                     }
                 }}
             fetchArticles={x => x}
+            articles={articles}
+            index={0}
+            voteArticle={x => x}
+            usersLoading={false}
+            articlesLoading={false}
             store={store}
         />);
         expect(enzymeWrapper.children().length).toEqual(4);
@@ -48,17 +73,23 @@ describe('UserPage', () => {
     it('renders correctly', () => {
         const store = mockStore(initialState);
         const tree = renderer.create(
-            <Provider>
+            <Provider store={store}>
                 <MemoryRouter>
                     <UserPage
                         users={users}
+                        fetchUsers={x => x}
                         match={
                             {
                                 params: {
-                                    id: '59b01acf006c8dbca914672f'
+                                    id: 'northcoder'
                                 }
                             }}
                         fetchArticles={x => x}
+                        articles={articles}
+                        index={0}
+                        voteArticle={x => x}
+                        usersLoading={false}
+                        articlesLoading={false}
                         store={store} />
                 </MemoryRouter>
             </Provider>

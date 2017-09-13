@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import { Route, MemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 
 const mockStore = configureStore();
 const initialState = {};
@@ -27,6 +27,8 @@ describe('UserCard', () => {
         const store = mockStore(initialState);
         const enzymeWrapper = shallow(<UserCard
             user={user}
+            fetchUser={x => x}
+            userLoading={false}
             store={store}
         />);
         expect(enzymeWrapper.children().length).toEqual(1);
@@ -35,10 +37,12 @@ describe('UserCard', () => {
     it('renders correctly', () => {
         const store = mockStore(initialState);
         const tree = renderer.create(
-            <Provider>
+            <Provider store={store}>
                 <MemoryRouter>
                     <UserCard
                         user={user}
+                        fetchUser={x => x}
+                        userLoading={false}
                         store={store} />
                 </MemoryRouter>
             </Provider>

@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import { Route, MemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 
 const mockStore = configureStore();
 const initialState = {};
@@ -60,10 +60,13 @@ describe('CommentsList', () => {
         const store = mockStore(initialState);
         const enzymeWrapper = shallow(<CommentsList
             store={store}
+            id={comments[0]._id}
             comments={comments}
             users={users}
             deleteHandler={x => x}
-            sortComments={x => x}
+            voteHandler={x => x}
+            maximum={2}
+            viewMoreComments={x => x}
         />);
         expect(enzymeWrapper.children().length).toEqual(4);
     });
@@ -71,18 +74,20 @@ describe('CommentsList', () => {
     it('renders correctly', () => {
         const store = mockStore(initialState);
         const tree = renderer.create(
-            <Provider>
+            <Provider store={store}>
                 <MemoryRouter>
                     <CommentsList
+                        store={store}
+                        id={'59b11ae18807841d9bf13234'}
                         comments={comments}
-                        voteHandler={(x) => { return x; }}
                         users={users}
-                        sortComments={x => x}
                         deleteHandler={x => x}
-                        store={store} />
+                        voteHandler={x => x}
+                        maximum={2}
+                        viewMoreComments={x => x} />
                 </MemoryRouter>
             </Provider>
-        ).toJSON();
+                ).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
-import { Route, MemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 
 import AddCommentForm from '../../src/components/AddCommentForm';
 
@@ -20,6 +20,9 @@ describe('AddCommentForm', () => {
     it('renders', () => {
         const enzymeWrapper = shallow(<AddCommentForm
             user={user}
+            id={user._id}
+            showForm={true}
+            handleSubmit={x => x}
             toggleForm={x => x}
         />);
         expect(enzymeWrapper.children().length).toEqual(1);
@@ -30,6 +33,9 @@ describe('AddCommentForm', () => {
             <MemoryRouter>
                 <AddCommentForm
                     user={user}
+                    id={user._id}
+                    showForm={false}
+                    handleSubmit={x => x}
                     toggleForm={x => x}
                 />
             </MemoryRouter>

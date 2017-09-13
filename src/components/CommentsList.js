@@ -80,7 +80,7 @@ export class CommentsList extends Component {
 }
 
 CommentsList.propTypes = {
-    id: PropTypes.string.isRequired,
+    id: PropTypes.string,
     comments: PropTypes.array.isRequired,
     users: PropTypes.array.isRequired,
     deleteHandler: PropTypes.func.isRequired,

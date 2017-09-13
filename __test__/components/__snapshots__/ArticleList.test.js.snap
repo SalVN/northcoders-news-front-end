@@ -17,6 +17,35 @@ exports[`ArticleList renders correctly 1`] = `
         1
       </div>
       <div
+        className="media-left is-hidden-mobile"
+      >
+        <button
+          className="button is-black is-inverted is-small"
+          onClick={[Function]}
+        >
+          <i
+            aria-hidden="true"
+            className="fa fa-arrow-up"
+          />
+        </button>
+        <p
+          className="article-card-votes"
+        >
+          <strong>
+            3
+          </strong>
+        </p>
+        <button
+          className="button is-black is-inverted is-small"
+          onClick={[Function]}
+        >
+          <i
+            aria-hidden="true"
+            className="fa fa-arrow-down"
+          />
+        </button>
+      </div>
+      <div
         className="media-content"
       >
         <div
@@ -45,6 +74,23 @@ exports[`ArticleList renders correctly 1`] = `
               >
                 added by:
               </span>
+              <a
+                href="/users/northcoder"
+                onClick={[Function]}
+              >
+                <img
+                  alt="user avatar"
+                  className="article-card-avatar"
+                  src="https://avatars3.githubusercontent.com/u/6791502?v=3&s=200"
+                />
+                <span
+                  className="article-card-subheading-value"
+                >
+                  <strong>
+                    northcoder
+                  </strong>
+                </span>
+              </a>
             </div>
             <div
               className="column is-narrow"
@@ -102,6 +148,35 @@ exports[`ArticleList renders correctly 1`] = `
         2
       </div>
       <div
+        className="media-left is-hidden-mobile"
+      >
+        <button
+          className="button is-black is-inverted is-small"
+          onClick={[Function]}
+        >
+          <i
+            aria-hidden="true"
+            className="fa fa-arrow-up"
+          />
+        </button>
+        <p
+          className="article-card-votes"
+        >
+          <strong>
+            2
+          </strong>
+        </p>
+        <button
+          className="button is-black is-inverted is-small"
+          onClick={[Function]}
+        >
+          <i
+            aria-hidden="true"
+            className="fa fa-arrow-down"
+          />
+        </button>
+      </div>
+      <div
         className="media-content"
       >
         <div
@@ -130,6 +205,23 @@ exports[`ArticleList renders correctly 1`] = `
               >
                 added by:
               </span>
+              <a
+                href="/users/northcoder"
+                onClick={[Function]}
+              >
+                <img
+                  alt="user avatar"
+                  className="article-card-avatar"
+                  src="https://avatars3.githubusercontent.com/u/6791502?v=3&s=200"
+                />
+                <span
+                  className="article-card-subheading-value"
+                >
+                  <strong>
+                    northcoder
+                  </strong>
+                </span>
+              </a>
             </div>
             <div
               className="column is-narrow"
@@ -180,7 +272,7 @@ exports[`ArticleList renders correctly 1`] = `
   >
     <button
       className="button is-small show-more-button"
-      onClick={undefined}
+      onClick={[Function]}
     >
       Show more
     </button>

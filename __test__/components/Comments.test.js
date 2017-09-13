@@ -3,11 +3,10 @@ import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import { Route, MemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 
 const mockStore = configureStore();
 const initialState = {};
-
 
 import { Comments } from '../../src/components/Comments';
 
@@ -61,8 +60,17 @@ describe('Comments', () => {
         const store = mockStore(initialState);
         const enzymeWrapper = shallow(<Comments
             store={store}
+            id={comments[0]._id}
+            comments={comments}
             users={users}
-            maximum={2}
+            fetchComments={x => x}
+            deleteComment={x => x}
+            voteComment={x => x}
+            fetchUser={x => x}
+            user={users[0]}
+            addComment={x => x}
+            fetchUsers={x => x}
+            commentsLoading={false}
         />);
         expect(enzymeWrapper.children().length).toEqual(2);
     });
@@ -70,15 +78,21 @@ describe('Comments', () => {
     it('renders correctly', () => {
         const store = mockStore(initialState);
         const tree = renderer.create(
-            <Provider>
+            <Provider store={store}>
                 <MemoryRouter>
                     <Comments
-                        voteHandler={(x) => { return x; }}
-                        users={users}
-                        user={users[0]}
+                        id={comments[0]._id}
                         comments={comments}
-                        fetchComments={x => {return x;}}
-                        store={store} />
+                        users={users}
+                        fetchComments={x => x}
+                        deleteComment={x => x}
+                        voteComment={x => x}
+                        fetchUser={x => x}
+                        user={users[0]}
+                        addComment={x => x}
+                        fetchUsers={x => x}
+                        commentsLoading={false}
+                    />
                 </MemoryRouter>
             </Provider>
         ).toJSON();

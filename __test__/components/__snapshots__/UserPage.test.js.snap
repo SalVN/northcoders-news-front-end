@@ -2,6 +2,134 @@
 
 exports[`UserPage renders correctly 1`] = `
 <div>
+  <div
+    className="user-page-card-box"
+  >
+    <div
+      className="container-fluid"
+    >
+      <div
+        className="card"
+      >
+        <div
+          className="user-page-card-background"
+        >
+          <div
+            className="columns is-mobile"
+          >
+            <div
+              className="column is-half-mobile is-one-quarter-tablet avatar-container"
+            >
+              <img
+                className="user-card-avatar-page"
+                src="https://avatars3.githubusercontent.com/u/6791502?v=3&s=200"
+              />
+            </div>
+            <div
+              className="column is-half-mobile is-three-quarters-tablet"
+            >
+              <p
+                className="user-page-card-name"
+              >
+                Awesome Northcoder
+              </p>
+              <p
+                className="user-page-card-username"
+              >
+                @northcoder
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          className="card-content content-container"
+        >
+          <div
+            className="columns is-mobile"
+          >
+            <div
+              className="column is-2-tablet"
+            >
+              <div
+                className="user-page-card-mini-title"
+              >
+                Popularity
+              </div>
+              <div
+                className="user-page-card-number"
+              >
+                NaN
+              </div>
+            </div>
+            <div
+              className="column is-2-tablet"
+            >
+              <div
+                className="user-page-card-mini-title"
+              >
+                Comments
+              </div>
+              <div
+                className="user-page-card-number"
+              />
+            </div>
+            <div
+              className="column is-2-tablet"
+            >
+              <div
+                className="user-page-card-mini-title"
+              >
+                Articles
+              </div>
+              <div
+                className="user-page-card-number"
+              >
+                0
+              </div>
+            </div>
+            <div
+              className="column is-2-tablet is-hidden-mobile"
+            >
+              <div
+                className="user-page-card-mini-title"
+              >
+                Comment Votes
+              </div>
+              <div
+                className="user-page-card-number"
+              />
+            </div>
+            <div
+              className="column is-2-tablet is-hidden-mobile"
+            >
+              <div
+                className="user-page-card-mini-title"
+              >
+                Article Votes
+              </div>
+              <div
+                className="user-page-card-number"
+              />
+            </div>
+            <div
+              className="column is-2-tablet is-hidden-mobile"
+            >
+              <div
+                className="user-page-card-mini-title"
+              >
+                Ranking
+              </div>
+              <div
+                className="user-page-card-number"
+              >
+                1
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <hr />
   <div
     className="content"

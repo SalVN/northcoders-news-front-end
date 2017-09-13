@@ -10,7 +10,7 @@ exports[`ArticleCard renders correctly 1`] = `
     <div
       className="media-left article-number is-hidden-mobile"
     >
-      NaN
+      2
     </div>
     <div
       className="media-left is-hidden-mobile"
@@ -27,7 +27,9 @@ exports[`ArticleCard renders correctly 1`] = `
       <p
         className="article-card-votes"
       >
-        <strong />
+        <strong>
+          3
+        </strong>
       </p>
       <button
         className="button is-black is-inverted is-small"
@@ -46,13 +48,15 @@ exports[`ArticleCard renders correctly 1`] = `
         className="content"
       >
         <a
-          href="/articles/undefined"
+          href="/articles/59b01acf006c8dbca914672f"
           onClick={[Function]}
         >
           <h3
             className="title is-4 article-card-title"
           >
-            <strong />
+            <strong>
+              Football is fun
+            </strong>
           </h3>
         </a>
         <div
@@ -77,13 +81,15 @@ exports[`ArticleCard renders correctly 1`] = `
                 tags:
               </span>
               <a
-                href="/topics/undefined/articles"
+                href="/topics/football/articles"
                 onClick={[Function]}
               >
                 <span
                   className="article-card-subheading-value"
                 >
-                  <strong />
+                  <strong>
+                    football
+                  </strong>
                 </span>
               </a>
             </span>
@@ -93,12 +99,14 @@ exports[`ArticleCard renders correctly 1`] = `
               comments:
             </span>
             <a
-              href="/articles/undefined#comments"
+              href="/articles/59b01acf006c8dbca914672f#comments"
             >
               <span
                 className="article-card-subheading-value"
               >
-                <strong />
+                <strong>
+                  0
+                </strong>
               </span>
             </a>
           </div>

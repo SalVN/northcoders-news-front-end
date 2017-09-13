@@ -39,13 +39,82 @@ exports[`TopicNavBar renders correctly 1`] = `
   >
     <div
       className="navbar-start"
-    />
+    >
+      <span
+        className="navbar-item"
+      >
+        <a
+          className="navbar-text-css"
+          href="/topics/football/articles"
+          onClick={[Function]}
+          style={undefined}
+        >
+          <span>
+            <strong>
+              &lt; FOOTBALL /&gt;
+            </strong>
+          </span>
+        </a>
+      </span>
+      <span
+        className="navbar-item"
+      >
+        <a
+          className="navbar-text-css"
+          href="/topics/cooking/articles"
+          onClick={[Function]}
+          style={undefined}
+        >
+          <span>
+            <strong>
+              &lt; COOKING /&gt;
+            </strong>
+          </span>
+        </a>
+      </span>
+      <span
+        className="navbar-item"
+      >
+        <a
+          className="navbar-text-css"
+          href="/topics/cats/articles"
+          onClick={[Function]}
+          style={undefined}
+        >
+          <span>
+            <strong>
+              &lt; CATS /&gt;
+            </strong>
+          </span>
+        </a>
+      </span>
+    </div>
     <div
       className="navbar-end"
     >
       <span
         className="navbar-item"
-      />
+      >
+        <a
+          className="user"
+          href="/users/northcoder"
+          onClick={[Function]}
+        >
+          <span>
+            <img
+              className="avatar"
+              src="https://avatars3.githubusercontent.com/u/6791502?v=3&s=200"
+            />
+          </span>
+          <span
+            className="navbar-user-text"
+          >
+            <strong>
+              northcoder
+            </strong>
+          </span>
+        </a>
+      </span>
     </div>
   </div>
 </nav>

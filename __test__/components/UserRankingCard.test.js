@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
-import { Route, MemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 
 import UserRankingCard from '../../src/components/UserRankingCard';
 
@@ -20,6 +20,8 @@ describe('UserRankingCard', () => {
     it('renders', () => {
         const enzymeWrapper = shallow(<UserRankingCard
             user={user}
+            index={0}
+            criteria={'Sort by ranking'}
         />);
         expect(enzymeWrapper.children().length).toEqual(1);
     });
@@ -29,6 +31,8 @@ describe('UserRankingCard', () => {
             <MemoryRouter>
                 <UserRankingCard
                     user={user}
+                    index={0}
+                    criteria={'Sort by ranking'}
                 />
             </MemoryRouter>
         ).toJSON();

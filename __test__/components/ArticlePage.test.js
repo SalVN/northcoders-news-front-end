@@ -3,32 +3,10 @@ import { shallow } from 'enzyme';
 // import renderer from 'react-test-renderer';
 // import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-// import { Route, MemoryRouter } from 'react-router-dom';
+// import { MemoryRouter } from 'react-router-dom';
 
 const mockStore = configureStore();
-const initialState = {
-    topics: {
-        loading: false,
-        topics: [{
-            _id: '59b04728371c52f1739aba0b',
-            title: 'Football',
-            slug: 'football',
-            __v: 0
-        },
-        {
-            _id: '59b04728371c52f1739aba0c',
-            title: 'Cooking',
-            slug: 'cooking',
-            __v: 0
-        },
-        {
-            _id: '59b04728371c52f1739aba0d',
-            title: 'Cats',
-            slug: 'cats',
-            __v: 0
-        }]
-    }
-};
+const initialState = {};
 
 import { ArticlePage } from '../../src/components/ArticlePage';
 
@@ -51,13 +29,13 @@ describe('ArticlePage', () => {
         votes: 3,
         comment_count: 0
     }];
-    const user = {
+    const users = [{
         _id: '59b1b18b327cce1fb043bdb2',
         username: 'northcoder',
         name: 'Awesome Northcoder',
         avatar_url: 'https://avatars3.githubusercontent.com/u/6791502?v=3&s=200',
         __v: 0
-    };
+    }];
     it('is a function', () => {
         expect(typeof ArticlePage).toEqual('function');
     });
@@ -66,15 +44,18 @@ describe('ArticlePage', () => {
         const store = mockStore(initialState);
         const enzymeWrapper = shallow(<ArticlePage
             store={store}
-            article={article}
             articles={articles}
+            fetchArticles={x => x}
             match={
                 {
                     params: {
                         id: '59b01acf006c8dbca914672f'
                     }
                 }}
-            user={user}
+            users={users}
+            fetchUsers={x => x}
+            voteArticle={x => x}
+            articlesLoading={false}
         />);
         expect(enzymeWrapper.children().length).toEqual(3);
     });

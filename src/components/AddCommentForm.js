@@ -69,7 +69,6 @@ class AddCommentForm extends React.Component {
 
 AddCommentForm.propTypes = {
     id: PropTypes.string.isRequired,
-    addComment: PropTypes.func.isRequired,
     toggleForm: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
     showForm: PropTypes.bool.isRequired,

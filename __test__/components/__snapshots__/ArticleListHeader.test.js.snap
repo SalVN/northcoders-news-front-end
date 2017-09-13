@@ -13,7 +13,9 @@ exports[`ArticleListHeader renders correctly 1`] = `
       <h2
         className="page-title"
       >
-        <strong />
+        <strong>
+          abcdefg
+        </strong>
       </h2>
     </div>
     <div
@@ -29,7 +31,7 @@ exports[`ArticleListHeader renders correctly 1`] = `
             aria-controls="dropdown-menu"
             aria-haspopup="true"
             className="button dropdown-button-article-list"
-            onClick={undefined}
+            onClick={[Function]}
           >
             <label
               htmlFor="Sort by"
@@ -56,21 +58,21 @@ exports[`ArticleListHeader renders correctly 1`] = `
           >
             <a
               className="dropdown-item"
-              onClick={undefined}
+              onClick={[Function]}
               value="votes"
             >
               Popularity
             </a>
             <a
               className="dropdown-item"
-              onClick={undefined}
+              onClick={[Function]}
               value="comments"
             >
               Number of Comments
             </a>
             <a
               className="dropdown-item"
-              onClick={undefined}
+              onClick={[Function]}
               value="random"
             >
               Random

@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 // import renderer from 'react-test-renderer';
 // import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-// import { Route, MemoryRouter } from 'react-router-dom';
+// import { MemoryRouter } from 'react-router-dom';
 
 const mockStore = configureStore();
 const initialState = {};
@@ -30,17 +30,22 @@ describe('TopicArticleList', () => {
         comment_count: 2
     }];
 
-    const users = [{
-        _id: '59b1b18b327cce1fb043bdb1',
-        username: 'northcoder',
-        name: 'Awesome Northcoder',
-        avatar_url: 'https://avatars3.githubusercontent.com/u/6791502?v=3&s=200',
+    const topics = [{
+        _id: '59b04728371c52f1739aba0b',
+        title: 'Football',
+        slug: 'football',
         __v: 0
-    }, {
-        _id: '59b1b18b327cce1fb043bdb2',
-        username: 'javascripter',
-        name: 'Awesome Javascripter',
-        avatar_url: 'https://avatars3.githubusercontent.com/u/6791502?v=3&s=200',
+    },
+    {
+        _id: '59b04728371c52f1739aba0c',
+        title: 'Cooking',
+        slug: 'cooking',
+        __v: 0
+    },
+    {
+        _id: '59b04728371c52f1739aba0d',
+        title: 'Cats',
+        slug: 'cats',
         __v: 0
     }];
 
@@ -52,13 +57,17 @@ describe('TopicArticleList', () => {
         const store = mockStore(initialState);
         const enzymeWrapper = shallow(<TopicArticleList
             store={store}
-            articles={articles}
+            topicArticles={articles}
+            articlesLoading={false}
+            fetchTopicArticles={x => x}
             match={{
                 params: {
                     id: '59b01acf006c8dbca914672f'
                 }
             }}
-            users={users}
+            voteArticle={x => x}
+            topics={topics}
+            fetchUsers={x => x}
         />);
         expect(enzymeWrapper.children().length).toEqual(2);
     });

@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
-import { Route, MemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 
 import UserPageCard from '../../src/components/UserPageCard';
 
@@ -20,6 +20,8 @@ describe('UserPageCard', () => {
     it('renders', () => {
         const enzymeWrapper = shallow(<UserPageCard
             user={user}
+            articlesNo={5}
+            ranking={2}
         />);
         expect(enzymeWrapper.children().length).toEqual(1);
     });
@@ -29,6 +31,8 @@ describe('UserPageCard', () => {
             <MemoryRouter>
                 <UserPageCard
                     user={user}
+                    articlesNo={5}
+                    ranking={2}
                 />
             </MemoryRouter>
         ).toJSON();
