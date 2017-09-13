@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import renderer from 'react-test-renderer';
+// import renderer from 'react-test-renderer';
 
 import { App } from '../../src/components/App';
 
