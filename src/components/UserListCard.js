@@ -49,16 +49,16 @@ export class UserListCard extends Component {
                                         </div>
                                         <div className="dropdown-menu" id="dropdown-menu" role="menu">
                                             <div className="dropdown-content">
-                                                <a onClick={this.sortUserList} className={`dropdown-item ${rankingActive}`}>
+                                                <a onClick={this.sortUserList} className={`dropdown-item ranking ${rankingActive}`}>
                                                     Sort by ranking
                                                 </a>
-                                                <a onClick={this.sortUserList} className={`dropdown-item ${commentsActive}`}>
+                                                <a onClick={this.sortUserList} className={`dropdown-item comments ${commentsActive}`}>
                                                     Sort by comments
                                                 </a>
-                                                <a onClick={this.sortUserList} className={`dropdown-item ${commentVotesActive}`}>
+                                                <a onClick={this.sortUserList} className={`dropdown-item comment-votes ${commentVotesActive}`}>
                                                     Sort by comment votes
                                                 </a>
-                                                <a onClick={this.sortUserList} className={`dropdown-item ${articleVotesActive}`}>
+                                                <a onClick={this.sortUserList} className={`dropdown-item article-votes ${articleVotesActive}`}>
                                                     Sort by article votes
                                                 </a>
                                                 <a onClick={this.toggleDropdown} className="dropdown-item cancel">

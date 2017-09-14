@@ -50,25 +50,25 @@ exports[`UserListCard renders correctly 1`] = `
                   className="dropdown-content"
                 >
                   <a
-                    className="dropdown-item is-active"
+                    className="dropdown-item ranking is-active"
                     onClick={[Function]}
                   >
                     Sort by ranking
                   </a>
                   <a
-                    className="dropdown-item "
+                    className="dropdown-item comments "
                     onClick={[Function]}
                   >
                     Sort by comments
                   </a>
                   <a
-                    className="dropdown-item "
+                    className="dropdown-item comment-votes "
                     onClick={[Function]}
                   >
                     Sort by comment votes
                   </a>
                   <a
-                    className="dropdown-item "
+                    className="dropdown-item article-votes "
                     onClick={[Function]}
                   >
                     Sort by article votes
@@ -112,7 +112,7 @@ exports[`UserListCard renders correctly 1`] = `
               className="column is-two-thirds"
             >
               <a
-                href="/users/northcoder"
+                href="/users/user4"
                 onClick={[Function]}
               >
                 <div>
@@ -123,7 +123,7 @@ exports[`UserListCard renders correctly 1`] = `
                   <span
                     className="user-list-username-text"
                   >
-                    northcoder
+                    user4
                   </span>
                 </div>
               </a>
@@ -134,7 +134,7 @@ exports[`UserListCard renders correctly 1`] = `
               <p
                 className="user-list-card-ranking-number"
               >
-                NaN
+                75
               </p>
             </div>
           </div>
@@ -160,7 +160,7 @@ exports[`UserListCard renders correctly 1`] = `
               className="column is-two-thirds"
             >
               <a
-                href="/users/javascripter"
+                href="/users/user3"
                 onClick={[Function]}
               >
                 <div>
@@ -171,7 +171,7 @@ exports[`UserListCard renders correctly 1`] = `
                   <span
                     className="user-list-username-text"
                   >
-                    javascripter
+                    user3
                   </span>
                 </div>
               </a>
@@ -182,7 +182,103 @@ exports[`UserListCard renders correctly 1`] = `
               <p
                 className="user-list-card-ranking-number"
               >
-                NaN
+                69
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          className="container-fluid mini-card"
+        >
+          <div
+            className="columns is-mobile"
+          >
+            <div
+              className="column is-1 is-hidden-tablet-only"
+            >
+              <p
+                className="user-list-card-number"
+              >
+                <strong>
+                  3
+                </strong>
+              </p>
+            </div>
+            <div
+              className="column is-two-thirds"
+            >
+              <a
+                href="/users/user2"
+                onClick={[Function]}
+              >
+                <div>
+                  <img
+                    className="user-list-image"
+                    src="https://avatars3.githubusercontent.com/u/6791502?v=3&s=200"
+                  />
+                  <span
+                    className="user-list-username-text"
+                  >
+                    user2
+                  </span>
+                </div>
+              </a>
+            </div>
+            <div
+              className="column is-3"
+            >
+              <p
+                className="user-list-card-ranking-number"
+              >
+                66
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          className="container-fluid mini-card"
+        >
+          <div
+            className="columns is-mobile"
+          >
+            <div
+              className="column is-1 is-hidden-tablet-only"
+            >
+              <p
+                className="user-list-card-number"
+              >
+                <strong>
+                  4
+                </strong>
+              </p>
+            </div>
+            <div
+              className="column is-two-thirds"
+            >
+              <a
+                href="/users/user1"
+                onClick={[Function]}
+              >
+                <div>
+                  <img
+                    className="user-list-image"
+                    src="https://avatars3.githubusercontent.com/u/6791502?v=3&s=200"
+                  />
+                  <span
+                    className="user-list-username-text"
+                  >
+                    user1
+                  </span>
+                </div>
+              </a>
+            </div>
+            <div
+              className="column is-3"
+            >
+              <p
+                className="user-list-card-ranking-number"
+              >
+                50
               </p>
             </div>
           </div>
