@@ -45,7 +45,7 @@ export class UserCard extends Component {
                                             </div>
                                             <div className='column is-half'>
                                                 <div className='user-card-mini-title'>Popularity</div>
-                                                <div className='user-card-number'>{this.props.user.comments_vote_count + this.props.user.articles_vote_count}</div>
+                                                <div className='user-card-number total-vote'>{this.props.user.comments_vote_count + this.props.user.articles_vote_count}</div>
                                             </div>
                                         </div>
                                     </div>

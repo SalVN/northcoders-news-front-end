@@ -65,9 +65,9 @@ exports[`UserCard renders correctly 1`] = `
                 Popularity
               </div>
               <div
-                className="user-card-number"
+                className="user-card-number total-vote"
               >
-                NaN
+                13
               </div>
             </div>
           </div>

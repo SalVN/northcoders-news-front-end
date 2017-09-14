@@ -167,7 +167,6 @@ describe('TopicNavBar', () => {
     });
 
     it('shows a loading icon if this.props.topicsLoading', () => {
-        const store = mockStore(initialState);
         const enzymeWrapperA = shallow(<TopicNavBar
             topics={topics}
             topicsLoading={false}
@@ -175,7 +174,6 @@ describe('TopicNavBar', () => {
             fetchTopics={x => x}
             fetchUser={x => x}
             user={user}
-            store={x => x}
         />);
         expect(enzymeWrapperA.find('.fa-spin').length).toBe(0);
 
@@ -217,7 +215,6 @@ describe('TopicNavBar', () => {
     });
 
     it('only renders the topics nav-links if topics is defined', () => {
-        const store = mockStore(initialState);
         const enzymeWrapperA = shallow(<TopicNavBar
             topics={[]}
             topicsLoading={false}
@@ -225,13 +222,11 @@ describe('TopicNavBar', () => {
             fetchTopics={x => x}
             fetchUser={x => x}
             user={user}
-            store={x => x}
         />);
         expect(enzymeWrapperA.find('NavLink').length).toBe(0);
     });
 
     it('renders the same number of NavLinks as there are topics in the array', () => {
-        const store = mockStore(initialState);
         const enzymeWrapperA = shallow(<TopicNavBar
             topics={topics}
             topicsLoading={false}
@@ -239,7 +234,6 @@ describe('TopicNavBar', () => {
             fetchTopics={x => x}
             fetchUser={x => x}
             user={user}
-            store={x => x}
         />);
         expect(enzymeWrapperA.find('NavLink').length).toBe(3);
     });
