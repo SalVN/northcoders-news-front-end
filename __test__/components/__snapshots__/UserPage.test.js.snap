@@ -191,21 +191,21 @@ exports[`UserPage renders correctly 1`] = `
                 className="dropdown-content"
               >
                 <a
-                  className="dropdown-item"
+                  className="dropdown-item popular"
                   onClick={[Function]}
                   value="votes"
                 >
                   Popularity
                 </a>
                 <a
-                  className="dropdown-item"
+                  className="dropdown-item comments"
                   onClick={[Function]}
                   value="comments"
                 >
                   Number of Comments
                 </a>
                 <a
-                  className="dropdown-item"
+                  className="dropdown-item random"
                   onClick={[Function]}
                   value="random"
                 >

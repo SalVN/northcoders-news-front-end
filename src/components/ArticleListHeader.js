@@ -23,13 +23,13 @@ const ArticleListHeader = function (props) {
                         </div>
                         <div className="dropdown-menu" id="dropdown-menu" role="menu">
                             <div className="dropdown-content">
-                                <a value="votes" onClick={props.handleClickSelect} className={'dropdown-item'}>
+                                <a value="votes" onClick={props.handleClickSelect} className='dropdown-item popular'>
                                     Popularity
                                     </a>
-                                <a value="comments" onClick={props.handleClickSelect} className={'dropdown-item'}>
+                                <a value="comments" onClick={props.handleClickSelect} className='dropdown-item comments'>
                                     Number of Comments
                                     </a>
-                                <a value="random" onClick={props.handleClickSelect} className={'dropdown-item'}>
+                                <a value="random" onClick={props.handleClickSelect} className='dropdown-item random'>
                                     Random
                                     </a>
                             </div>
@@ -39,7 +39,7 @@ const ArticleListHeader = function (props) {
             </div>
         </div >
     );
-}
+};
 
 ArticleListHeader.propTypes = {
     title: PropTypes.string.isRequired,
