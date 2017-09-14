@@ -12,13 +12,13 @@ class Article extends Component {
                     <div className='column is-1'>
                         <button
                             onClick={this.props.voteArticle.bind(this, 'up', this.props.article._id)}
-                            className='button is-black is-inverted is-small'>
+                            className='button is-black is-inverted is-small up'>
                             <i className="fa fa-arrow-up" aria-hidden="true"></i>
                         </button>
                         <p className='comment-card-votes article-votes'><strong>{this.props.article.votes}</strong></p>
                         <button
                             onClick={this.props.voteArticle.bind(this, 'down', this.props.article._id)}
-                            className='button is-black is-inverted is-small'>
+                            className='button is-black is-inverted is-small down'>
                             <i className="fa fa-arrow-down" aria-hidden="true"></i>
                         </button>
                     </div>

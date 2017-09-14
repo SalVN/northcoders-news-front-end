@@ -11,7 +11,7 @@ exports[`Article renders correctly 1`] = `
       className="column is-1"
     >
       <button
-        className="button is-black is-inverted is-small"
+        className="button is-black is-inverted is-small up"
         onClick={[Function]}
       >
         <i
@@ -27,7 +27,7 @@ exports[`Article renders correctly 1`] = `
         </strong>
       </p>
       <button
-        className="button is-black is-inverted is-small"
+        className="button is-black is-inverted is-small down"
         onClick={[Function]}
       >
         <i
