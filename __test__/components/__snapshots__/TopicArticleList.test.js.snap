@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TopicArticleList renders correctly 1`] = `
+<MemoryRouter>
+  <TopicArticleList
+    articlesLoading={false}
+    fetchTopicArticles={[Function]}
+    fetchUsers={[Function]}
+    match={
+      Object {
+        "params": Object {
+          "id": "59b01acf006c8dbca914672f",
+        },
+      }
+    }
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+    topicArticles={
+      Array [
+        Object {
+          "__v": 0,
+          "_id": "59b01acf006c8dbca914672f",
+          "belongs_to": "football",
+          "body": "something",
+          "comment_count": 0,
+          "title": "Football is fun",
+          "votes": 3,
+        },
+        Object {
+          "__v": 0,
+          "_id": "59b01acf006c8dbca914672e",
+          "belongs_to": "cats",
+          "body": "something",
+          "comment_count": 2,
+          "title": "Cats are great",
+          "votes": 2,
+        },
+      ]
+    }
+    topics={
+      Array [
+        Object {
+          "__v": 0,
+          "_id": "59b04728371c52f1739aba0b",
+          "slug": "football",
+          "title": "Football",
+        },
+        Object {
+          "__v": 0,
+          "_id": "59b04728371c52f1739aba0c",
+          "slug": "cooking",
+          "title": "Cooking",
+        },
+        Object {
+          "__v": 0,
+          "_id": "59b04728371c52f1739aba0d",
+          "slug": "cats",
+          "title": "Cats",
+        },
+      ]
+    }
+    voteArticle={[Function]}
+  />
+</MemoryRouter>
+`;

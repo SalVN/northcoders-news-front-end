@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArticlePage renders correctly 1`] = `
+<MemoryRouter>
+  <ArticlePage
+    articles={
+      Array [
+        Object {
+          "__v": 0,
+          "_id": "59b01acf006c8dbca914672f",
+          "belongs_to": "football",
+          "body": "something",
+          "comment_count": 0,
+          "title": "Football is fun",
+          "votes": 3,
+        },
+      ]
+    }
+    articlesLoading={false}
+    fetchArticles={[Function]}
+    fetchUsers={[Function]}
+    match={
+      Object {
+        "params": Object {
+          "id": "59b01acf006c8dbca914672f",
+        },
+      }
+    }
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+    users={
+      Array [
+        Object {
+          "__v": 0,
+          "_id": "59b1b18b327cce1fb043bdb2",
+          "avatar_url": "https://avatars3.githubusercontent.com/u/6791502?v=3&s=200",
+          "name": "Awesome Northcoder",
+          "username": "northcoder",
+        },
+      ]
+    }
+    voteArticle={[Function]}
+  />
+</MemoryRouter>
+`;

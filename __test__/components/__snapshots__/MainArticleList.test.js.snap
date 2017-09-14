@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainArticleList renders correctly 1`] = `
+<MemoryRouter>
+  <MainArticleList
+    articles={
+      Array [
+        Object {
+          "__v": 0,
+          "_id": "59b01acf006c8dbca914672f",
+          "belongs_to": "football",
+          "body": "something",
+          "comment_count": 0,
+          "title": "Football is fun",
+          "votes": 3,
+        },
+        Object {
+          "__v": 0,
+          "_id": "59b01acf006c8dbca914672e",
+          "belongs_to": "cats",
+          "body": "something",
+          "comment_count": 2,
+          "title": "Cats are great",
+          "votes": 2,
+        },
+      ]
+    }
+    articlesLoading={false}
+    fetchArticles={[Function]}
+    fetchUsers={[Function]}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+    voteArticle={[Function]}
+  />
+</MemoryRouter>
+`;

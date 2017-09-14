@@ -1,9 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-// import renderer from 'react-test-renderer';
-// import { Provider } from 'react-redux';
+import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-// import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
+import ReactShallowRenderer from 'react-test-renderer/shallow';
+import sinon from 'sinon';
 
 const mockStore = configureStore();
 const initialState = {};
@@ -72,24 +73,193 @@ describe('TopicArticleList', () => {
         expect(wrapper.children().length).toEqual(2);
     });
 
-    /* it('renders correctly', () => {
+    it('renders correctly', () => {
         const store = mockStore(initialState);
-        const tree = renderer.create(
-            <Provider>
+        const renderer = new ReactShallowRenderer();
+        const tree = renderer.render(
+            <Provider store={store}>
                 <MemoryRouter>
                     <TopicArticleList
-                        articles={articles}
-                        voteHandler={(x) => { return x; }}
-                        users={users}
+                        store={store}
+                        topicArticles={articles}
+                        articlesLoading={false}
+                        fetchTopicArticles={x => x}
                         match={{
                             params: {
                                 id: '59b01acf006c8dbca914672f'
                             }
                         }}
-                        store={store} />
+                        voteArticle={x => x}
+                        topics={topics}
+                        fetchUsers={x => x}
+                    />
                 </MemoryRouter>
             </Provider>
-        ).toJSON();
+        );
         expect(tree).toMatchSnapshot();
-    });*/
+    });
+
+    it('has an initial state', () => {
+        const wrapper = shallow(<TopicArticleList
+            topicArticles={articles}
+            articlesLoading={false}
+            fetchTopicArticles={x => x}
+            match={{
+                params: {
+                    id: 'football'
+                }
+            }}
+            voteArticle={x => x}
+            topics={topics}
+            fetchUsers={x => x}
+        />);
+        expect(wrapper.state('sortBy')).toBe('votes');
+        expect(wrapper.state('showDropdown')).toBe(false);
+        expect(wrapper.state('maximum')).toBe(10);
+        expect(wrapper.state('voted')).toBe(false);
+    });
+
+    it('fetches topic articles on componentWillReceiveProps if the :id does not match the old :id from the path', () => {
+        const spy = sinon.stub();
+        const wrapper = shallow(<TopicArticleList
+            topicArticles={articles}
+            articlesLoading={false}
+            fetchTopicArticles={spy}
+            match={{
+                params: {
+                    id: 'football'
+                }
+            }}
+            voteArticle={x => x}
+            topics={topics}
+            fetchUsers={x => x}
+        />);
+        expect(spy.callCount).toBe(0);
+        wrapper.setProps({ match: { params: { id: 'football' } } });
+        expect(spy.callCount).toBe(0);
+        wrapper.setProps({ match: { params: { id: 'coding' } } });
+        expect(spy.callCount).toBe(1);
+    });
+
+    it('fetches users and updates the state if the component receives the props after voting', () => {
+        const spy = sinon.stub();
+        const wrapper = shallow(<TopicArticleList
+            topicArticles={articles}
+            articlesLoading={false}
+            fetchTopicArticles={x => x}
+            match={{
+                params: {
+                    id: 'football'
+                }
+            }}
+            voteArticle={x => x}
+            topics={topics}
+            fetchUsers={spy}
+        />);
+        expect(spy.callCount).toBe(0);
+        wrapper.setState({ voted: true });
+        wrapper.setProps({ articles: articles });
+        expect(spy.callCount).toBe(1);
+        expect(wrapper.state('voted')).toBe(false);
+        wrapper.setProps({ articles: articles });
+        expect(spy.callCount).toBe(1);
+    });
+
+    it('redirects if there is a 404 error, if the slug does not match the params', () => {
+        const wrapperA = shallow(<TopicArticleList
+            topicArticles={articles}
+            articlesLoading={false}
+            fetchTopicArticles={x => x}
+            match={{
+                params: {
+                    id: 'football'
+                }
+            }}
+            voteArticle={x => x}
+            error={{ response: { status: 404 } }}
+            topics={topics}
+            fetchUsers={x => x}
+        />);
+        expect(wrapperA.find('Redirect').length).toBe(0);
+        const wrapperB = shallow(<TopicArticleList
+            topicArticles={articles}
+            articlesLoading={false}
+            fetchTopicArticles={x => x}
+            match={{
+                params: {
+                    id: 'hello'
+                }
+            }}
+            voteArticle={x => x}
+            error={{ response: { status: 404 } }}
+            topics={topics}
+            fetchUsers={x => x}
+        />);
+        expect(wrapperB.find('Redirect').length).toBe(1);
+
+    });
+
+    it('displays a loading icon if this.props.articlesLoading', () => {
+        const enzymeWrapperA = shallow(<TopicArticleList
+            topicArticles={articles}
+            articlesLoading={false}
+            fetchTopicArticles={x => x}
+            match={{
+                params: {
+                    id: 'football'
+                }
+            }}
+            voteArticle={x => x}
+            topics={topics}
+            fetchUsers={x => x}
+        />);
+        expect(enzymeWrapperA.find('.fa-spin').length).toBe(0);
+
+        const enzymeWrapperB = shallow(<TopicArticleList
+            topicArticles={articles}
+            articlesLoading={true}
+            fetchTopicArticles={x => x}
+            match={{
+                params: {
+                    id: 'football'
+                }
+            }}
+            voteArticle={x => x}
+            topics={topics}
+            fetchUsers={x => x}
+        />);
+        expect(enzymeWrapperB.find('.fa-spin').length).toBe(1);
+    });
+
+    it('only displays the ArticleList component if this.props.articlesLoading === false', () => {
+        const enzymeWrapperA = shallow(<TopicArticleList
+            topicArticles={articles}
+            articlesLoading={true}
+            fetchTopicArticles={x => x}
+            match={{
+                params: {
+                    id: 'football'
+                }
+            }}
+            voteArticle={x => x}
+            topics={topics}
+            fetchUsers={x => x}
+        />);
+
+        const enzymeWrapperB = shallow(<TopicArticleList
+            topicArticles={articles}
+            articlesLoading={false}
+            fetchTopicArticles={x => x}
+            match={{
+                params: {
+                    id: 'football'
+                }
+            }}
+            voteArticle={x => x}
+            topics={topics}
+            fetchUsers={x => x}
+        />);
+        expect(enzymeWrapperA.children().nodes[1].type.displayName).toBe(undefined);
+        expect(enzymeWrapperB.children().nodes[1].type.displayName).toBe('Connect(ArticleList)');
+    });
 });

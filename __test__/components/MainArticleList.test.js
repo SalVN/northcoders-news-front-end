@@ -1,9 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-// import renderer from 'react-test-renderer';
-// import { Provider } from 'react-redux';
+import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-// import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
+import ReactShallowRenderer from 'react-test-renderer/shallow';
+import sinon from 'sinon';
 
 const mockStore = configureStore();
 const initialState = {};
@@ -47,19 +48,94 @@ describe('MainArticleList', () => {
         expect(wrapper.children().length).toEqual(2);
     });
 
-    /* it('renders correctly', () => {
+    it('renders correctly', () => {
         const store = mockStore(initialState);
-        const tree = renderer.create(
-            <Provider>
+        const renderer = new ReactShallowRenderer();
+        const tree = renderer.render(
+            <Provider store={store}>
                 <MemoryRouter>
                     <MainArticleList
+                        store={store}
                         articles={articles}
-                        voteHandler={(x) => { return x; }}
-                        users={users}
-                        store={store} />
+                        articlesLoading={false}
+                        fetchArticles={x => x}
+                        fetchUsers={x => x}
+                        voteArticle={x => x} />
                 </MemoryRouter>
             </Provider>
-        ).toJSON();
+        );
         expect(tree).toMatchSnapshot();
-    });*/
+    });
+
+    it('has an initial state', () => {
+        const wrapper = shallow(<MainArticleList
+            articles={articles}
+            articlesLoading={false}
+            fetchArticles={x => x}
+            fetchUsers={x => x}
+            voteArticle={x => x}
+        />);
+        expect(wrapper.state('sortBy')).toBe('votes');
+        expect(wrapper.state('showDropdown')).toBe(false);
+        expect(wrapper.state('maximum')).toBe(10);
+        expect(wrapper.state('voted')).toBe(false);
+    });
+
+    it('fetches users if the componentWillReceiveProps following a vote', () => {
+        const spy = sinon.stub();
+        const wrapper = shallow(<MainArticleList
+            articles={articles}
+            articlesLoading={false}
+            fetchArticles={x => x}
+            fetchUsers={spy}
+            voteArticle={x => x}
+        />);
+        expect(spy.callCount).toBe(0);
+        wrapper.setState({ voted: true });
+        wrapper.setProps({ articles: articles });
+        expect(spy.callCount).toBe(1);
+        expect(wrapper.state('voted')).toBe(false);
+        wrapper.setProps({ articles: articles });
+        expect(spy.callCount).toBe(1);
+    });
+
+    it('displays a loading icon if this.props.articlesLoading', () => {
+        const enzymeWrapperA = shallow(<MainArticleList
+            articles={articles}
+            articlesLoading={false}
+            fetchArticles={x => x}
+            fetchUsers={x => x}
+            voteArticle={x => x}
+        />);
+        expect(enzymeWrapperA.find('.fa-spin').length).toBe(0);
+
+        const enzymeWrapperB = shallow(<MainArticleList
+            articles={articles}
+            articlesLoading={true}
+            fetchArticles={x => x}
+            fetchUsers={x => x}
+            voteArticle={x => x}
+        />);
+        expect(enzymeWrapperB.find('.fa-spin').length).toBe(1);
+    });
+
+    it('only displays the ArticleList component if this.props.articlesLoading === false', () => {
+        const enzymeWrapperA = shallow(<MainArticleList
+            articles={articles}
+            articlesLoading={true}
+            fetchArticles={x => x}
+            fetchUsers={x => x}
+            voteArticle={x => x}
+        />);
+
+        const enzymeWrapperB = shallow(<MainArticleList
+            articles={articles}
+            articlesLoading={false}
+            fetchArticles={x => x}
+            fetchUsers={x => x}
+            voteArticle={x => x}
+        />);
+        expect(enzymeWrapperA.children().nodes[1].type.displayName).toBe(undefined);
+        expect(enzymeWrapperB.children().nodes[1].type.displayName).toBe('Connect(ArticleList)');
+    });
 });
