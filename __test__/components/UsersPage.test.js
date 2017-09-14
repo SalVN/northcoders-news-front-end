@@ -90,4 +90,15 @@ describe('UsersPage', () => {
         const result = wrapper.children().nodes[1].props.children;
         expect(result.length).toBe(0);
     });
+
+    it('calls fetch users on componentDidMount if the users array is empty', () => {
+        const spy = sinon.stub();
+        mount(<UsersPage
+            users={[]}
+            fetchUsers={spy}
+        />);
+        expect(spy.called).toBe(true);
+        expect(spy.callCount).toBe(1);
+    });
 });
+
