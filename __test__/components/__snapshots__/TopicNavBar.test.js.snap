@@ -22,7 +22,7 @@ exports[`TopicNavBar renders correctly 1`] = `
       </a>
     </span>
     <div
-      className="navbar-burger "
+      className="navbar-burger  burger"
       onClick={[Function]}
     >
       <div

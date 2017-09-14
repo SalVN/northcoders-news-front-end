@@ -29,7 +29,7 @@ export class TopicNavBar extends Component {
                             <img className='logo' src='https://avatars3.githubusercontent.com/u/6791502?v=3&s=200' alt='Northcoders logo' />
                         </Link>
                     </span>
-                    <div onClick={this.toggleBurger} className={`navbar-burger ${activeBurger}`}>
+                    <div onClick={this.toggleBurger} className={`navbar-burger ${activeBurger} burger`}>
                         <div className="navbar-burger">
                             <span></span>
                             <span></span>
@@ -62,7 +62,15 @@ export class TopicNavBar extends Component {
                     <div className='navbar-end'>
                         <span className='navbar-item'>
                             {
-                                this.props.user &&
+                                this.props.userLoading &&
+                                                           <div className='navbar-item article-list-loading-icon'>
+                                <span>
+                                    <i className='fa fa-refresh fa-spin' />
+                                </span>
+                            </div> 
+                            }
+                            {
+                                this.props.user && !this.props.userLoading &&
                                 <Link className='user' to={`/users/${this.props.user.username}`}>
                                     <span><img className='avatar' src={`${this.props.user.avatar_url}`} /></span>
                                     <span className='navbar-user-text'><strong>{this.props.user.username}</strong></span>

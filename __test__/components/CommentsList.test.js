@@ -1,13 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
-import { Provider } from 'react-redux';
-import configureStore from 'redux-mock-store';
 import { MemoryRouter } from 'react-router-dom';
 import sinon from 'sinon';
-
-const mockStore = configureStore();
-const initialState = {};
 
 import CommentsList from '../../src/components/CommentsList';
 
