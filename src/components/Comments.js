@@ -151,7 +151,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
     return {
         comments: state.comments.comments,
-        commentsLoading: state.commentsloading,
+        commentsLoading: state.comments.loading,
         userLoading: state.oneUser.loading,
         user: state.oneUser.user
     };

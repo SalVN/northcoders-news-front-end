@@ -18,11 +18,13 @@ const CommentCard = function (props) {
         </div>
         <div className='media-content'>
           <div className='content'>
-              <div>
+            <div>
+              { props.userData &&
                 <img className='comment-card-avatar' src={props.userData.avatar_url} alt='user avatar' />
-                <Link to={`/users/${props.userData.username}`}><span className='comment-card-name'><strong>{props.comment.created_by}</strong></span></Link>
-                <p className='comment-card-date'>{moment(props.comment.created_at).utc().format('Do MMMM YYYY, hh:mm')}</p>
-              </div>
+              }
+              <Link to={`/users/${props.comment.created_by}`}><span className='comment-card-name'><strong>{props.comment.created_by}</strong></span></Link>
+              <p className='comment-card-date'>{moment(props.comment.created_at).utc().format('Do MMMM YYYY, hh:mm')}</p>
+            </div>
             <div className='comment-card-body'>{props.comment.body}</div>
             {props.comment.created_by === USERNAME &&
               <button onClick={props.deleteHandler.bind(this, props.comment._id)} className='button is-small delete-button'>Delete Comment</button>
