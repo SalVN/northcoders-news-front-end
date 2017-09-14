@@ -71,7 +71,7 @@ describe('UsersPage', () => {
         expect(result.length).toBe(0);
     });
 
-    it('calls the voteHandler function when the "up" button is clicked', () => {
+    it('calls fetch users on componentDidMount if the users array is empty', () => {
         const spy = sinon.stub();
         const enzymeWrapper = mount(<UsersPage
             users={[]}

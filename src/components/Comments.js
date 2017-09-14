@@ -16,7 +16,7 @@ export class Comments extends Component {
             showForm: false,
             added: false,
             maximum: 8,
-            voted: false
+            voted: false,
         };
         this.toggleForm = this.toggleForm.bind(this);
         this.deleteHandler = this.deleteHandler.bind(this);
@@ -151,7 +151,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
     return {
         comments: state.comments.comments,
-        commentsLoading: state.commentsloading,
+        commentsLoading: state.comments.loading,
         userLoading: state.oneUser.loading,
         user: state.oneUser.user
     };

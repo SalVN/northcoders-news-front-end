@@ -15,7 +15,7 @@ export class CommentsList extends Component {
         this.sortComments = this.sortComments.bind(this);
     }
     componentWillReceiveProps(newProps) {
-        if (this.props.comments && (newProps.comments !== this.props.comments) && this.state.showForm) {
+        if (this.props.comments && (newProps.comments !== this.props.comments)) {
             this.setState({
                 sortedBy: 'newest'
             });
