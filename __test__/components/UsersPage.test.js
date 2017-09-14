@@ -30,11 +30,11 @@ describe('UsersPage', () => {
     });
 
     it('renders', () => {
-        const enzymeWrapper = shallow(<UsersPage
+        const wrapper = shallow(<UsersPage
             users={users}
             fetchUsers={x => x}
         />);
-        expect(enzymeWrapper.children().length).toEqual(2);
+        expect(wrapper.children().length).toEqual(2);
     });
 
     it('renders correctly', () => {
@@ -50,11 +50,11 @@ describe('UsersPage', () => {
     });
 
     it('renders the same number of article cards as there are objects in the users array', () => {
-        const enzymeWrapper = shallow(<UsersPage
+        const wrapper = shallow(<UsersPage
             users={users}
             fetchUsers={x => x}
         />);
-        const result = enzymeWrapper.children().nodes[1].props.children;
+        const result = wrapper.children().nodes[1].props.children;
         expect(result.length).toBe(3);
         result.forEach((user, i) => {
             expect(user.key).toBe(`northcoder${i + 1}`);
@@ -62,11 +62,11 @@ describe('UsersPage', () => {
     });
 
     it('does not render any cards if there are no users', () => {
-        const enzymeWrapper = shallow(<UsersPage
+        const wrapper = shallow(<UsersPage
             users={[]}
             fetchUsers={x => x}
         />);
-        const result = enzymeWrapper.children().nodes[1].props.children;
+        const result = wrapper.children().nodes[1].props.children;
         expect(result.length).toBe(0);
     });
 });

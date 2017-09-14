@@ -42,7 +42,7 @@ describe('TopicNavBar', () => {
 
     it('renders', () => {
         const store = mockStore(initialState);
-        const enzymeWrapper = shallow(<TopicNavBar
+        const wrapper = shallow(<TopicNavBar
             topics={topics}
             topicsLoading={false}
             userLoading={false}
@@ -51,8 +51,8 @@ describe('TopicNavBar', () => {
             user={user}
             store={store}
         />);
-        expect(enzymeWrapper.children().length).toEqual(2);
-        expect(enzymeWrapper.find('nav').length).toEqual(1);
+        expect(wrapper.children().length).toEqual(2);
+        expect(wrapper.find('nav').length).toEqual(1);
     });
 
     it('renders correctly', () => {

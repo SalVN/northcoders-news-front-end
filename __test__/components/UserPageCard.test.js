@@ -18,12 +18,12 @@ describe('UserPageCard', () => {
     });
 
     it('renders', () => {
-        const enzymeWrapper = shallow(<UserPageCard
+        const wrapper = shallow(<UserPageCard
             user={user}
             articlesNo={5}
             ranking={2}
         />);
-        expect(enzymeWrapper.children().length).toEqual(1);
+        expect(wrapper.children().length).toEqual(1);
     });
 
     it('renders correctly', () => {

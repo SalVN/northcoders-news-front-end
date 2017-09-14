@@ -25,13 +25,13 @@ describe('UserCard', () => {
 
     it('renders', () => {
         const store = mockStore(initialState);
-        const enzymeWrapper = shallow(<UserCard
+        const wrapper = shallow(<UserCard
             user={user}
             fetchUser={x => x}
             userLoading={false}
             store={store}
         />);
-        expect(enzymeWrapper.children().length).toEqual(1);
+        expect(wrapper.children().length).toEqual(1);
     });
 
     it('renders correctly', () => {

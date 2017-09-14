@@ -32,6 +32,137 @@ exports[`ArticleList renders correctly 1`] = `
           className="article-card-votes"
         >
           <strong>
+            5
+          </strong>
+        </p>
+        <button
+          className="button is-black is-inverted is-small down"
+          onClick={[Function]}
+        >
+          <i
+            aria-hidden="true"
+            className="fa fa-arrow-down"
+          />
+        </button>
+      </div>
+      <div
+        className="media-content"
+      >
+        <div
+          className="content"
+        >
+          <a
+            href="/articles/59b01acf006c8dbca914672g"
+            onClick={[Function]}
+          >
+            <h3
+              className="title is-4 article-card-title"
+            >
+              <strong>
+                Football is fun
+              </strong>
+            </h3>
+          </a>
+          <div
+            className="columns is-gapless is-desktop"
+          >
+            <div
+              className="column is-narrow"
+            >
+              <span
+                className="article-card-subheading-key"
+              >
+                added by:
+              </span>
+              <a
+                href="/users/northcoder"
+                onClick={[Function]}
+              >
+                <img
+                  alt="user avatar"
+                  className="article-card-avatar"
+                  src="https://avatars3.githubusercontent.com/u/6791502?v=3&s=200"
+                />
+                <span
+                  className="article-card-subheading-value"
+                >
+                  <strong>
+                    northcoder
+                  </strong>
+                </span>
+              </a>
+            </div>
+            <div
+              className="column is-narrow"
+            >
+              <span>
+                <span
+                  className="article-card-subheading-key"
+                >
+                  tags:
+                </span>
+                <a
+                  href="/topics/football/articles"
+                  onClick={[Function]}
+                >
+                  <span
+                    className="article-card-subheading-value"
+                  >
+                    <strong>
+                      football
+                    </strong>
+                  </span>
+                </a>
+              </span>
+              <span
+                className="article-card-subheading-key"
+              >
+                comments:
+              </span>
+              <a
+                href="/articles/59b01acf006c8dbca914672g#comments"
+              >
+                <span
+                  className="article-card-subheading-value"
+                >
+                  <strong>
+                    1
+                  </strong>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+  <div
+    className="box article-box-style"
+  >
+    <article
+      className="media"
+    >
+      <div
+        className="media-left article-number is-hidden-mobile"
+      >
+        2
+      </div>
+      <div
+        className="media-left is-hidden-mobile"
+      >
+        <button
+          className="button is-black is-inverted is-small up"
+          onClick={[Function]}
+        >
+          <i
+            aria-hidden="true"
+            className="fa fa-arrow-up"
+          />
+        </button>
+        <p
+          className="article-card-votes"
+        >
+          <strong>
             3
           </strong>
         </p>
@@ -127,137 +258,6 @@ exports[`ArticleList renders correctly 1`] = `
                 >
                   <strong>
                     0
-                  </strong>
-                </span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-  </div>
-  <div
-    className="box article-box-style"
-  >
-    <article
-      className="media"
-    >
-      <div
-        className="media-left article-number is-hidden-mobile"
-      >
-        2
-      </div>
-      <div
-        className="media-left is-hidden-mobile"
-      >
-        <button
-          className="button is-black is-inverted is-small up"
-          onClick={[Function]}
-        >
-          <i
-            aria-hidden="true"
-            className="fa fa-arrow-up"
-          />
-        </button>
-        <p
-          className="article-card-votes"
-        >
-          <strong>
-            2
-          </strong>
-        </p>
-        <button
-          className="button is-black is-inverted is-small down"
-          onClick={[Function]}
-        >
-          <i
-            aria-hidden="true"
-            className="fa fa-arrow-down"
-          />
-        </button>
-      </div>
-      <div
-        className="media-content"
-      >
-        <div
-          className="content"
-        >
-          <a
-            href="/articles/59b01acf006c8dbca914672e"
-            onClick={[Function]}
-          >
-            <h3
-              className="title is-4 article-card-title"
-            >
-              <strong>
-                Cats are great
-              </strong>
-            </h3>
-          </a>
-          <div
-            className="columns is-gapless is-desktop"
-          >
-            <div
-              className="column is-narrow"
-            >
-              <span
-                className="article-card-subheading-key"
-              >
-                added by:
-              </span>
-              <a
-                href="/users/northcoder"
-                onClick={[Function]}
-              >
-                <img
-                  alt="user avatar"
-                  className="article-card-avatar"
-                  src="https://avatars3.githubusercontent.com/u/6791502?v=3&s=200"
-                />
-                <span
-                  className="article-card-subheading-value"
-                >
-                  <strong>
-                    northcoder
-                  </strong>
-                </span>
-              </a>
-            </div>
-            <div
-              className="column is-narrow"
-            >
-              <span>
-                <span
-                  className="article-card-subheading-key"
-                >
-                  tags:
-                </span>
-                <a
-                  href="/topics/cats/articles"
-                  onClick={[Function]}
-                >
-                  <span
-                    className="article-card-subheading-value"
-                  >
-                    <strong>
-                      cats
-                    </strong>
-                  </span>
-                </a>
-              </span>
-              <span
-                className="article-card-subheading-key"
-              >
-                comments:
-              </span>
-              <a
-                href="/articles/59b01acf006c8dbca914672e#comments"
-              >
-                <span
-                  className="article-card-subheading-value"
-                >
-                  <strong>
-                    2
                   </strong>
                 </span>
               </a>

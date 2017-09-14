@@ -19,14 +19,14 @@ describe('AddCommentForm', () => {
     });
 
     it('renders', () => {
-        const enzymeWrapper = shallow(<AddCommentForm
+        const wrapper = shallow(<AddCommentForm
             user={user}
             id={user._id}
             showForm={true}
             handleSubmit={x => x}
             toggleForm={x => x}
         />);
-        expect(enzymeWrapper.children().length).toEqual(1);
+        expect(wrapper.children().length).toEqual(1);
     });
 
     it('renders correctly', () => {
@@ -45,30 +45,30 @@ describe('AddCommentForm', () => {
     });
 
     it('will not show the form if showForm is false', () => {
-        const enzymeWrapper = shallow(<AddCommentForm
+        const wrapper = shallow(<AddCommentForm
             user={user}
             id={user._id}
             showForm={false}
             handleSubmit={x => x}
             toggleForm={x => x}
         />);
-        expect(enzymeWrapper.find('form').length).toEqual(0);
+        expect(wrapper.find('form').length).toEqual(0);
     });
 
     it('will shows the form if showForm is true', () => {
-        const enzymeWrapper = shallow(<AddCommentForm
+        const wrapper = shallow(<AddCommentForm
             user={user}
             id={user._id}
             showForm={true}
             handleSubmit={x => x}
             toggleForm={x => x}
         />);
-        expect(enzymeWrapper.find('form').length).toEqual(1);
+        expect(wrapper.find('form').length).toEqual(1);
     });
 
     it('toggles the form if the div is clicked', () => {
         const spy = sinon.stub();
-        const enzymeWrapper = shallow(<AddCommentForm
+        const wrapper = shallow(<AddCommentForm
             user={user}
             id={user._id}
             showForm={false}
@@ -76,14 +76,14 @@ describe('AddCommentForm', () => {
             toggleForm={spy}
         />);
         expect(spy.called).toBe(false);
-        enzymeWrapper.find('.comment-form-small').simulate('click', { preventDefault() { } });
+        wrapper.find('.comment-form-small').simulate('click', { preventDefault() { } });
         expect(spy.callCount).toBe(1);
     });
 
 
     it('toggles the form if the form is blurred', () => {
         const spy = sinon.stub();
-        const enzymeWrapper = mount(<AddCommentForm
+        const wrapper = mount(<AddCommentForm
             user={user}
             id={user._id}
             showForm={true}
@@ -91,62 +91,62 @@ describe('AddCommentForm', () => {
             toggleForm={spy}
         />);
         expect(spy.called).toBe(false);
-        enzymeWrapper.find('textarea').simulate('click');
-        enzymeWrapper.find('.comment-form').simulate('blur', { preventDefault() { } });
+        wrapper.find('textarea').simulate('click');
+        wrapper.find('.comment-form').simulate('blur', { preventDefault() { } });
         expect(spy.callCount).toBe(1);
     });
 
     it('submits the form onSubmit', () => {
         const spy = sinon.stub();
-        const enzymeWrapper = shallow(<AddCommentForm
+        const wrapper = shallow(<AddCommentForm
             user={user}
             id={user._id}
             showForm={true}
             handleSubmit={spy}
             toggleForm={x => x}
         />);
-        enzymeWrapper.setState({ 'text': 'foo' });
-        enzymeWrapper.find('form').simulate('submit');
+        wrapper.setState({ 'text': 'foo' });
+        wrapper.find('form').simulate('submit');
         expect(spy.callCount).toBe(1);
     });
 
     it('will disable the form submit if there is no text contained in the box', () => {
-        const enzymeWrapper = shallow(<AddCommentForm
+        const wrapper = shallow(<AddCommentForm
             user={user}
             id={user._id}
             showForm={true}
             handleSubmit={x => x}
             toggleForm={x => x}
         />);
-        expect(enzymeWrapper.find('.add-comment-submit').node.props.disabled).toBe(true);
+        expect(wrapper.find('.add-comment-submit').node.props.disabled).toBe(true);
 
-        enzymeWrapper.setState({ 'text': 'foo' });
-        expect(enzymeWrapper.find('.add-comment-submit').node.props.disabled).toBe(false);
+        wrapper.setState({ 'text': 'foo' });
+        expect(wrapper.find('.add-comment-submit').node.props.disabled).toBe(false);
     });
 
     it('displays the characters left', () => {
-        const enzymeWrapper = shallow(<AddCommentForm
+        const wrapper = shallow(<AddCommentForm
             user={user}
             id={user._id}
             showForm={true}
             handleSubmit={x => x}
             toggleForm={x => x}
         />);
-        expect(enzymeWrapper.find('.characters-left').node.props.children).toBe(1000);
-        enzymeWrapper.setState({ 'text': 'hello world' });
-        expect(enzymeWrapper.find('.characters-left').node.props.children).toBe(989);
+        expect(wrapper.find('.characters-left').node.props.children).toBe(1000);
+        wrapper.setState({ 'text': 'hello world' });
+        expect(wrapper.find('.characters-left').node.props.children).toBe(989);
     });
 
     it('changes the state if the form is changed', () => {
-        const enzymeWrapper = mount(<AddCommentForm
+        const wrapper = mount(<AddCommentForm
             user={user}
             id={user._id}
             showForm={true}
             handleSubmit={x => x}
             toggleForm={x => x}
         />);
-        enzymeWrapper.find('textarea').simulate('change', { target: { value: 'text' } });
-        expect(enzymeWrapper.state('text')).toBe('text');
+        wrapper.find('textarea').simulate('change', { target: { value: 'text' } });
+        expect(wrapper.state('text')).toBe('text');
     });
 
 });

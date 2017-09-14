@@ -28,12 +28,12 @@ describe('Article', () => {
     });
 
     it('renders', () => {
-        const enzymeWrapper = shallow(<Article
+        const wrapper = shallow(<Article
             voteArticle={x => x}
             user={user}
             article={article}
         />);
-        expect(enzymeWrapper.children().length).toEqual(1);
+        expect(wrapper.children().length).toEqual(1);
     });
 
     it('renders correctly', () => {
@@ -50,35 +50,35 @@ describe('Article', () => {
     });
 
     it('contains two links', () => {
-        const enzymeWrapper = shallow(<Article
+        const wrapper = shallow(<Article
             voteArticle={x => x}
             user={user}
             article={article}
         />);
-        expect(enzymeWrapper.find('Link').length).toBe(2);
+        expect(wrapper.find('Link').length).toBe(2);
     });
 
     it('calls the voteHandler function when the "up" button is clicked', () => {
         const spy = sinon.stub();
-        const enzymeWrapper = shallow(<Article
+        const wrapper = shallow(<Article
             voteArticle={spy}
             user={user}
             article={article}
         />);
         expect(spy.called).toBe(false);
-        enzymeWrapper.find('.up').simulate('click', { preventDefault() { } });
+        wrapper.find('.up').simulate('click', { preventDefault() { } });
         expect(spy.called).toBe(true);
     });
 
     it('calls the voteHandler function when the "down" button is clicked', () => {
         const spy = sinon.stub();
-        const enzymeWrapper = shallow(<Article
+        const wrapper = shallow(<Article
             voteArticle={spy}
             user={user}
             article={article}
         />);
         expect(spy.called).toBe(false);
-        enzymeWrapper.find('.down').simulate('click', { preventDefault() { } });
+        wrapper.find('.down').simulate('click', { preventDefault() { } });
         expect(spy.called).toBe(true);
     });
 

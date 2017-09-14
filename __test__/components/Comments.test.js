@@ -58,7 +58,7 @@ describe('Comments', () => {
 
     it('renders', () => {
         const store = mockStore(initialState);
-        const enzymeWrapper = shallow(<Comments
+        const wrapper = shallow(<Comments
             store={store}
             id={comments[0]._id}
             comments={comments}
@@ -72,7 +72,7 @@ describe('Comments', () => {
             fetchUsers={x => x}
             commentsLoading={false}
         />);
-        expect(enzymeWrapper.children().length).toEqual(2);
+        expect(wrapper.children().length).toEqual(2);
     });
 
     it('renders correctly', () => {

@@ -18,10 +18,10 @@ describe('UsersCard', () => {
     });
 
     it('renders', () => {
-        const enzymeWrapper = shallow(<UsersCard
+        const wrapper = shallow(<UsersCard
             user={user}
         />);
-        expect(enzymeWrapper.children().length).toEqual(1);
+        expect(wrapper.children().length).toEqual(1);
     });
 
     it('renders correctly', () => {
@@ -36,9 +36,9 @@ describe('UsersCard', () => {
     });
 
     it('contains one link', () => {
-        const enzymeWrapper = shallow(<UsersCard
+        const wrapper = shallow(<UsersCard
             user={user}
         />);
-        expect(enzymeWrapper.find('Link').length).toBe(1);
+        expect(wrapper.find('Link').length).toBe(1);
     });
 });

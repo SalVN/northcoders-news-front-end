@@ -12,8 +12,8 @@ describe('UserNotFound', () => {
     });
 
     it('renders', () => {
-        const enzymeWrapper = shallow(<UserNotFound />);
-        expect(enzymeWrapper.children().length).toEqual(2);
+        const wrapper = shallow(<UserNotFound />);
+        expect(wrapper.children().length).toEqual(2);
     });
 
     it('renders correctly', () => {
@@ -26,8 +26,8 @@ describe('UserNotFound', () => {
     });
 
     it('contains one link', () => {
-        const enzymeWrapper = shallow(<UserNotFound />);
-        expect(enzymeWrapper.find('Link').length).toBe(1);
+        const wrapper = shallow(<UserNotFound />);
+        expect(wrapper.find('Link').length).toBe(1);
     });
 
 });

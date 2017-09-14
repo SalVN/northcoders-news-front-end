@@ -32,7 +32,7 @@ export class UserCard extends Component {
                                     </div>
 
                                     : <div>
-                                        <Link to={`users/${this.props.user.username}`}>
+                                        <Link to={`/users/${this.props.user.username}`}>
                                             <div>
                                                 <p className='user-card-name'><strong>{this.props.user.name}</strong></p>
                                                 <p className='user-card-username'>{`@${this.props.user.username}`}</p>

@@ -58,7 +58,7 @@ describe('CommentsList', () => {
 
     it('renders', () => {
         const store = mockStore(initialState);
-        const enzymeWrapper = shallow(<CommentsList
+        const wrapper = shallow(<CommentsList
             store={store}
             id={comments[0]._id}
             comments={comments}
@@ -68,7 +68,7 @@ describe('CommentsList', () => {
             maximum={2}
             viewMoreComments={x => x}
         />);
-        expect(enzymeWrapper.children().length).toEqual(4);
+        expect(wrapper.children().length).toEqual(4);
     });
 
     it('renders correctly', () => {

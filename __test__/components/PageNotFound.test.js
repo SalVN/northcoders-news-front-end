@@ -12,8 +12,8 @@ describe('PageNotFound', () => {
     });
 
     it('renders', () => {
-        const enzymeWrapper = shallow(<PageNotFound />);
-        expect(enzymeWrapper.children().length).toEqual(2);
+        const wrapper = shallow(<PageNotFound />);
+        expect(wrapper.children().length).toEqual(2);
     });
 
     it('renders correctly', () => {
@@ -26,7 +26,7 @@ describe('PageNotFound', () => {
     });
 
     it('contains one link', () => {
-        const enzymeWrapper = shallow(<PageNotFound />);
-        expect(enzymeWrapper.find('Link').length).toBe(1);
+        const wrapper = shallow(<PageNotFound />);
+        expect(wrapper.find('Link').length).toBe(1);
     });
 });

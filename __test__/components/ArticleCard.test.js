@@ -29,7 +29,7 @@ describe('ArticleCard', () => {
     });
 
     it('renders', () => {
-        const enzymeWrapper = shallow(<ArticleCard
+        const wrapper = shallow(<ArticleCard
             title={article.title}
             votes={article.votes}
             number={1}
@@ -40,7 +40,7 @@ describe('ArticleCard', () => {
             voteHandler={x => x}
             userData={user}
         />);
-        expect(enzymeWrapper.children().length).toEqual(1);
+        expect(wrapper.children().length).toEqual(1);
     });
 
     it('renders correctly', () => {
@@ -63,7 +63,7 @@ describe('ArticleCard', () => {
     });
 
     it('contains three links', () => {
-        const enzymeWrapper = shallow(<ArticleCard
+        const wrapper = shallow(<ArticleCard
             title={article.title}
             votes={article.votes}
             number={1}
@@ -74,12 +74,12 @@ describe('ArticleCard', () => {
             voteHandler={x => x}
             userData={user}
         />);
-        expect(enzymeWrapper.find('Link').length).toBe(3);
+        expect(wrapper.find('Link').length).toBe(3);
     });
 
     it('calls the voteHandler function when the "up" button is clicked', () => {
         const spy = sinon.stub();
-        const enzymeWrapper = shallow(<ArticleCard
+        const wrapper = shallow(<ArticleCard
             title={article.title}
             votes={article.votes}
             number={1}
@@ -91,13 +91,13 @@ describe('ArticleCard', () => {
             userData={user}
         />);
         expect(spy.called).toBe(false);
-        enzymeWrapper.find('.up').simulate('click', { preventDefault() { } });
+        wrapper.find('.up').simulate('click', { preventDefault() { } });
         expect(spy.called).toBe(true);
     });
 
     it('calls the voteHandler function when the "down" button is clicked', () => {
         const spy = sinon.stub();
-        const enzymeWrapper = shallow(<ArticleCard
+        const wrapper = shallow(<ArticleCard
             title={article.title}
             votes={article.votes}
             number={1}
@@ -109,12 +109,12 @@ describe('ArticleCard', () => {
             userData={user}
         />);
         expect(spy.called).toBe(false);
-        enzymeWrapper.find('.down').simulate('click', { preventDefault() { } });
+        wrapper.find('.down').simulate('click', { preventDefault() { } });
         expect(spy.called).toBe(true);
     });
 
     it('renders an article number which is one more than the index', () => {
-        const enzymeWrapper = shallow(<ArticleCard
+        const wrapper = shallow(<ArticleCard
             title={article.title}
             votes={article.votes}
             number={1}
@@ -125,7 +125,7 @@ describe('ArticleCard', () => {
             voteHandler={x => x}
             userData={user}
         />);
-        expect(enzymeWrapper.find('.article-number').node.props.children).toBe(2);
+        expect(wrapper.find('.article-number').node.props.children).toBe(2);
     });
 
     it('only renders the userData link if the userData exists', () => {

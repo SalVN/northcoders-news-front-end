@@ -40,13 +40,13 @@ describe('CommentCard', () => {
     });
 
     it('renders', () => {
-        const enzymeWrapper = shallow(<CommentCard
+        const wrapper = shallow(<CommentCard
             voteHandler={(x) => { return x; }}
             deleteHandler={(x) => { return x; }}
             comment={comment}
             userData={user}
         />);
-        expect(enzymeWrapper.children().length).toEqual(1);
+        expect(wrapper.children().length).toEqual(1);
     });
 
     it('renders correctly', () => {
@@ -64,71 +64,71 @@ describe('CommentCard', () => {
     });
 
     it('contains one link', () => {
-        const enzymeWrapper = shallow(<CommentCard
+        const wrapper = shallow(<CommentCard
             voteHandler={x => x}
             deleteHandler={x => x}
             comment={comment}
             userData={user}
         />);
-        expect(enzymeWrapper.find('Link').length).toBe(1);
+        expect(wrapper.find('Link').length).toBe(1);
     });
 
     it('renders a delete button if the comment was added by the user', () => {
-        const enzymeWrapper = shallow(<CommentCard
+        const wrapper = shallow(<CommentCard
             voteHandler={(x) => { return x; }}
             deleteHandler={(x) => { return x; }}
             comment={comment}
             userData={user}
         />);
-        expect(enzymeWrapper.find('.delete-button').length).toEqual(1);
+        expect(wrapper.find('.delete-button').length).toEqual(1);
     });
 
     it('does not render a delete button if the comment was added by a different user', () => {
-        const enzymeWrapper = shallow(<CommentCard
+        const wrapper = shallow(<CommentCard
             voteHandler={(x) => { return x; }}
             deleteHandler={(x) => { return x; }}
             comment={otherUserComment}
             userData={user}
         />);
-        expect(enzymeWrapper.find('.delete-button').length).toEqual(0);
+        expect(wrapper.find('.delete-button').length).toEqual(0);
     });
 
     it('calls the voteHandler function when the "up" button is clicked', () => {
         const spy = sinon.stub();
-        const enzymeWrapper = shallow(<CommentCard
+        const wrapper = shallow(<CommentCard
             voteHandler={spy}
             deleteHandler={(x) => { return x; }}
             comment={comment}
             userData={user}
         />);
         expect(spy.called).toBe(false);
-        enzymeWrapper.find('.up').simulate('click', { preventDefault() { } });
+        wrapper.find('.up').simulate('click', { preventDefault() { } });
         expect(spy.called).toBe(true);
     });
 
     it('calls the voteHandler function when the "down" button is clicked', () => {
         const spy = sinon.stub();
-        const enzymeWrapper = shallow(<CommentCard
+        const wrapper = shallow(<CommentCard
             voteHandler={spy}
             deleteHandler={(x) => { return x; }}
             comment={comment}
             userData={user}
         />);
         expect(spy.called).toBe(false);
-        enzymeWrapper.find('.down').simulate('click', { preventDefault() { } });
+        wrapper.find('.down').simulate('click', { preventDefault() { } });
         expect(spy.called).toBe(true);
     });
 
     it('calls the deleteHandler function when the "delete" button is clicked', () => {
         const spy = sinon.stub();
-        const enzymeWrapper = shallow(<CommentCard
+        const wrapper = shallow(<CommentCard
             voteHandler={x => x}
             deleteHandler={spy}
             comment={comment}
             userData={user}
         />);
         expect(spy.called).toBe(false);
-        enzymeWrapper.find('.delete-button').simulate('click', { preventDefault() { } });
+        wrapper.find('.delete-button').simulate('click', { preventDefault() { } });
         expect(spy.called).toBe(true);
     });
 });

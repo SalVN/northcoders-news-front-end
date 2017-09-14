@@ -55,7 +55,7 @@ export class ArticleList extends React.Component {
             );
           })
         }
-        {this.props.maximum <= this.props.articles.length &&
+        {this.props.maximum < this.props.articles.length &&
           <div className='show-more-button-div'>
             <button className='button is-small show-more-button' onClick={this.props.viewMoreArticles}>Show more</button>
           </div>

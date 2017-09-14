@@ -36,7 +36,7 @@ describe('MainArticleList', () => {
 
     it('renders', () => {
         const store = mockStore(initialState);
-        const enzymeWrapper = shallow(<MainArticleList
+        const wrapper = shallow(<MainArticleList
             store={store}
             articles={articles}
             articlesLoading={false}
@@ -44,7 +44,7 @@ describe('MainArticleList', () => {
             fetchUsers={x => x}
             voteArticle={x => x}
         />);
-        expect(enzymeWrapper.children().length).toEqual(2);
+        expect(wrapper.children().length).toEqual(2);
     });
 
     /* it('renders correctly', () => {

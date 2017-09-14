@@ -42,7 +42,7 @@ describe('ArticlePage', () => {
 
     it('renders', () => {
         const store = mockStore(initialState);
-        const enzymeWrapper = shallow(<ArticlePage
+        const wrapper = shallow(<ArticlePage
             store={store}
             articles={articles}
             fetchArticles={x => x}
@@ -57,7 +57,7 @@ describe('ArticlePage', () => {
             voteArticle={x => x}
             articlesLoading={false}
         />);
-        expect(enzymeWrapper.children().length).toEqual(3);
+        expect(wrapper.children().length).toEqual(3);
     });
 
     /* it('renders correctly', () => {

@@ -12,13 +12,13 @@ describe('ArticleListHeader', () => {
     });
 
     it('renders', () => {
-        const enzymeWrapper = shallow(<ArticleListHeader
+        const wrapper = shallow(<ArticleListHeader
             title={'abcdefg'}
             handleClickSelect={x => x}
             toggleDropdown={x => x}
             showDropdown={false}
         />);
-        expect(enzymeWrapper.children().length).toEqual(1);
+        expect(wrapper.children().length).toEqual(1);
     });
 
     it('renders correctly', () => {
@@ -36,14 +36,14 @@ describe('ArticleListHeader', () => {
 
     it('triggers the toggleDropdown function (prop) if the button is clicked', () => {
         const spy = sinon.stub();
-        const enzymeWrapper = shallow(<ArticleListHeader
+        const wrapper = shallow(<ArticleListHeader
             title={'abcdefg'}
             handleClickSelect={x => x}
             toggleDropdown={spy}
             showDropdown={false}
         />);
         expect(spy.callCount).toBe(0);
-        enzymeWrapper.find('.dropdown-button-article-list').simulate('click', { preventDefault() { } });
+        wrapper.find('.dropdown-button-article-list').simulate('click', { preventDefault() { } });
         expect(spy.callCount).toBe(1);
     });
 
@@ -87,7 +87,6 @@ describe('ArticleListHeader', () => {
             showDropdown={true}
         />);
         expect(spyComment.callCount).toBe(0);
-        console.log(enzymeWrapperComment.find('.comments'));
         enzymeWrapperComment.find('.comments').simulate('click', { preventDefault() { } });
         expect(spyComment.callCount).toBe(1);
 

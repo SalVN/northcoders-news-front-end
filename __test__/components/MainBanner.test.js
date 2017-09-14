@@ -12,18 +12,18 @@ describe('MainBanner', () => {
     });
 
     it('renders', () => {
-        const enzymeWrapper = shallow(<MainBanner />);
-        expect(enzymeWrapper.children().length).toEqual(1);
+        const wrapper = shallow(<MainBanner />);
+        expect(wrapper.children().length).toEqual(1);
     });
 
     it('contains the title NORTHCODERS News', () => {
-        const enzymeWrapper = shallow(<MainBanner />);
-        expect(enzymeWrapper.find('h1').nodes[0].props.children.props.children).toBe('NORTHCODERS News');
+        const wrapper = shallow(<MainBanner />);
+        expect(wrapper.find('h1').nodes[0].props.children.props.children).toBe('NORTHCODERS News');
     });
 
     it('contains one link', () => {
-        const enzymeWrapper = shallow(<MainBanner />);
-        expect(enzymeWrapper.find('Link').length).toBe(1);
+        const wrapper = shallow(<MainBanner />);
+        expect(wrapper.find('Link').length).toBe(1);
     });
 
     it('renders correctly', () => {
