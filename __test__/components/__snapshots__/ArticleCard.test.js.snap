@@ -16,7 +16,7 @@ exports[`ArticleCard renders correctly 1`] = `
       className="media-left is-hidden-mobile"
     >
       <button
-        className="button is-black is-inverted is-small"
+        className="button is-black is-inverted is-small up"
         onClick={[Function]}
       >
         <i
@@ -32,7 +32,7 @@ exports[`ArticleCard renders correctly 1`] = `
         </strong>
       </p>
       <button
-        className="button is-black is-inverted is-small"
+        className="button is-black is-inverted is-small down"
         onClick={[Function]}
       >
         <i
@@ -70,6 +70,23 @@ exports[`ArticleCard renders correctly 1`] = `
             >
               added by:
             </span>
+            <a
+              href="/users/northcoder"
+              onClick={[Function]}
+            >
+              <img
+                alt="user avatar"
+                className="article-card-avatar"
+                src="https://avatars3.githubusercontent.com/u/6791502?v=3&s=200"
+              />
+              <span
+                className="article-card-subheading-value"
+              >
+                <strong>
+                  northcoder
+                </strong>
+              </span>
+            </a>
           </div>
           <div
             className="column is-narrow"

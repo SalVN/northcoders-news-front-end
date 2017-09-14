@@ -65,7 +65,7 @@ class Article extends Component {
 
 Article.propTypes = {
     article: PropTypes.object.isRequired,
-    user: PropTypes.object.isRequired,
+    user: PropTypes.object,
     voteArticle: PropTypes.func.isRequired
 };
 
