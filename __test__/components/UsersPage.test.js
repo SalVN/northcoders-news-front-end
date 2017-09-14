@@ -1,7 +1,8 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 import { MemoryRouter } from 'react-router-dom';
+import sinon from 'sinon';
 
 import { UsersPage } from '../../src/components/UsersPage';
 
@@ -69,4 +70,15 @@ describe('UsersPage', () => {
         const result = enzymeWrapper.children().nodes[1].props.children;
         expect(result.length).toBe(0);
     });
+
+    it('calls the voteHandler function when the "up" button is clicked', () => {
+        const spy = sinon.stub();
+        const enzymeWrapper = mount(<UsersPage
+            users={[]}
+            fetchUsers={spy}
+        />);
+        expect(spy.called).toBe(true);
+        expect(spy.callCount).toBe(1);
+    });
 });
+

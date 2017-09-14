@@ -104,6 +104,7 @@ describe('CommentCard', () => {
         expect(spy.called).toBe(false);
         enzymeWrapper.find('.up').simulate('click', { preventDefault() { } });
         expect(spy.called).toBe(true);
+        expect(spy.calledOnce).toBe(true);
     });
 
     it('calls the voteHandler function when the "down" button is clicked', () => {
@@ -117,6 +118,7 @@ describe('CommentCard', () => {
         expect(spy.called).toBe(false);
         enzymeWrapper.find('.down').simulate('click', { preventDefault() { } });
         expect(spy.called).toBe(true);
+        expect(spy.calledOnce).toBe(true);
     });
 
     it('calls the deleteHandler function when the "delete" button is clicked', () => {
@@ -130,5 +132,6 @@ describe('CommentCard', () => {
         expect(spy.called).toBe(false);
         enzymeWrapper.find('.delete-button').simulate('click', { preventDefault() { } });
         expect(spy.called).toBe(true);
+        expect(spy.calledOnce).toBe(true);
     });
 });
