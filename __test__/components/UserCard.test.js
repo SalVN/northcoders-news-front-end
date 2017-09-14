@@ -108,11 +108,11 @@ describe('UserCard', () => {
     });
 
     it('calculates the popularity by finding the total votes of the user', () => {
-        const enzymeWrapper = shallow(<UserCard
+        const wrapper = shallow(<UserCard
             user={user}
             fetchUser={x => x}
             userLoading={false}
         />);
-        expect(enzymeWrapper.find('.total-vote').node.props.children).toBe(13);
+        expect(wrapper.find('.total-vote').node.props.children).toBe(13);
     });
 });

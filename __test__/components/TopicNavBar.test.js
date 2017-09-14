@@ -107,7 +107,7 @@ describe('TopicNavBar', () => {
     });
 
     it('changes the burger to "is-active" if this.state.activeBurger', () => {
-        const enzymeWrapper = shallow(<TopicNavBar
+        const wrapper = shallow(<TopicNavBar
             topics={topics}
             topicsLoading={false}
             userLoading={false}
@@ -115,13 +115,13 @@ describe('TopicNavBar', () => {
             fetchUser={x => x}
             user={user}
         />);
-        expect(enzymeWrapper.find('.navbar-menu').node.props.className).toBe('navbar-menu ');
-        enzymeWrapper.setState({ activeBurger: true });
-        expect(enzymeWrapper.find('.navbar-menu').node.props.className).toBe('navbar-menu is-active');
+        expect(wrapper.find('.navbar-menu').node.props.className).toBe('navbar-menu ');
+        wrapper.setState({ activeBurger: true });
+        expect(wrapper.find('.navbar-menu').node.props.className).toBe('navbar-menu is-active');
     });
 
     it('contains two Links', () => {
-        const enzymeWrapper = shallow(<TopicNavBar
+        const wrapper = shallow(<TopicNavBar
             topics={topics}
             topicsLoading={false}
             userLoading={false}
@@ -129,11 +129,11 @@ describe('TopicNavBar', () => {
             fetchUser={x => x}
             user={user}
         />);
-        expect(enzymeWrapper.find('Link').length).toBe(2);
+        expect(wrapper.find('Link').length).toBe(2);
     });
 
     it('contains three NavLinks', () => {
-        const enzymeWrapper = shallow(<TopicNavBar
+        const wrapper = shallow(<TopicNavBar
             topics={topics}
             topicsLoading={false}
             userLoading={false}
@@ -141,11 +141,11 @@ describe('TopicNavBar', () => {
             fetchUser={x => x}
             user={user}
         />);
-        expect(enzymeWrapper.find('NavLink').length).toBe(3);
+        expect(wrapper.find('NavLink').length).toBe(3);
     });
 
     it('triggers the toggleBurger function when the navbar-burger is clicked', () => {
-        const enzymeWrapper = shallow(<TopicNavBar
+        const wrapper = shallow(<TopicNavBar
             topics={topics}
             topicsLoading={false}
             userLoading={false}
@@ -153,9 +153,9 @@ describe('TopicNavBar', () => {
             fetchUser={x => x}
             user={user}
         />);
-        expect(enzymeWrapper.state('activeBurger')).toBe(false);
-        enzymeWrapper.find('.burger').simulate('click');
-        expect(enzymeWrapper.state('activeBurger')).toBe(true);
+        expect(wrapper.state('activeBurger')).toBe(false);
+        wrapper.find('.burger').simulate('click');
+        expect(wrapper.state('activeBurger')).toBe(true);
     });
 
     it('shows a loading icon if this.props.topicsLoading', () => {
