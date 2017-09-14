@@ -75,7 +75,7 @@ exports[`Comments renders correctly 1`] = `
           className="comment-sort-links"
         >
           <a
-            className="comment-sort-active"
+            className="newest comment-sort-active"
             onClick={[Function]}
           >
             <span
@@ -85,7 +85,7 @@ exports[`Comments renders correctly 1`] = `
             </span>
           </a>
           <a
-            className="comment-sort-links"
+            className="oldest comment-sort-links"
             onClick={[Function]}
           >
             <span
@@ -95,7 +95,7 @@ exports[`Comments renders correctly 1`] = `
             </span>
           </a>
           <a
-            className="comment-sort-links"
+            className="votes comment-sort-links"
             onClick={[Function]}
           >
             <span>
@@ -103,7 +103,9 @@ exports[`Comments renders correctly 1`] = `
             </span>
           </a>
         </div>
-        <div>
+        <div
+          className="comment-card"
+        >
           <div
             className="card box-style"
           >
@@ -185,7 +187,9 @@ exports[`Comments renders correctly 1`] = `
             </article>
           </div>
         </div>
-        <div>
+        <div
+          className="comment-card"
+        >
           <div
             className="card box-style"
           >
@@ -267,7 +271,9 @@ exports[`Comments renders correctly 1`] = `
             </article>
           </div>
         </div>
-        <div>
+        <div
+          className="comment-card"
+        >
           <div
             className="card box-style"
           >

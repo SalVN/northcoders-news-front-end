@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { sortComments } from '../utilities/sortComments';
@@ -16,13 +16,13 @@ const CommentsList = function (props) {
         return (
             <div>
                 <div className='comment-sort-links'>
-                    <a onClick={props.sortComments} className={`${newest}`}>
+                    <a onClick={props.sortComments} className={`newest ${newest}`}>
                         <span className='comment-sort-left'>sort by newest</span>
                     </a>
-                    <a onClick={props.sortComments} className={`${oldest}`}>
+                    <a onClick={props.sortComments} className={`oldest ${oldest}`}>
                         <span className='comment-sort-left'>sort by oldest</span>
                     </a>
-                    <a onClick={props.sortComments} className={`${votes}`}>
+                    <a onClick={props.sortComments} className={`votes ${votes}`}>
                         <span>sort by votes</span>
                     </a>
                 </div>
@@ -34,7 +34,7 @@ const CommentsList = function (props) {
                             if (user.username === username) index = i;
                         });
                     return (
-                        <div key={comment._id}>
+                        <div className='comment-card' key={comment._id}>
                             <CommentCard
                                 deleteHandler={props.deleteHandler}
                                 comment={comment}
@@ -44,14 +44,14 @@ const CommentsList = function (props) {
                         </div>
                     );
                 })}
-                {props.maximum <= props.comments.length &&
+                {props.maximum < props.comments.length &&
                     <div className='show-more-button-div'>
                         <button className='button is-small show-more-button' onClick={props.viewMoreComments}>Show more</button>
                     </div>
                 }
             </div>
         );
-}
+};
 
 CommentsList.propTypes = {
     id: PropTypes.string,

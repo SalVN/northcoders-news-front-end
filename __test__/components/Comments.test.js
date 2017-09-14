@@ -237,6 +237,7 @@ describe('Comments', () => {
         expect(wrapper.state('added')).toBe(false);
         expect(wrapper.state('maximum')).toBe(8);
         expect(wrapper.state('voted')).toBe(false);
+        expect(wrapper.state('sortedBy')).toBe('newest');
     });
 
     it('renders the number of comments if a comments array is passed in props, or 0 if not', () => {
