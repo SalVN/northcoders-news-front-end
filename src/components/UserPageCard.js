@@ -51,7 +51,7 @@ const UserPageCard = function (props) {
                 </div>
             </div>
         );
-}
+};
 
 UserPageCard.propTypes = {
     user: PropTypes.object.isRequired,
