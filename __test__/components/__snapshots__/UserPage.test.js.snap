@@ -58,7 +58,7 @@ exports[`UserPage renders correctly 1`] = `
               <div
                 className="user-page-card-number"
               >
-                NaN
+                2
               </div>
             </div>
             <div
@@ -71,7 +71,9 @@ exports[`UserPage renders correctly 1`] = `
               </div>
               <div
                 className="user-page-card-number"
-              />
+              >
+                5
+              </div>
             </div>
             <div
               className="column is-2-tablet"
@@ -97,7 +99,9 @@ exports[`UserPage renders correctly 1`] = `
               </div>
               <div
                 className="user-page-card-number"
-              />
+              >
+                1
+              </div>
             </div>
             <div
               className="column is-2-tablet is-hidden-mobile"
@@ -109,7 +113,9 @@ exports[`UserPage renders correctly 1`] = `
               </div>
               <div
                 className="user-page-card-number"
-              />
+              >
+                1
+              </div>
             </div>
             <div
               className="column is-2-tablet is-hidden-mobile"
@@ -122,7 +128,7 @@ exports[`UserPage renders correctly 1`] = `
               <div
                 className="user-page-card-number"
               >
-                1
+                2
               </div>
             </div>
           </div>
@@ -148,7 +154,7 @@ exports[`UserPage renders correctly 1`] = `
             className="page-title"
           >
             <strong>
-               Articles
+              northcoder's Articles
             </strong>
           </h2>
         </div>
