@@ -1,7 +1,8 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 import { MemoryRouter } from 'react-router-dom';
+import sinon from 'sinon';
 
 import { UsersPage } from '../../src/components/UsersPage';
 
@@ -47,6 +48,26 @@ describe('UsersPage', () => {
             </MemoryRouter>
         ).toJSON();
         expect(tree).toMatchSnapshot();
+    });
+
+    it('fetches the users on componentDidMount if users is an empty array', () => {
+        const spy = sinon.stub();
+        mount(
+            <MemoryRouter>
+                <UsersPage
+                    users={users}
+                    fetchUsers={spy}
+                />
+            </MemoryRouter>);
+        expect(spy.callCount).toBe(0);
+        mount(
+            <MemoryRouter>
+                <UsersPage
+                    users={[]}
+                    fetchUsers={spy}
+                />
+            </MemoryRouter>);
+        expect(spy.callCount).toBe(1);
     });
 
     it('renders the same number of article cards as there are objects in the users array', () => {
