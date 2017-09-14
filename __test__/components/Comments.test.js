@@ -371,4 +371,145 @@ describe('Comments', () => {
         expect(wrapperB.find('AddCommentForm').length).toBe(1);
         expect(wrapperB.find('CommentsList').length).toBe(1);
     });
+
+    it('fetchComments on componentDidMount', () => {
+        const spy = sinon.stub();
+        const store = mockStore(initialState);
+        expect(spy.callCount).toBe(0);
+        mount(
+            <Provider store={store}>
+                <MemoryRouter>
+                    <Comments
+                        store={store}
+                        id={comments[0]._id}
+                        comments={comments}
+                        users={users}
+                        fetchComments={spy}
+                        deleteComment={x => x}
+                        voteComment={x => x}
+                        fetchUser={x => x}
+                        user={users[0]}
+                        addComment={x => x}
+                        fetchUsers={x => x}
+                        commentsLoading={false}
+                    />
+                </MemoryRouter>
+            </Provider>);
+        expect(spy.callCount).toBe(1);
+    });
+
+    it('fetchUser on componentDidMount if this.props.user.username is undefined', () => {
+        const spy = sinon.stub();
+        const store = mockStore(initialState);
+        expect(spy.callCount).toBe(0);
+        mount(
+            <Provider store={store}>
+                <MemoryRouter>
+                    <Comments
+                        store={store}
+                        id={comments[0]._id}
+                        comments={comments}
+                        users={users}
+                        fetchComments={x => x}
+                        deleteComment={x => x}
+                        voteComment={x => x}
+                        fetchUser={spy}
+                        user={users[0]}
+                        addComment={x => x}
+                        fetchUsers={x => x}
+                        commentsLoading={false}
+                    />
+                </MemoryRouter>
+            </Provider>);
+        expect(spy.callCount).toBe(0);
+        mount(
+            <Provider store={store}>
+                <MemoryRouter>
+                    <Comments
+                        store={store}
+                        id={comments[0]._id}
+                        comments={comments}
+                        users={users}
+                        fetchComments={x => x}
+                        deleteComment={x => x}
+                        voteComment={x => x}
+                        fetchUser={spy}
+                        user={{}}
+                        addComment={x => x}
+                        fetchUsers={x => x}
+                        commentsLoading={false}
+                    />
+                </MemoryRouter>
+            </Provider>);
+        expect(spy.callCount).toBe(1);
+    });
+
+    it('should fetchUsers, fetchOneUser and change state on componentWillReceiveProps if the length of the new comments does not equal the old comments', () => {
+        const spyUsers = sinon.stub();
+        const spyOneUser = sinon.stub();
+        const store = mockStore(initialState);
+        const wrapper = shallow(<Comments
+            store={store}
+            id={comments[0]._id}
+            comments={comments}
+            users={users}
+            fetchComments={x => x}
+            deleteComment={x => x}
+            voteComment={x => x}
+            fetchUser={spyOneUser}
+            user={users[0]}
+            addComment={x => x}
+            fetchUsers={spyUsers}
+            commentsLoading={false}
+        />);
+        wrapper.setState({ sortedBy: 'votes' });
+        expect(spyUsers.callCount).toBe(0);
+        expect(spyOneUser.callCount).toBe(0);
+        wrapper.setProps({ comments: comments });
+        expect(spyUsers.callCount).toBe(0);
+        expect(spyOneUser.callCount).toBe(0);
+        expect(wrapper.state('sortedBy')).toBe('votes');
+        wrapper.setProps({ comments: comments[0] });
+        expect(spyUsers.callCount).toBe(1);
+        expect(spyOneUser.callCount).toBe(1);
+        expect(wrapper.state('sortedBy')).toBe('newest');
+        wrapper.setProps({ users: users });
+        expect(spyUsers.callCount).toBe(1);
+        expect(spyOneUser.callCount).toBe(1);
+    });
+
+    it('should fetchUsers, fetchOneUser and change state on componentWillReceiveProps if this.state.voted', () => {
+        const spyUsers = sinon.stub();
+        const spyOneUser = sinon.stub();
+        const store = mockStore(initialState);
+        const wrapper = shallow(<Comments
+            store={store}
+            id={comments[0]._id}
+            comments={comments}
+            users={users}
+            fetchComments={x => x}
+            deleteComment={x => x}
+            voteComment={x => x}
+            fetchUser={spyOneUser}
+            user={users[0]}
+            addComment={x => x}
+            fetchUsers={spyUsers}
+            commentsLoading={false}
+        />);
+        wrapper.setState({ sortedBy: 'votes' });
+        expect(wrapper.state('voted')).toBe(false);
+        expect(spyUsers.callCount).toBe(0);
+        expect(spyOneUser.callCount).toBe(0);
+        wrapper.setProps({ comments: comments });
+        expect(wrapper.state('sortedBy')).toBe('votes');
+        expect(wrapper.state('voted')).toBe(false);
+        expect(spyUsers.callCount).toBe(0);
+        expect(spyOneUser.callCount).toBe(0);
+        wrapper.setState({ voted: true });
+        wrapper.setProps({ comments: comments });
+        expect(spyUsers.callCount).toBe(1);
+        expect(spyOneUser.callCount).toBe(1);
+        expect(wrapper.state('sortedBy')).toBe('newest');
+        expect(wrapper.state('voted')).toBe(false); wrapper.setProps({ users: users });
+    });
 });

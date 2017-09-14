@@ -84,6 +84,7 @@ describe('UserPage', () => {
                 <MemoryRouter>
                     <UserPage
                         users={users}
+                        user={users[0]}
                         fetchUsers={x => x}
                         match={
                             {
@@ -144,6 +145,7 @@ describe('UserPage', () => {
                             }
                         }}
                     fetchArticles={x => x}
+                    user={users[0]}
                     articles={articles}
                     index={0}
                     voteArticle={x => x}
@@ -157,6 +159,7 @@ describe('UserPage', () => {
             <MemoryRouter>
                 <UserPage
                     users={[]}
+                    user={users[0]}
                     fetchUsers={spy}
                     match={
                         {
@@ -183,6 +186,7 @@ describe('UserPage', () => {
             <MemoryRouter>
                 <UserPage
                     users={users}
+                    user={users[0]}
                     fetchUsers={x => x}
                     match={
                         {
@@ -204,6 +208,7 @@ describe('UserPage', () => {
             <MemoryRouter>
                 <UserPage
                     users={[]}
+                    user={users[0]}
                     fetchUsers={x => x}
                     match={
                         {
@@ -228,6 +233,7 @@ describe('UserPage', () => {
         const store = mockStore(initialState);
         const wrapper = shallow(<UserPage
             users={users}
+            user={users[0]}
             fetchUsers={spy}
             match={
                 {

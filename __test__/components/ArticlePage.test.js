@@ -28,15 +28,6 @@ const initialState = {
 import { ArticlePage } from '../../src/components/ArticlePage';
 
 describe('ArticlePage', () => {
-    const article = {
-        _id: '59b01acf006c8dbca914672f',
-        title: 'Football is fun',
-        body: 'something',
-        belongs_to: 'football',
-        __v: 0,
-        votes: 3,
-        comment_count: 0
-    };
     const articles = [{
         _id: '59b01acf006c8dbca914672f',
         title: 'Football is fun',

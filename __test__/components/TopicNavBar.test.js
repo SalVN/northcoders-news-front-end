@@ -42,7 +42,6 @@ describe('TopicNavBar', () => {
     });
 
     it('renders', () => {
-        const store = mockStore(initialState);
         const wrapper = shallow(<TopicNavBar
             topics={topics}
             topicsLoading={false}
@@ -50,7 +49,6 @@ describe('TopicNavBar', () => {
             fetchTopics={x => x}
             fetchUser={x => x}
             user={user}
-            store={store}
         />);
         expect(wrapper.children().length).toEqual(2);
         expect(wrapper.find('nav').length).toEqual(1);
@@ -77,7 +75,6 @@ describe('TopicNavBar', () => {
     });
 
     it('has an initial state', () => {
-        const store = mockStore(initialState);
         const wrapper = shallow(<TopicNavBar
             topics={topics}
             topicsLoading={false}
@@ -85,7 +82,6 @@ describe('TopicNavBar', () => {
             fetchTopics={x => x}
             fetchUser={x => x}
             user={user}
-            store={store}
         />);
         expect(wrapper.state()).toEqual({ activeBurger: false });
     });
@@ -118,7 +114,6 @@ describe('TopicNavBar', () => {
             fetchTopics={x => x}
             fetchUser={x => x}
             user={user}
-            store={x => x}
         />);
         expect(enzymeWrapper.find('.navbar-menu').node.props.className).toBe('navbar-menu ');
         enzymeWrapper.setState({ activeBurger: true });
@@ -133,7 +128,6 @@ describe('TopicNavBar', () => {
             fetchTopics={x => x}
             fetchUser={x => x}
             user={user}
-            store={x => x}
         />);
         expect(enzymeWrapper.find('Link').length).toBe(2);
     });
@@ -146,7 +140,6 @@ describe('TopicNavBar', () => {
             fetchTopics={x => x}
             fetchUser={x => x}
             user={user}
-            store={x => x}
         />);
         expect(enzymeWrapper.find('NavLink').length).toBe(3);
     });
@@ -159,7 +152,6 @@ describe('TopicNavBar', () => {
             fetchTopics={x => x}
             fetchUser={x => x}
             user={user}
-            store={x => x}
         />);
         expect(enzymeWrapper.state('activeBurger')).toBe(false);
         enzymeWrapper.find('.burger').simulate('click');
@@ -184,13 +176,11 @@ describe('TopicNavBar', () => {
             fetchTopics={x => x}
             fetchUser={x => x}
             user={user}
-            store={x => x}
         />);
         expect(enzymeWrapperB.find('.fa-spin').length).toBe(1);
     });
 
     it('shows a loading icon if this.props.userLoading', () => {
-        const store = mockStore(initialState);
         const enzymeWrapperA = shallow(<TopicNavBar
             topics={topics}
             topicsLoading={false}
@@ -198,7 +188,6 @@ describe('TopicNavBar', () => {
             fetchTopics={x => x}
             fetchUser={x => x}
             user={user}
-            store={x => x}
         />);
         expect(enzymeWrapperA.find('.fa-spin').length).toBe(0);
 
@@ -209,7 +198,6 @@ describe('TopicNavBar', () => {
             fetchTopics={x => x}
             fetchUser={x => x}
             user={user}
-            store={x => x}
         />);
         expect(enzymeWrapperB.find('.fa-spin').length).toBe(1);
     });
