@@ -16,13 +16,15 @@ export class Comments extends Component {
             showForm: false,
             added: false,
             maximum: 8,
-            voted: false
+            voted: false,
+            sortedBy: 'newest',
         };
         this.toggleForm = this.toggleForm.bind(this);
         this.deleteHandler = this.deleteHandler.bind(this);
         this.voteHandler = this.voteHandler.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.viewMoreComments = this.viewMoreComments.bind(this);
+        this.sortComments = this.sortComments.bind(this);
     }
     componentDidMount() {
         this.props.fetchComments(this.props.id);
@@ -34,7 +36,10 @@ export class Comments extends Component {
         if ((newProps.comments && newProps.comments.length !== this.props.comments.length) || this.state.voted) {
             this.props.fetchUsers();
             this.props.fetchUser(USERNAME);
-            this.setState({ voted: false });
+            this.setState({
+                voted: false,
+                sortedBy: 'newest'
+            });
         }
     }
     render() {
@@ -82,6 +87,8 @@ export class Comments extends Component {
                                 voteHandler={this.voteHandler}
                                 maximum={this.state.maximum}
                                 viewMoreComments={this.viewMoreComments}
+                                sortedBy={this.state.sortedBy}
+                                sortComments={this.sortComments}
                             />
                         </div>}
                 </div>
@@ -121,6 +128,16 @@ export class Comments extends Component {
         const newMax = this.state.maximum + 10;
         this.setState({
             maximum: newMax
+        });
+    }
+    sortComments(e) {
+        e.preventDefault();
+        let sort;
+        if (e.target.innerText === 'sort by newest') sort = 'newest';
+        if (e.target.innerText === 'sort by votes') sort = 'votes';
+        if (e.target.innerText === 'sort by oldest') sort = 'oldest';
+        this.setState({
+            sortedBy: sort
         });
     }
 }

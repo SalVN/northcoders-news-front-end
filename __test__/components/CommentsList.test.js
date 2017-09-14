@@ -8,7 +8,7 @@ import { MemoryRouter } from 'react-router-dom';
 const mockStore = configureStore();
 const initialState = {};
 
-import { CommentsList } from '../../src/components/CommentsList';
+import CommentsList from '../../src/components/CommentsList';
 
 describe('CommentsList', () => {
     const users = [{
@@ -67,6 +67,8 @@ describe('CommentsList', () => {
             voteHandler={x => x}
             maximum={2}
             viewMoreComments={x => x}
+            sortedBy='newest'
+            sortComments={x => x}
         />);
         expect(wrapper.children().length).toEqual(4);
     });
@@ -84,10 +86,13 @@ describe('CommentsList', () => {
                         deleteHandler={x => x}
                         voteHandler={x => x}
                         maximum={2}
+                        sortedBy='newest'
+                        sortComments={x => x}
                         viewMoreComments={x => x} />
                 </MemoryRouter>
             </Provider>
-                ).toJSON();
+        ).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
 });
