@@ -50,8 +50,8 @@ export class Comments extends Component {
                     </p>
                     <p className='is-hidden-mobile is-hidden-desktop'>
                         {this.props.comments
-                            ? <span className='comments-title comments-title-sub tablet'>{`(${this.props.comments.length})`}</span>
-                            : <span className='comments-title comments-title-sub tablet'>{'(0)'}</span>
+                            ? <span className='comments-title comments-title-sub tablet comments-length'>{`(${this.props.comments.length})`}</span>
+                            : <span className='comments-title comments-title-sub tablet comments-length'>{'(0)'}</span>
                         }
                     </p>
                 </div>
@@ -159,7 +159,7 @@ function mapStateToProps(state) {
 
 Comments.propTypes = {
     id: PropTypes.string.isRequired,
-    comments: PropTypes.array.isRequired,
+    comments: PropTypes.any.isRequired,
     users: PropTypes.array.isRequired,
     fetchComments: PropTypes.func.isRequired,
     deleteComment: PropTypes.func.isRequired,

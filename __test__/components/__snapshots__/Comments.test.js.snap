@@ -26,7 +26,7 @@ exports[`Comments renders correctly 1`] = `
       className="is-hidden-mobile is-hidden-desktop"
     >
       <span
-        className="comments-title comments-title-sub tablet"
+        className="comments-title comments-title-sub tablet comments-length"
       >
         (3)
       </span>

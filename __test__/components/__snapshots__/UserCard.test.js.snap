@@ -23,7 +23,7 @@ exports[`UserCard renders correctly 1`] = `
       >
         <div>
           <a
-            href="users/northcoder"
+            href="/users/northcoder"
             onClick={[Function]}
           >
             <div>
