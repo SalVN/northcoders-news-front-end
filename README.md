@@ -104,6 +104,7 @@ Whilst a full list of dependencies is available on the package.json, the main li
 
 PROJECT
 * [ReactJS](https://facebook.github.io/react/)
+* [Bulma](http://bulma.io/)
 * [React Router](https://reacttraining.com/react-router/)
 * [Redux](http://redux.js.org/) 
 * [Underscore](http://underscorejs.org/)
