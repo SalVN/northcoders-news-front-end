@@ -62,21 +62,25 @@ localhost:9090/
 
 The following routes can be used on the front-end to interact with the server:
 
-<localhost:9090/> 
+<http://localhost:9090/> 
     displays a list of articles
 
-<localhost:9090/topics/:topic-id/articles>
+<http://localhost:9090/topics/:topic-id/articles>
     displays a filtered list of articles about the topic
 
-<localhost:9090/articles/:id>
+<http://localhost:9090/articles/:id>
     displays the featured article and related comments.
     The comments component allows you to add a comment to the page.
 
-<localhost:9090/users/:username>
+<http://localhost:9090/users/:username>
     displays key statistics about the user, as well as a list of articles they have contributed.
 
-<localhost:9090/users>
+<http://localhost:9090/users>
     displays a list of users
+
+Axios requests will be made to http://localhost:3000/api, which, along with the default username which is used for adding comments, is held in the config.js file.
+
+If you are already running something on localhost:9090, this can be changed in the webpack.config.js file.
 
 ## Test Suite
 
