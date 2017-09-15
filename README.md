@@ -15,12 +15,19 @@ To run the front end, the following steps should be taken:
 
 ### Prerequisites
 
-This project requires nodejs and npm to be installed.
+This project requires nodejs and npm to be installed on your machine.
 
-If nodejs is not installed on your machine, refer to the node documentation for instructions.
+<b>Node</b>
 
-To confirm you have npm installed on your machine, run the following code:
+To confirm you have Node installed on your machine, run the following code in the command line (Node v7.9.0 was used for this project).
+```
+node --version
+```
+If nodejs is not installed on your machine, it is available from <https://nodejs.org/en/download/>.
 
+<b>npm</b>
+
+To confirm you have npm installed locally, the following command line code can be used (npm 4.2.0 was used for this project).
 ```
 npm -v
 ```
@@ -31,7 +38,7 @@ If you don't have npm installed on your machine, instructions for installing npm
 
 1. Install dependencies
 
-After cloning the project from Github, use npm or yarn to install the dependencies on your machine.
+After cloning the project into a new file from from [Github](https://github.com/SalVN/w10-northcoders-news), use npm or yarn to install the dependencies on your machine.
 
 ```
 npm install
@@ -39,7 +46,7 @@ npm install
 
 2. Start the webpack dev server
 
-This project currently uses a webpack dev server, which needs to be started to run the project.
+This project currently uses a [webpack dev server](https://webpack.github.io/docs/webpack-dev-server.html), which needs to be started to run the project.
 ```
 npm run dev
 ```
