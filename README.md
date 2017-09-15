@@ -5,39 +5,112 @@ Northcoders News is a social news aggregation, web content rating, and discussio
 Northcoders News has articles which are divided into topics. Each article has user curated ratings and can be up or down voted using the API.
 Users can also add comments about an article. Comments can also be up or down voted. A user can add comments and remove any comments which
 they have added.
+The user and comments list can be sorted by a range of options.
 
-### Objectives
-1. Pull together all the skills and technologies you have learnt over the past three weeks.
-2. Learn about working with a [C.R.U.D](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) application from a front end perspective.
-3. Make more advanced asynchronous API calls.
-4. Begin to familiarise yourself with the various HTTP response codes and update your UI accordingly.
-5. Learn more common HTTP request types `POST`, `PUT` & `DELETE`
-6. Learn more about interacting with a server using URL queries and request bodies.
+## Getting Started
 
-You will be getting the data from your implementation of the Northcoders News API server.
+To run this project in the browser, the [API](https://github.com/SalVN/w07-northcodersnews-api) should first be cloned and run.
 
-### Stages
+To run the front end, the following steps should be taken:
 
-1. Have a look at your API endpoints and at Reddit. Think about what data you have available, and how you will structure your application. What routes will your application have? What articles will you choose to display on the main page?
+### Prerequisites
 
-2. Set up your routing with React Router. Render dummy components and make sure they are rendering in the right place.
+This project requires nodejs and npm to be installed.
 
-3. Think about what data each component will need. Where will it come from? Will any components need to pass data down to dumb components as props? Focus on loading a list of articles for your front page first of all.
+If nodejs is not installed on your machine, refer to the node documentation for instructions.
 
-4. Consider more complex functionality. You should be able to post a new comment on a topic. NB all comments you post from your app will automatically have the username 'northcoder'. Consider whether the comments will appear in order of popularity or by time.
+To confirm you have npm installed on your machine, run the following code:
 
-5. You should also be able to delete comments that you have posted. If you try to delete a comment that does not have the author 'northcoder' the API throws an error.
+```
+npm -v
+```
 
-6. Each comment, and each article, can be upvoted or downvoted. See the [API reference](https://northcoders-news-api.herokuapp.com/) which explains how to to this.
+If you don't have npm installed on your machine, instructions for installing npm can be found at [https://www.npmjs.com/get-npm].
 
-### Users
+### Instructions
 
-Users are available from the API and have already been busy adding comments to the articles!
-There is also a 'northcoder' user. Any comments you add will belong to the 'northcoder' user and you will
-also be able to delete those comments using the API.
+1. Install dependencies
 
-### Extra credit
+After cloning the project from Github, use npm or yarn to install the dependencies on your machine.
 
-1. Create a route which shows which users have been most active adding articles and comments
-2. Make this route sort the users by how popular they are based on an aggregation of their article and comment vote counts
-3. Implement a filter which re-orders comments based on either the time they were added, or how many votes they have got.
+```
+npm install
+```
+
+2. Start the webpack dev server
+
+This project currently uses a webpack dev server, which needs to be started to run the project.
+```
+npm run dev
+```
+
+3. Navigate to the correct page on your browser.
+
+The project will run locally on 
+```
+localhost:9090/
+```
+
+## Functionality and Routes
+
+The following routes can be used on the front-end to interact with the server:
+
+<localhost:9090/> 
+    displays a list of articles
+
+<localhost:9090/topics/:topic-id/articles>
+    displays a filtered list of articles about the topic
+
+<localhost:9090/articles/:id>
+    displays the featured article and related comments.
+    The comments component allows you to add a comment to the page.
+
+<localhost:9090/users/:username>
+    displays key statistics about the user, as well as a list of articles they have contributed.
+
+<localhost:9090/users>
+    displays a list of users
+
+## Test Suite
+
+A test suite has been used to test some aspects of the reducer (the actions and reducer files).
+The tests run on [Jest](https://facebook.github.io/jest/). The coverage tests provided with jest have been configured.
+
+For the async actions testing for the redux reducer, [moxios](https://github.com/mzabriskie/moxios) has been used to mock the axios request for testing, alongside the [redux-mock-store](https://www.npmjs.com/package/redux-mock-store) to log the actions.
+
+To test the react components, [enzyme](https://facebook.github.io/jest/) has been utilised alongside jest, as well as the [sinon.js stub function](http://sinonjs.org/).
+
+To run the tests, use the following command in the terminal.
+```
+npm test
+```
+
+### Uses
+
+To run this project, the [back-end](https://github.com/SalVN/w07-northcodersnews-api) server needs to be running.
+
+Whilst a full list of dependencies is available on the package.json, the main libraries used are:
+
+PROJECT
+* [ReactJS](https://facebook.github.io/react/)
+* [React Router](https://reacttraining.com/react-router/)
+* [Redux](http://redux.js.org/) 
+* [Underscore](http://underscorejs.org/)
+* [Babel](https://babeljs.io/)
+* [Webpack.JS](https://webpack.js.org/)
+* [Axios](https://www.npmjs.com/package/axios)
+
+TESTING
+* [Jest](https://facebook.github.io/jest/)
+* [Enzyme](https://facebook.github.io/jest/)
+* [Moxios](https://github.com/mzabriskie/moxios)
+* [Sinon](http://sinonjs.org/)
+* [Redux Mock Store](https://www.npmjs.com/package/redux-mock-store)
+
+### Authors
+
+[Sally Newell](https://github.com/SalVN/)
+
+### Acknowledgments
+
+Completed as part of a project on the [Northcoders](https://northcoders.com/) Course.
