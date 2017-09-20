@@ -8,7 +8,7 @@ import UserListCard from './UserListCard';
 
 import './css/App.css';
 
-export class App extends Component {
+class App extends Component {
   render() {
     let pageStyling = window.innerWidth < 800 ? 'main-page-mobile' : 'main-page';
     return (

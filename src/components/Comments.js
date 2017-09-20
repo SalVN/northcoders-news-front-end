@@ -176,7 +176,7 @@ function mapStateToProps(state) {
 
 Comments.propTypes = {
     id: PropTypes.string.isRequired,
-    comments: PropTypes.any.isRequired,
+    comments: PropTypes.any,
     users: PropTypes.array.isRequired,
     fetchComments: PropTypes.func.isRequired,
     deleteComment: PropTypes.func.isRequired,

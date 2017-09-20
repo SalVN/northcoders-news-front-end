@@ -54,7 +54,7 @@ const UserPageCard = function (props) {
 };
 
 UserPageCard.propTypes = {
-    user: PropTypes.object.isRequired,
+    user: PropTypes.object,
     articlesNo: PropTypes.number.isRequired,
     ranking: PropTypes.number.isRequired
 };

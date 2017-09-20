@@ -9,7 +9,7 @@ import sinon from 'sinon';
 const mockStore = configureStore();
 const initialState = {};
 
-import { ArticleList } from '../../src/components/ArticleList';
+import {ArticleList} from '../../src/components/ArticleList';
 
 describe('ArticleList', () => {
     const articles = [{

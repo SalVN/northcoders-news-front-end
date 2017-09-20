@@ -8,7 +8,7 @@ import ReactShallowRenderer from 'react-test-renderer/shallow';
 const mockStore = configureStore();
 const initialState = {};
 
-import { App } from '../../src/components/App';
+import App from '../../src/components/App';
 import PageNotFound from '../../src/components/PageNotFound';
 
 describe('App', () => {

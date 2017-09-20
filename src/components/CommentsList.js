@@ -55,7 +55,7 @@ const CommentsList = function (props) {
 
 CommentsList.propTypes = {
     id: PropTypes.string,
-    comments: PropTypes.any.isRequired,
+    comments: PropTypes.any,
     users: PropTypes.array.isRequired,
     deleteHandler: PropTypes.func.isRequired,
     voteHandler: PropTypes.func.isRequired,
