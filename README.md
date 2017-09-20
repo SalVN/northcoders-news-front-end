@@ -9,7 +9,7 @@ The user and comments list can be sorted by a range of options.
 
 ## Getting Started
 
-To run this project in the browser, the [API](https://github.com/SalVN/w07-northcodersnews-api) should first be cloned and run.
+To run this project in the browser, the [API](https://github.com/SalVN/northcoders-news-api) should first be cloned and run.
 
 To run the front end, the following steps should be taken:
 
@@ -38,7 +38,7 @@ If you don't have npm installed on your machine, instructions for installing npm
 
 1. Install dependencies
 
-After cloning the project into a new file from from [Github](https://github.com/SalVN/w10-northcoders-news), use npm or yarn to install the dependencies on your machine.
+After cloning the project into a new file from from [Github](https://github.com/SalVN/northcoders-news-front-end), use npm or yarn to install the dependencies on your machine.
 
 ```
 npm install
@@ -98,7 +98,7 @@ npm test
 
 ### Uses
 
-To run this project, the [back-end](https://github.com/SalVN/w07-northcodersnews-api) server needs to be running.
+To run this project, the [back-end](https://github.com/SalVN/northcoders-news-api) server needs to be running.
 
 Whilst a full list of dependencies is available on the package.json, the main libraries used are:
 
